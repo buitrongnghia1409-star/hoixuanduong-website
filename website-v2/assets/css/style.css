@@ -1,0 +1,904 @@
+/* ==========================================================================
+   HỒI XUÂN ĐƯỜNG — 3D MERIDIAN HERO THEATRE (STANDALONE MODULE)
+   - Font tiêu chuẩn Website gốc: Playfair Display + Be Vietnam Pro
+   - Màu sắc nhận diện chuẩn Đông Y Hoàng Gia
+   - Tối ưu tuyệt đối để nhúng trực tiếp vào Hero Session của Website gốc
+   ========================================================================== */
+
+:root {
+  /* Brand Palette from Original Website */
+  --c-primary-green: #2f4a26;
+  --c-green-800: #3d5c33;
+  --c-green-700: #4f7440;
+  --c-green-100: #eef4e7;
+  --c-green-50: #f6f9f1;
+  --c-gold: #b8912f;
+  --c-gold-light: #cba646;
+  --c-crimson: #ff1744;
+  --c-cream-bg: #fffdf8;
+  --c-ink: #28321f;
+  --c-ink-soft: #5b6650;
+  --c-white: #ffffff;
+
+  /* Typography Matching Original Website */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--c-cream-bg);
+  color: var(--c-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================
+   0. AMBIENT BACKGROUND VIDEO (Ao Sen)
+   ========================================== */
+.pond-bg-video {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Làm dịu video đủ mạnh để chữ xanh lá thương hiệu không bị "hòa" vào tông
+   xanh ngọc của video — đậm hơn ở mép trên/dưới nơi đặt header & sidebar. */
+.pond-bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.82) 0%, rgba(255, 253, 248, 0.45) 22%, rgba(255, 253, 248, 0.4) 68%, rgba(255, 253, 248, 0.78) 100%);
+}
+
+/* Lớp sáng riêng ngay dưới header để logo/tiêu đề luôn nổi rõ dù video sáng hay tối */
+.pond-bg-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 230px;
+  background: linear-gradient(180deg, rgba(255, 253, 248, 0.65) 0%, rgba(255, 253, 248, 0) 100%);
+}
+
+/* ==========================================
+   1. FIXED FULLSCREEN 3D WEBGL STAGE
+   ========================================== */
+.hero-3d-stage-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: auto;
+  background: transparent; /* Để lộ video ao sen phía sau */
+}
+
+/* ==========================================
+   2. MINIMAL FIXED BRAND SIGNATURE HEADER
+   ========================================== */
+.site-header-minimal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: flex-start;
+  padding: 20px 48px 0 48px;
+  background: transparent !important;
+  pointer-events: none;
+}
+
+.header-inner {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: auto;
+}
+
+.brand-signature-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.brand-signature {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.brand-link-about {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--c-primary-green);
+  text-decoration: none;
+  margin-left: 58px; /* Căn thẳng hàng với chữ Hồi Xuân Đường */
+  margin-top: 6px;
+  width: fit-content;
+  padding: 6px 14px;
+  background: rgba(184, 145, 47, 0.14);
+  border: 1px solid rgba(184, 145, 47, 0.55);
+  border-radius: 20px;
+  transition: var(--transition-smooth);
+}
+
+.brand-link-about:hover {
+  color: #ffffff;
+  background: var(--c-gold);
+  border-color: var(--c-gold);
+  transform: translateX(3px);
+  box-shadow: 0 4px 14px rgba(184, 145, 47, 0.35);
+}
+
+.brand-link-about .link-arrow {
+  font-size: 13px;
+  transition: transform 0.25s ease;
+}
+
+.brand-link-about:hover .link-arrow {
+  transform: translateX(4px);
+}
+
+.brand-logo-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(47, 74, 38, 0.15));
+}
+
+.brand-text-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title-main {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--c-primary-green);
+  line-height: 1.1;
+  text-shadow: 0 1px 10px rgba(255, 253, 248, 0.9), 0 1px 2px rgba(255, 253, 248, 0.9);
+}
+
+.brand-sub-badge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--c-gold);
+  text-transform: uppercase;
+  text-shadow: 0 1px 8px rgba(255, 253, 248, 0.9);
+}
+
+/* ==========================================
+   3. INTERACTIVE 3D THEATRE OVERLAY
+   ========================================== */
+.theatre-stage-ui {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 124px 56px 36px 56px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Left Editorial Typography — frosted scrim behind it so text stays readable
+   no matter what's behind it in the 3D canvas (dark torso, bright particles, etc.) */
+.theatre-left-editorial {
+  position: relative;
+  max-width: 440px;
+  max-height: calc(100vh - 160px);
+  overflow: hidden; /* Khung nền mờ luôn cố định, không trôi theo nội dung cuộn */
+  border: none !important;
+  box-shadow: none !important;
+  padding: 28px 32px !important;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Chỉ phần nội dung dài (chỉ định/kỹ thuật/lưu ý) cuộn được — tiêu đề huyệt
+   và kênh kinh lạc luôn đứng yên phía trên, nền mờ luôn phủ trọn khung. */
+.editorial-scroll-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-right: 6px;
+  margin-right: -6px;
+}
+
+.editorial-scroll-body::-webkit-scrollbar {
+  width: 4px;
+}
+.editorial-scroll-body::-webkit-scrollbar-thumb {
+  background: rgba(184, 145, 47, 0.35);
+  border-radius: 4px;
+}
+
+.theatre-left-editorial::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* Khớp đúng khung thật — tránh lệch vị trí/chiều cao so với sidebar bên phải */
+  z-index: -1;
+  border-radius: 28px;
+  background: linear-gradient(115deg,
+    rgba(255, 253, 248, 0.55) 0%,
+    rgba(255, 253, 248, 0.42) 55%,
+    rgba(255, 253, 248, 0.16) 85%,
+    rgba(255, 253, 248, 0) 100%);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+/* Timeline Synchronized Staggered Reveal Animations
+   — Nhịp độ căn theo camera 3D (easeInOutQuart, 1.4s) để chữ và huyệt đạo
+     chuyển cảnh cùng tốc độ, mượt mà thay vì giật nhanh. */
+.theatre-left-editorial.animate-in .editorial-title {
+  animation: editorialFadeUp 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards 0s;
+}
+.theatre-left-editorial.animate-in .editorial-channel {
+  animation: editorialFadeUp 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards 0.06s;
+}
+.theatre-left-editorial.animate-in .indication-block {
+  animation: editorialFadeUp 0.85s cubic-bezier(0.65, 0, 0.35, 1) forwards 0.12s;
+}
+.theatre-left-editorial.animate-in .technique-block {
+  animation: editorialFadeUp 0.9s cubic-bezier(0.65, 0, 0.35, 1) forwards 0.18s;
+}
+.theatre-left-editorial.animate-in .caution-text-block {
+  animation: editorialFadeUp 0.95s cubic-bezier(0.65, 0, 0.35, 1) forwards 0.24s;
+}
+.theatre-left-editorial.animate-in .editorial-cta-group {
+  animation: editorialFadeUp 1s cubic-bezier(0.65, 0, 0.35, 1) forwards 0.3s;
+}
+
+.theatre-left-editorial.animate-out {
+  opacity: 0;
+  transform: translateY(-8px);
+  filter: blur(4px);
+  transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@keyframes editorialFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+.editorial-title {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 700;
+  color: var(--c-primary-green);
+  line-height: 1.15;
+  letter-spacing: -0.4px;
+  text-shadow: 0 2px 18px rgba(255, 255, 255, 0.95);
+  margin-bottom: 0px;
+  opacity: 0;
+  font-feature-settings: "lnum" 1, "pnum" 1; /* lining, tabular figures — keeps digits level with caps */
+}
+
+/* Trailing "(MÃ HUYỆT)" — never wraps mid-code, sized down to sit level with the caps beside it */
+.editorial-code {
+  display: inline-block;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
+  font-size: 0.58em;
+  font-weight: 700;
+  vertical-align: 0.08em;
+}
+
+.editorial-channel {
+  display: inline-block;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin-bottom: 2px;
+  opacity: 0;
+}
+
+.editorial-field-block {
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.field-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--c-green-800);
+  margin-bottom: 0;
+}
+
+.editorial-desc {
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--c-ink-soft);
+  text-shadow: 0 1px 6px rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* Medical Doctor Caution — set apart as its own soft card so dense warning
+   text reads as a distinct, scannable block instead of running into the rest. */
+.caution-text-block {
+  margin-top: 0 !important;
+  background: rgba(179, 57, 39, 0.07);
+  border-left: 3px solid #b33927;
+  border-radius: 10px;
+  padding: 10px 14px !important;
+}
+
+.caution-label {
+  color: #b33927 !important;
+}
+
+.caution-desc {
+  color: #6d412b !important;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.editorial-cta-group {
+  display: flex;
+  margin-top: 4px;
+  max-width: 200px;
+  opacity: 0;
+}
+
+.btn-view-full-body {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--c-primary-green);
+  border: 1px solid rgba(47, 74, 38, 0.25);
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(47, 74, 38, 0.06);
+  transition: var(--transition-smooth);
+}
+
+.btn-view-full-body:hover {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: var(--c-primary-green);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(47, 74, 38, 0.15);
+}
+
+/* ==========================================
+   4. RIGHT SIDEBAR: 12 ACUPOINTS LIST (ULTRA TRANSLUCENT GLASS)
+   ========================================== */
+.theatre-right-sidebar {
+  width: 310px;
+  max-height: calc(100vh - 160px);
+  background: rgba(255, 253, 248, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(184, 145, 47, 0.28);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(47, 74, 38, 0.12);
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(184, 145, 47, 0.18);
+  margin-bottom: 10px;
+}
+
+.sidebar-title {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  line-height: 1.3;
+  color: var(--c-primary-green);
+}
+
+.sidebar-hint {
+  display: block;
+  margin-top: 4px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--c-gold);
+}
+
+.acupoints-scroll-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 4px;
+}
+
+.acupoints-scroll-list::-webkit-scrollbar {
+  width: 4px;
+}
+.acupoints-scroll-list::-webkit-scrollbar-thumb {
+  background: rgba(184, 145, 47, 0.35);
+  border-radius: 4px;
+}
+
+.btn-acu-item {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-acu-item:hover {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(184, 145, 47, 0.45);
+  transform: translateX(-2px);
+}
+
+.btn-acu-item.active {
+  background: linear-gradient(135deg, #ff1744 0%, #d50000 100%);
+  border-color: #ff1744;
+  box-shadow: 0 4px 14px rgba(255, 23, 68, 0.35);
+  transform: translateX(-3px);
+}
+
+.acu-idx {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-gold);
+}
+
+.btn-acu-item.active .acu-idx {
+  color: #ffffff;
+}
+
+.acu-info-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.acu-name-txt {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-primary-green);
+  line-height: 1.2;
+}
+
+/* Sidebar list uses the sans body font (no oldstyle-figure issue) — just keep the code intact */
+.acu-name-txt .editorial-code {
+  font-size: 1em;
+  vertical-align: baseline;
+}
+
+.btn-acu-item.active .acu-name-txt {
+  color: #ffffff;
+}
+
+.acu-chan-txt {
+  font-size: 11px;
+  color: var(--c-ink-soft);
+}
+
+.btn-acu-item.active .acu-chan-txt {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.acu-arrow {
+  font-size: 15px;
+  color: var(--c-ink-soft);
+  transition: transform 0.2s ease;
+}
+
+.btn-acu-item.active .acu-arrow {
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+@media (max-width: 1024px) {
+  .theatre-stage-ui {
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 118px 20px 20px 20px;
+    gap: 16px;
+  }
+  .theatre-left-editorial {
+    max-width: 100%;
+    max-height: min(360px, 44vh);
+    order: 2;
+  }
+  .theatre-right-sidebar {
+    width: 100%;
+    max-height: 200px;
+    order: 1;
+  }
+}
+
+/* ==========================================
+   PHONE-SPECIFIC REFINEMENTS (≤600px)
+   ========================================== */
+@media (max-width: 600px) {
+  .site-header-minimal {
+    padding: 14px 16px 0 16px;
+  }
+  .brand-logo-img {
+    width: 36px;
+    height: 36px;
+  }
+  .brand-title-main {
+    font-size: 15px;
+    letter-spacing: 0.8px;
+  }
+  .brand-sub-badge {
+    font-size: 7.5px;
+    letter-spacing: 1px;
+  }
+  .brand-link-about {
+    font-size: 9.5px;
+    letter-spacing: 0.8px;
+    padding-left: 44px;
+  }
+
+  .theatre-stage-ui {
+    padding: 94px 12px 12px 12px;
+    gap: 10px;
+  }
+
+  .theatre-left-editorial {
+    max-height: min(320px, 42vh);
+    padding: 18px 16px !important;
+    border-radius: 20px;
+    gap: 6px;
+  }
+  .theatre-left-editorial::before {
+    border-radius: 20px;
+  }
+
+  .editorial-title {
+    font-size: clamp(19px, 6.4vw, 25px);
+  }
+  .editorial-channel {
+    font-size: 10px;
+  }
+  .editorial-scroll-body {
+    gap: 12px;
+  }
+  .field-label {
+    font-size: 10px;
+  }
+  .editorial-desc {
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+  .caution-desc {
+    font-size: 11.5px;
+  }
+  .btn-view-full-body {
+    font-size: 11.5px;
+    padding: 7px 14px;
+  }
+
+  .theatre-right-sidebar {
+    max-height: 180px;
+    padding: 14px;
+    border-radius: 16px;
+  }
+  .sidebar-title {
+    font-size: 12px;
+  }
+  .sidebar-hint {
+    font-size: 10.5px;
+  }
+  .btn-acu-item {
+    padding: 7px 10px;
+  }
+  .acu-name-txt {
+    font-size: 12px;
+  }
+  .acu-chan-txt {
+    font-size: 10px;
+  }
+
+  .gemini-chat-widget {
+    bottom: 14px;
+    right: 14px;
+  }
+  .btn-chat-trigger {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+  .chat-window {
+    width: calc(100vw - 28px);
+    right: -2px;
+  }
+}
+
+/* ==========================================
+   5. GEMINI AI ASSISTANT CHAT WIDGET
+   ========================================== */
+.gemini-chat-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+}
+
+.btn-chat-trigger {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2f4a26 0%, #1e3318 100%);
+  border: 2px solid #b8912f;
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(47, 74, 38, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-chat-trigger:hover {
+  transform: scale(1.08);
+}
+
+.chat-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid #b8912f;
+  animation: chatPulseRing 2s infinite;
+  opacity: 0;
+}
+
+@keyframes chatPulseRing {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+.chat-window {
+  position: absolute;
+  bottom: 68px;
+  right: 0;
+  width: 360px;
+  height: 480px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(184, 145, 47, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 16px 48px rgba(47, 74, 38, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px) scale(0.96);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chat-window.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.chat-header {
+  background: linear-gradient(135deg, #2f4a26 0%, #3d5c33 100%);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffffff;
+}
+
+.chat-title {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.chat-subtitle {
+  font-size: 10.5px;
+  color: #dfb164;
+  letter-spacing: 0.5px;
+}
+
+.btn-chat-close {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.btn-chat-close:hover {
+  opacity: 1;
+}
+
+.chat-messages-body {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.msg-bubble {
+  max-width: 82%;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.45;
+  border-radius: 14px;
+}
+
+.msg-bot {
+  background: #f4f8f0;
+  border: 1px solid rgba(47, 74, 38, 0.12);
+  color: #28321f;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.msg-user {
+  background: #2f4a26;
+  color: #ffffff;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.msg-typing span {
+  animation: blinkTyping 1.4s infinite both;
+  font-size: 20px;
+  line-height: 10px;
+}
+.msg-typing span:nth-child(2) { animation-delay: 0.2s; }
+.msg-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blinkTyping {
+  0%, 80%, 100% { opacity: 0.2; }
+  40% { opacity: 1; }
+}
+
+.chat-quick-suggestions {
+  display: flex;
+  gap: 6px;
+  padding: 6px 14px;
+  overflow-x: auto;
+  background: #faf8f5;
+  border-top: 1px solid #f0ebe4;
+}
+
+.btn-quick-tag {
+  white-space: nowrap;
+  background: #ffffff;
+  border: 1px solid rgba(184, 145, 47, 0.3);
+  color: #2f4a26;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-quick-tag:hover {
+  background: #2f4a26;
+  color: #ffffff;
+}
+
+.chat-input-row {
+  display: flex;
+  padding: 10px 14px;
+  background: #ffffff;
+  border-top: 1px solid #eee7dd;
+  gap: 8px;
+}
+
+.chat-input-field {
+  flex: 1;
+  border: 1px solid #e2dad0;
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.chat-input-field:focus {
+  border-color: #b8912f;
+}
+
+.btn-chat-send {
+  background: #b8912f;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-chat-send:hover {
+  background: #2f4a26;
+}

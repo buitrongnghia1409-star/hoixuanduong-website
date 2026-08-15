@@ -1,0 +1,168 @@
+/* ==========================================================================
+   HỒI XUÂN ĐƯỜNG V2 — 3D EFFECTS & INTERACTIVE DEPTH SYSTEM
+   ========================================================================== */
+
+/* 3D Perspective Context */
+.perspective-container {
+  perspective: 1200px;
+}
+
+.tilt-card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.tilt-inner-layer {
+  transform: translateZ(30px);
+}
+
+.tilt-inner-sub {
+  transform: translateZ(15px);
+}
+
+/* 3D Gold Emboss Effect */
+.text-3d-gold {
+  background: linear-gradient(135deg, #d4a359 0%, #fff2cf 50%, #9a6d22 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(201, 147, 59, 0.3));
+}
+
+/* Glowing Aura Radar */
+.pulse-radar {
+  position: relative;
+}
+
+.pulse-radar::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  border: 2px solid var(--c-gold);
+  animation: radarPulse 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  pointer-events: none;
+}
+
+@keyframes radarPulse {
+  0% { transform: scale(0.95); opacity: 0.9; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Acupoint Pulse Animation */
+.acupoint-dot {
+  animation: acupointGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes acupointGlow {
+  0% {
+    box-shadow: 0 0 6px var(--c-primary), 0 0 10px rgba(201, 147, 59, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 14px var(--c-gold-light), 0 0 22px var(--c-primary);
+  }
+}
+
+/* Acupoint Detail Modal / Popup */
+.acupoint-popup-box {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  background: rgba(24, 18, 17, 0.95);
+  color: #f5ede6;
+  border: 1px solid var(--c-border-gold);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-lg);
+  text-align: left;
+  z-index: 20;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: all var(--transition-normal);
+}
+
+.acupoint-popup-box.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.acupoint-popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.acupoint-popup-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--c-gold-light);
+  font-weight: 700;
+}
+
+.acupoint-popup-body {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #ddd2c9;
+}
+
+.acupoint-popup-close {
+  color: #aaa098;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.acupoint-popup-close:hover {
+  color: #ffffff;
+}
+
+/* Smooth Reveal Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Floating Badges */
+.badge-floating-3d {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(201, 147, 59, 0.3);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border-radius: var(--radius-md);
+  padding: 10px 18px;
+  animation: floatSoft 5s ease-in-out infinite;
+}
+
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Glassmorphism Card Utility */
+.glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: var(--shadow-md);
+}
+
+.glass-card-dark {
+  background: rgba(30, 24, 23, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(201, 147, 59, 0.25);
+  box-shadow: var(--shadow-3d);
+}

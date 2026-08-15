@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hồi Xuân Đường — Bản Đồ 12 Huyệt Đạo & Thập Nhị Kinh Lạc 3D</title>
+  <meta name="description" content="Trực quan hóa hệ thống 12 Huyệt Đạo & Thập Nhị Kinh Lạc trên không gian 3D tương tác của Hồi Xuân Đường.">
+
+  <link rel="icon" type="image/png" href="assets/images/logo-3d.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css?v=17">
+
+  <!-- Three.js ES Module Importmap -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body class="theatre-app-body">
+
+  <!-- ==========================================
+       0. AMBIENT BACKGROUND VIDEO (Ao Sen)
+       ========================================== -->
+  <video class="pond-bg-video" autoplay muted loop playsinline aria-hidden="true">
+    <source src="assets/video/ao-sen.mp4" type="video/mp4">
+  </video>
+  <div class="pond-bg-overlay" aria-hidden="true"></div>
+
+  <!-- ==========================================
+       1. 3D WEBGL FULLSCREEN ENGINE CANVAS
+       ========================================== -->
+  <div id="hero3DCanvas" class="hero-3d-stage-canvas" aria-label="Sân khấu 3D Kinh Lạc Hồi Xuân Đường"></div>
+
+  <!-- ==========================================
+       2. MINIMAL BRAND SIGNATURE HEADER
+       ========================================== -->
+  <header class="site-header-minimal" role="banner">
+    <div class="header-inner">
+      <div class="brand-signature-wrap">
+        <a href="#top" class="brand-signature" aria-label="Hồi Xuân Đường">
+          <img src="assets/images/logo-3d.png" alt="Logo Hồi Xuân Đường" class="brand-logo-img">
+          <div class="brand-text-col">
+            <span class="brand-title-main">HỒI XUÂN ĐƯỜNG</span>
+            <span class="brand-sub-badge">TINH HOA ĐÔNG Y • THANH XUÂN BẤT TẬN</span>
+          </div>
+        </a>
+        <a href="../website/index.html" class="brand-link-about" title="Xem website giới thiệu chi tiết">
+          🌿 TÌM HIỂU VỀ CHÚNG TÔI <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       3. INTERACTIVE 3D THEATRE OVERLAY
+       ========================================== -->
+  <main class="theatre-stage-ui">
+    <!-- Left Editorial Live Typography (Clean, No Card Shape, Text Floating on Canvas) -->
+    <div class="theatre-left-editorial animate-in">
+      <h1 class="editorial-title" id="selectedAcuTitle">Hồi Xuân Đường</h1>
+      <div class="editorial-channel" id="selectedAcuChannel">TINH HOA ĐÔNG Y • ĐẢ THÔNG KINH LẠC</div>
+
+      <div class="editorial-scroll-body">
+        <!-- Section 1: Chỉ Định & Bệnh Lý -->
+        <div class="editorial-field-block indication-block">
+          <span class="field-label">🌿 ĐẶC TRỊ & CHỈ ĐỊNH:</span>
+          <p class="editorial-desc" id="selectedAcuIndication">
+            Trực quan hóa hệ thống Thập Nhị Kinh Lạc & Kỳ Kinh Bát Mạch trên không gian 3D. Khí hành thì huyết hành, kinh lạc thông suốt thì bách bệnh tự nhiên tiêu tan, thân tâm an lạc.
+          </p>
+        </div>
+
+        <!-- Section 2: Phương Pháp Day Bấm -->
+        <div class="editorial-field-block technique-block">
+          <span class="field-label">🖐️ PHƯƠNG PHÁP DAY BẤM:</span>
+          <p class="editorial-desc" id="selectedAcuTechnique">
+            Nhấp chọn từng huyệt đạo ở danh sách bên phải để kích hoạt camera 3D zoom cận cảnh và khám phá phương pháp trị liệu.
+          </p>
+        </div>
+
+        <!-- Section 3: Cảnh Báo An Toàn Y Khoa (Close right below technique) -->
+        <div class="editorial-field-block caution-text-block">
+          <span class="field-label caution-label">⚠️ LƯU Ý Y KHOA QUAN TRỌNG:</span>
+          <p class="editorial-desc caution-desc" id="selectedAcuCaution">
+            Không tự ý thực hiện bấm huyệt trị liệu chuyên sâu khi chưa có chỉ định hoặc hướng dẫn trực tiếp từ bác sĩ chuyên khoa Đông y.
+          </p>
+        </div>
+
+        <div class="editorial-cta-group">
+          <button type="button" class="btn-view-full-body" id="btnResetToFullBody">🔄 Xem Toàn Thân</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right 12 Core Acupoint Selector List -->
+    <aside class="theatre-right-sidebar" aria-label="Danh sách 12 huyệt đạo">
+      <div class="sidebar-header">
+        <span class="sidebar-title">12 HUYỆT ĐẠO QUAN TRỌNG CÓ THỂ GIÚP BẠN</span>
+        <span class="sidebar-hint">👉 Bấm vào để biết chi tiết</span>
+      </div>
+      <div class="acupoints-scroll-list" id="acupointsRightList">
+        <!-- Generated Dynamically via JS -->
+      </div>
+    </aside>
+  </main>
+
+  <!-- ==========================================
+       4. SCRIPTS
+       ========================================== -->
+  <script type="module">
+    import './assets/js/hero-3d-meridian.js?v=8';
+    import { GeminiAssistant } from './assets/js/gemini-assistant.js';
+    window.addEventListener('DOMContentLoaded', () => {
+      new GeminiAssistant();
+    });
+  </script>
+</body>
+</html>

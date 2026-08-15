@@ -1,0 +1,41 @@
+# ===== Hồi Xuân Đường — deploy repo ignore rules =====
+
+# Raw marketing/source photos at project root (not used by the live site)
+*.jpg
+*.jpeg
+*.JPG
+*.png
+!website/**/*.jpg
+!website/**/*.jpeg
+!website/**/*.png
+!website-v2/**/*.jpg
+!website-v2/**/*.jpeg
+!website-v2/**/*.png
+
+# Raw/experimental project folders not part of the live site
+Video mẫu/
+ảnh 3D kinh Lạc/
+website-v3/
+TASTE_SKILL_AUDIT_REPORT.md
+
+# website-v2 orphaned experimental assets (not referenced by index.html)
+website-v2/assets/meridian-3d-clean/
+website-v2/assets/models/
+website-v2/video-frames/
+website-v2/assets/videos/meridian-3d-cinema.mp4
+website-v2/assets/js/app.js
+website-v2/assets/js/meridian-3d-webgl.js
+website-v2/assets/js/meridian-3d.js
+website-v2/assets/js/particle-canvas.js
+website-v2/HOI_XUAN_DUONG_NOTEBOOKLM_KNOWLEDGE.md
+
+# website orphaned assets
+website/assets/images/meridian-body-cut.png
+website/assets/images/meridian-body-cut.webp
+
+# stray/leftover git metadata folders (safe to delete manually if present)
+website/.git/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
