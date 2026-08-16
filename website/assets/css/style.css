@@ -563,11 +563,11 @@ footer ul a:hover{color:#fff;text-decoration:underline;}
   .nav-wrap{padding:0 8px;}
   .brand-name small{display:none;}
 }
-  .service-body{padding:16px 18px 20px;}
-  .service-body h3{font-size:1rem;}
-  .service-body p{font-size:0.85rem;}
-  .product-card:nth-child(1) .product-media{height:180px;}
-  .product-media{height:180px;}
+  .service-body{padding:12px 14px 16px;}
+  .service-body h3{font-size:0.95rem;}
+  .service-body p{font-size:0.8rem;}
+  .product-card:nth-child(1) .product-media{height:140px;}
+  .product-media{height:140px;}
   .svc-item{padding:16px 18px;}
   .why-card{padding:20px 14px;}
   .why-card .icon{width:48px;height:48px;margin-bottom:10px;}
@@ -578,13 +578,13 @@ footer ul a:hover{color:#fff;text-decoration:underline;}
   .about-list li{gap:10px;}
 }
 @media (max-width:480px){
-  .section{padding:40px 0;}
+  .section{padding:32px 0;}
   .container{padding:0 12px;}
   .eyebrow{font-size:0.7rem;gap:6px;}
   .eyebrow::before{width:16px;}
   .section-head{margin-bottom:24px;}
-  .section-head h2{font-size:1.3rem;}
-  .section-head p{font-size:0.9rem;}
+  .section-head h2{font-size:1.2rem;}
+  .section-head p{font-size:0.85rem;}
   .nav-wrap{min-height:40px;}
   .brand-name{font-size:1.1rem;}
   .brand-name small{font-size:0.6rem;}
@@ -594,12 +594,12 @@ footer ul a:hover{color:#fff;text-decoration:underline;}
   .cover-text{max-width:100%;}
   .cover-text p{font-size:0.9rem;}
   .hero-cta{gap:10px;}
-  .btn{padding:12px 20px;font-size:0.85rem;}
-  .btn-sm{padding:8px 14px;font-size:0.75rem;}
-  h1,h2,h3,h4{font-size:clamp(1.2rem, 4vw, 1.8rem);}
-  h2{font-size:1.3rem;}
-  h3{font-size:1.1rem;}
-  h4{font-size:1rem;}
+  .btn{padding:10px 16px;font-size:0.8rem;}
+  .btn-sm{padding:8px 12px;font-size:0.7rem;}
+  h1,h2,h3,h4{font-size:clamp(1.1rem, 3.5vw, 1.6rem);}
+  h2{font-size:1.25rem;}
+  h3{font-size:1rem;}
+  h4{font-size:0.95rem;}
   p{font-size:0.9rem;}
   .topbar{font-size:0.75rem;padding:5px 0;}
   .topbar-items{gap:12px;}
