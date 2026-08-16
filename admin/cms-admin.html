@@ -597,7 +597,7 @@
 
     let currentEditId = null;
 
-    function switchTab(tabName, element) {
+    window.switchTab = function(tabName, element) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
 
@@ -1039,7 +1039,7 @@
       loadHero();
     });
 
-    function logout() {
+    window.logout = function() {
       window.location.href = '/admin/';
     }
   </script>
