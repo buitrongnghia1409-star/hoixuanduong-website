@@ -582,18 +582,17 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     // Initialize Supabase client
-    const supabaseClient = (function() {
-      if (typeof window.supabase !== 'undefined') {
-        return window.supabase.createClient(
-          'https://epdjnjcfzxhllklusmet.supabase.co',
-          'sb_publishable_pIjbFKuEUhUGxoMZvB6AsQ_dlpJUSO_'
-        );
-      }
-      return null;
-    })();
-
-    // Use alias for compatibility
-    const supabase = supabaseClient;
+    if (typeof window.cmsSupabase === 'undefined') {
+      window.cmsSupabase = (function() {
+        if (typeof window.supabase !== 'undefined') {
+          return window.supabase.createClient(
+            'https://epdjnjcfzxhllklusmet.supabase.co',
+            'sb_publishable_pIjbFKuEUhUGxoMZvB6AsQ_dlpJUSO_'
+          );
+        }
+        return null;
+      })();
+    }
 
     let currentEditId = null;
 
@@ -619,7 +618,7 @@
 
     // ===== CLINIC INFO =====
     async function loadClinicInfo() {
-      const { data } = await supabase.from('clinic_info').select('*').eq('id', 1).single();
+      const { data } = await window.cmsSupabase.from('clinic_info').select('*').eq('id', 1).single();
       if (data) {
         document.getElementById('clinicName').value = data.clinic_name || '';
         document.getElementById('clinicEmail').value = data.email || '';
@@ -631,7 +630,7 @@
 
     async function saveClinicInfo(e) {
       e.preventDefault();
-      const { error } = await supabase.from('clinic_info').update({
+      const { error } = await window.cmsSupabase.from('clinic_info').update({
         clinic_name: document.getElementById('clinicName').value,
         email: document.getElementById('clinicEmail').value,
         phone: document.getElementById('clinicPhone').value,
@@ -668,7 +667,7 @@
       }
 
       if (currentEditId) {
-        const { error } = await supabase.from('services').update({
+        const { error } = await window.cmsSupabase.from('services').update({
           service_name: name,
           description: desc,
           icon_emoji: emoji,
@@ -677,7 +676,7 @@
 
         showMessage('servicesMsg', error ? `Lỗi: ${error.message}` : '✓ Cập nhật dịch vụ!', error ? 'error' : 'success');
       } else {
-        const { error } = await supabase.from('services').insert([{
+        const { error } = await window.cmsSupabase.from('services').insert([{
           service_name: name,
           description: desc,
           icon_emoji: emoji
@@ -691,7 +690,7 @@
     }
 
     async function loadServices() {
-      const { data } = await supabase.from('services').select('*').order('display_order');
+      const { data } = await window.cmsSupabase.from('services').select('*').order('display_order');
       let html = '<table><tr><th>Dịch Vụ</th><th>Mô Tả</th><th>Thao Tác</th></tr>';
 
       if (data) {
@@ -721,7 +720,7 @@
 
     async function deleteService(id) {
       if (!confirm('Bạn chắc chắn muốn xóa dịch vụ này?')) return;
-      await supabase.from('services').delete().eq('id', id);
+      await window.cmsSupabase.from('services').delete().eq('id', id);
       showMessage('servicesMsg', '✓ Đã xóa dịch vụ!');
       loadServices();
     }
@@ -755,7 +754,7 @@
       }
 
       if (currentEditId) {
-        const { error } = await supabase.from('products').update({
+        const { error } = await window.cmsSupabase.from('products').update({
           product_name: name,
           category,
           price,
@@ -766,7 +765,7 @@
 
         showMessage('productsMsg', error ? `Lỗi: ${error.message}` : '✓ Cập nhật sản phẩm!', error ? 'error' : 'success');
       } else {
-        const { error } = await supabase.from('products').insert([{
+        const { error } = await window.cmsSupabase.from('products').insert([{
           product_name: name,
           category,
           price,
@@ -782,7 +781,7 @@
     }
 
     async function loadProducts() {
-      const { data } = await supabase.from('products').select('*').order('display_order');
+      const { data } = await window.cmsSupabase.from('products').select('*').order('display_order');
       let html = '<table><tr><th>Sản Phẩm</th><th>Giá</th><th>Danh Mục</th><th>Thao Tác</th></tr>';
 
       if (data) {
@@ -812,7 +811,7 @@
 
     async function deleteProduct(id) {
       if (!confirm('Bạn chắc chắn muốn xóa sản phẩm này?')) return;
-      await supabase.from('products').delete().eq('id', id);
+      await window.cmsSupabase.from('products').delete().eq('id', id);
       showMessage('productsMsg', '✓ Đã xóa sản phẩm!');
       loadProducts();
     }
@@ -841,7 +840,7 @@
       }
 
       if (currentEditId) {
-        const { error } = await supabase.from('branches').update({
+        const { error } = await window.cmsSupabase.from('branches').update({
           branch_name: name,
           phone,
           address,
@@ -850,7 +849,7 @@
 
         showMessage('branchesMsg', error ? `Lỗi: ${error.message}` : '✓ Cập nhật chi nhánh!', error ? 'error' : 'success');
       } else {
-        const { error } = await supabase.from('branches').insert([{
+        const { error } = await window.cmsSupabase.from('branches').insert([{
           branch_name: name,
           phone,
           address,
@@ -865,7 +864,7 @@
     }
 
     async function loadBranches() {
-      const { data } = await supabase.from('branches').select('*');
+      const { data } = await window.cmsSupabase.from('branches').select('*');
       let html = '<table><tr><th>Chi Nhánh</th><th>Địa Chỉ</th><th>Điện Thoại</th><th>Thao Tác</th></tr>';
 
       if (data) {
@@ -895,7 +894,7 @@
 
     async function deleteBranch(id) {
       if (!confirm('Bạn chắc chắn muốn xóa chi nhánh này?')) return;
-      await supabase.from('branches').delete().eq('id', id);
+      await window.cmsSupabase.from('branches').delete().eq('id', id);
       showMessage('branchesMsg', '✓ Đã xóa chi nhánh!');
       loadBranches();
     }
@@ -925,7 +924,7 @@
       }
 
       if (currentEditId) {
-        const { error } = await supabase.from('team').update({
+        const { error } = await window.cmsSupabase.from('team').update({
           team_name: name,
           position,
           bio,
@@ -934,7 +933,7 @@
 
         showMessage('teamMsg', error ? `Lỗi: ${error.message}` : '✓ Cập nhật nhân viên!', error ? 'error' : 'success');
       } else {
-        const { error } = await supabase.from('team').insert([{
+        const { error } = await window.cmsSupabase.from('team').insert([{
           team_name: name,
           position,
           bio
@@ -948,7 +947,7 @@
     }
 
     async function loadTeam() {
-      const { data } = await supabase.from('team').select('*').order('display_order');
+      const { data } = await window.cmsSupabase.from('team').select('*').order('display_order');
       let html = '<table><tr><th>Tên</th><th>Chức Vụ</th><th>Thao Tác</th></tr>';
 
       if (data) {
@@ -977,14 +976,14 @@
 
     async function deleteTeam(id) {
       if (!confirm('Bạn chắc chắn muốn xóa nhân viên này?')) return;
-      await supabase.from('team').delete().eq('id', id);
+      await window.cmsSupabase.from('team').delete().eq('id', id);
       showMessage('teamMsg', '✓ Đã xóa nhân viên!');
       loadTeam();
     }
 
     // ===== CONTACT =====
     async function loadContact() {
-      const { data } = await supabase.from('contact_links').select('*').eq('id', 1).single();
+      const { data } = await window.cmsSupabase.from('contact_links').select('*').eq('id', 1).single();
       if (data) {
         document.getElementById('contactZalo').value = data.zalo_number || '';
         document.getElementById('contactFacebook').value = data.facebook_url || '';
@@ -994,7 +993,7 @@
 
     async function saveContact(e) {
       e.preventDefault();
-      const { error } = await supabase.from('contact_links').update({
+      const { error } = await window.cmsSupabase.from('contact_links').update({
         zalo_number: document.getElementById('contactZalo').value,
         facebook_url: document.getElementById('contactFacebook').value,
         youtube_url: document.getElementById('contactYoutube').value,
@@ -1006,7 +1005,7 @@
 
     // ===== HERO SECTION =====
     async function loadHero() {
-      const { data } = await supabase.from('hero_section').select('*').eq('id', 1).single();
+      const { data } = await window.cmsSupabase.from('hero_section').select('*').eq('id', 1).single();
       if (data) {
         document.getElementById('heroTitle').value = data.title || '';
         document.getElementById('heroSubtitle').value = data.subtitle || '';
@@ -1019,7 +1018,7 @@
 
     async function saveHero(e) {
       e.preventDefault();
-      const { error } = await supabase.from('hero_section').update({
+      const { error } = await window.cmsSupabase.from('hero_section').update({
         title: document.getElementById('heroTitle').value,
         subtitle: document.getElementById('heroSubtitle').value,
         eyebrow: document.getElementById('heroEyebrow').value,
