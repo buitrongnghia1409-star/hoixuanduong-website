@@ -136,13 +136,23 @@ button{font-family:inherit;cursor:pointer;border:none;}
 /* ---------- Top bar ---------- */
 .topbar{
   background:var(--green-900);color:#e7efdf;font-size:.82rem;
-  padding:7px 0;
+  padding:8px 0;
 }
 .topbar .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
 .topbar a{opacity:.9;}
 .topbar a:hover{opacity:1;text-decoration:underline;}
 .topbar-items{display:flex;gap:22px;flex-wrap:wrap;}
 .topbar-items span{display:inline-flex;align-items:center;gap:6px;}
+@media (max-width:768px){
+  .topbar{padding:6px 0;font-size:0.75rem;}
+  .topbar .container{flex-direction:column;gap:4px;}
+  .topbar-items{gap:12px;}
+}
+@media (max-width:480px){
+  .topbar{padding:4px 0;font-size:0.7rem;}
+  .topbar .container{gap:0;}
+  .topbar-items{gap:8px;font-size:0.65rem;}
+}
 
 /* ---------- Header ---------- */
 header.site-header{
@@ -548,6 +558,9 @@ footer ul a:hover{color:#fff;text-decoration:underline;}
   .contact-card{padding:20px 18px;}
   .form-field input,.form-field select,.form-field textarea{font-size:16px;}
   .cart-btn,.menu-toggle{width:40px;height:40px;}
+  .nav-wrap{padding:0 8px;}
+  .brand-name small{display:none;}
+}
   .service-body{padding:16px 18px 20px;}
   .service-body h3{font-size:1rem;}
   .service-body p{font-size:0.85rem;}
