@@ -104,7 +104,8 @@ img{max-width:100%;display:block;}
 ul{margin:0;padding:0;list-style:none;}
 button{font-family:inherit;cursor:pointer;border:none;}
 .container{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
-.section{padding:96px 0;}
+.section{padding:96px 0;contain:layout;}
+.service-card,.product-card{contain:layout;}
 .section-alt{background:var(--green-50);}
 .eyebrow{
   display:inline-flex;align-items:center;gap:8px;
@@ -191,9 +192,13 @@ header.site-header{
 .hero-stats{display:flex;gap:36px;margin-top:30px;padding-top:26px;border-top:1px solid rgba(255,255,255,.15);flex-wrap:wrap;}
 .hero-stats div strong{display:block;font-family:"Playfair Display",serif;font-size:1.8rem;color:var(--gold-500);}
 .hero-stats div span{font-size:.82rem;color:#dbe6cf;letter-spacing:.03em;}
-@media (max-width:760px){
-  .cover-banner{aspect-ratio:5/4;}
+@media (max-width:768px){
+  .cover-banner{aspect-ratio:4/3;}
   .cover-banner img{object-position:65% top;}
+}
+@media (max-width:480px){
+  .cover-banner{aspect-ratio:5/4;}
+  .cover-banner img{object-position:center top;}
 }
 
 /* ---------- About ---------- */
@@ -590,7 +595,9 @@ footer ul a:hover{color:#fff;text-decoration:underline;}
   .brand-name small{font-size:0.6rem;}
   .brand img{width:36px;height:36px;}
   .cover-sub-inner{gap:12px;}
-  .cover-sub{padding:28px 0 24px;}
+  .cover-sub{padding:20px 0 16px;}
+@media (max-width:480px){
+  .cover-sub{padding:16px 0 12px;}
   .cover-text{max-width:100%;}
   .cover-text p{font-size:0.9rem;}
   .hero-cta{gap:10px;}
