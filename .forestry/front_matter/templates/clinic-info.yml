@@ -1,0 +1,62 @@
+---
+label: Thông tin phòng khám
+hide_body: true
+fields:
+- type: text
+  name: clinic_name
+  label: Tên phòng khám
+  config:
+    required: true
+- type: textarea
+  name: introduction
+  label: Giới thiệu
+  config:
+    wysiwyg: true
+    schema:
+      format: html
+- type: text
+  name: phone
+  label: Số điện thoại
+- type: text
+  name: email
+  label: Email
+- type: textarea
+  name: address
+  label: Địa chỉ
+- type: image_gallery
+  name: gallery_images
+  label: Thư viện hình ảnh
+- type: list
+  name: branches
+  label: Chi nhánh
+  config:
+    use_select: false
+  fields:
+  - type: text
+    name: branch_name
+    label: Tên chi nhánh
+  - type: text
+    name: branch_address
+    label: Địa chỉ chi nhánh
+  - type: text
+    name: branch_phone
+    label: Số điện thoại chi nhánh
+- type: list
+  name: services
+  label: Dịch vụ
+  config:
+    use_select: false
+  fields:
+  - type: text
+    name: service_name
+    label: Tên dịch vụ
+  - type: textarea
+    name: service_description
+    label: Mô tả dịch vụ
+  - type: image
+    name: service_image
+    label: Hình ảnh dịch vụ
+- type: text
+  name: business_hours
+  label: Giờ làm việc
+  default: 8:00 - 20:00

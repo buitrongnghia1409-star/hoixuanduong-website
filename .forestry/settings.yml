@@ -1,0 +1,25 @@
+---
+sections:
+- type: directory
+  path: website/_data
+  label: Dữ liệu Trang Web
+  create: documents
+  match: "*.yml"
+  templates:
+  - clinic-info
+upload_dir: website/assets/images
+public_path: "/assets/images"
+front_matter_path: ''
+use_front_matter_path: false
+file_template: ":filename:"
+instant_preview: true
+build:
+  preview_env:
+  - JEKYLL_ENV=staging
+  preview_output_directory: website
+  install_dependencies_command: npm install
+  preview_docker_image: forestryio/node:12
+  mount_path: "/srv"
+  working_dir: "/srv"
+  instant_preview_command: npm run build
+version: 0.51.0
