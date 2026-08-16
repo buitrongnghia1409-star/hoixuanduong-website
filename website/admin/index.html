@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Hồi Xuân Đường</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .success {
+            background: #10b981;
+            padding: 15px;
+            border-radius: 5px;
+            color: white;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .success.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .error {
+            background: #ef4444;
+            padding: 15px;
+            border-radius: 5px;
+            color: white;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .loading {
+            text-align: center;
+            color: #667eea;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .login-form {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            margin-top: 20px;
+        }
+
+        .logout-btn:hover {
+            box-shadow: 0 5px 20px rgba(239, 68, 68, 0.4);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .user-info {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <!-- Login Form -->
+            <div v-if="!isLoggedIn" class="login-form">
+                <h1>🔐 Đăng Nhập</h1>
+                <p class="subtitle">Quản lý nội dung phòng khám</p>
+
+                <div class="error" :class="{ show: error }">{{ error }}</div>
+
+                <div class="form-group">
+                    <label>Mật khẩu admin</label>
+                    <input
+                        v-model="password"
+                        type="password"
+                        placeholder="Nhập mật khẩu"
+                        @keyup.enter="login"
+                    >
+                </div>
+
+                <button @click="login" :disabled="loading">
+                    {{ loading ? 'Đang xử lý...' : 'Đăng Nhập' }}
+                </button>
+            </div>
+
+            <!-- Admin Dashboard -->
+            <div v-else>
+                <div class="header">
+                    <h1>📋 Quản Lý Nội Dung</h1>
+                    <button class="logout-btn" @click="logout">Đăng xuất</button>
+                </div>
+
+                <div class="success" :class="{ show: successMessage }">
+                    ✓ {{ successMessage }}
+                </div>
+
+                <div class="error" :class="{ show: error }">
+                    ✗ {{ error }}
+                </div>
+
+                <div v-if="loading" class="loading">
+                    <div class="spinner"></div>
+                    Đang tải dữ liệu...
+                </div>
+
+                <div v-else>
+                    <!-- Clinic Info -->
+                    <div class="form-group">
+                        <label>📌 Tên phòng khám</label>
+                        <input v-model="data.clinic_name" type="text" placeholder="Hồi Xuân Đường">
+                    </div>
+
+                    <div class="form-group">
+                        <label>📝 Giới thiệu</label>
+                        <textarea v-model="data.introduction" placeholder="Nhập giới thiệu về phòng khám"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>📞 Số điện thoại</label>
+                        <input v-model="data.phone" type="text" placeholder="0912 994 888">
+                    </div>
+
+                    <div class="form-group">
+                        <label>📧 Email</label>
+                        <input v-model="data.email" type="email" placeholder="info@hoixuanduong.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label>📍 Địa chỉ</label>
+                        <textarea v-model="data.address" placeholder="Nhập địa chỉ phòng khám"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>🕒 Giờ làm việc</label>
+                        <input v-model="data.business_hours" type="text" placeholder="8:00 - 20:00, Thứ 2 - Chủ nhật">
+                    </div>
+
+                    <button @click="saveData" :disabled="loading">
+                        {{ loading ? '⏳ Đang lưu...' : '💾 Lưu thay đổi' }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createClient } = window.supabase;
+        const supabase = createClient(
+            'https://epdjnjcfzxhllklusmet.supabase.co',
+            'sb_publishable_pIjbFKuEUhUGxoMZvB6AsQ_dlpJUSO_'
+        );
+
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    isLoggedIn: localStorage.getItem('admin_logged_in') === 'true',
+                    password: '',
+                    adminPassword: 'hoixuanduong2024', // Change this to your password
+                    data: {
+                        clinic_name: '',
+                        introduction: '',
+                        phone: '',
+                        email: '',
+                        address: '',
+                        business_hours: ''
+                    },
+                    loading: false,
+                    error: '',
+                    successMessage: ''
+                };
+            },
+
+            methods: {
+                async login() {
+                    if (this.password === this.adminPassword) {
+                        localStorage.setItem('admin_logged_in', 'true');
+                        this.isLoggedIn = true;
+                        this.error = '';
+                        this.fetchData();
+                    } else {
+                        this.error = 'Mật khẩu không đúng!';
+                    }
+                },
+
+                logout() {
+                    localStorage.removeItem('admin_logged_in');
+                    this.isLoggedIn = false;
+                    this.password = '';
+                    this.data = {
+                        clinic_name: '',
+                        introduction: '',
+                        phone: '',
+                        email: '',
+                        address: '',
+                        business_hours: ''
+                    };
+                },
+
+                async fetchData() {
+                    this.loading = true;
+                    try {
+                        const { data, error } = await supabase
+                            .from('clinic_data')
+                            .select('*')
+                            .eq('id', 1)
+                            .single();
+
+                        if (error) throw error;
+
+                        if (data) {
+                            this.data = {
+                                clinic_name: data.clinic_name || '',
+                                introduction: data.introduction || '',
+                                phone: data.phone || '',
+                                email: data.email || '',
+                                address: data.address || '',
+                                business_hours: data.business_hours || ''
+                            };
+                        }
+                    } catch (err) {
+                        this.error = 'Lỗi khi tải dữ liệu: ' + err.message;
+                    } finally {
+                        this.loading = false;
+                    }
+                },
+
+                async saveData() {
+                    this.loading = true;
+                    this.error = '';
+                    this.successMessage = '';
+
+                    try {
+                        const { data, error } = await supabase
+                            .from('clinic_data')
+                            .upsert({
+                                id: 1,
+                                clinic_name: this.data.clinic_name,
+                                introduction: this.data.introduction,
+                                phone: this.data.phone,
+                                email: this.data.email,
+                                address: this.data.address,
+                                business_hours: this.data.business_hours,
+                                updated_at: new Date()
+                            });
+
+                        if (error) throw error;
+
+                        this.successMessage = 'Dữ liệu đã được lưu thành công!';
+                        setTimeout(() => this.successMessage = '', 3000);
+                    } catch (err) {
+                        this.error = 'Lỗi khi lưu dữ liệu: ' + err.message;
+                    } finally {
+                        this.loading = false;
+                    }
+                }
+            },
+
+            mounted() {
+                if (this.isLoggedIn) {
+                    this.fetchData();
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
