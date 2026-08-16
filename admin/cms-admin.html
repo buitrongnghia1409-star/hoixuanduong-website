@@ -581,10 +581,15 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-    const supabase = window.supabase.createClient(
-      'https://epdjnjcfzxhllklusmet.supabase.co',
-      'sb_publishable_pIjbFKuEUhUGxoMZvB6AsQ_dlpJUSO_'
-    );
+    let supabase;
+    try {
+      supabase = window.supabase.createClient(
+        'https://epdjnjcfzxhllklusmet.supabase.co',
+        'sb_publishable_pIjbFKuEUhUGxoMZvB6AsQ_dlpJUSO_'
+      );
+    } catch (e) {
+      console.log('Supabase already initialized');
+    }
 
     let currentEditId = null;
 
