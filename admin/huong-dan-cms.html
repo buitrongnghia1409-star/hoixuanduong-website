@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hướng Dẫn Sử Dụng CMS Admin - Hồi Xuân Đường</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: white;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 40px 20px;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    /* SECTION */
+    .section {
+      margin-bottom: 40px;
+      page-break-inside: avoid;
+    }
+
+    .section h2 {
+      color: #667eea;
+      font-size: 24px;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 10px;
+    }
+
+    .section h3 {
+      color: #764ba2;
+      font-size: 18px;
+      margin-top: 20px;
+      margin-bottom: 12px;
+    }
+
+    /* CONTENT */
+    p {
+      margin-bottom: 12px;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    /* HIGHLIGHT BOX */
+    .highlight {
+      background: #f0f4ff;
+      border-left: 4px solid #667eea;
+      padding: 16px;
+      margin: 16px 0;
+      border-radius: 4px;
+    }
+
+    .highlight strong {
+      color: #667eea;
+    }
+
+    .warning {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 16px;
+      margin: 16px 0;
+      border-radius: 4px;
+    }
+
+    .success {
+      background: #d4edda;
+      border-left: 4px solid #28a745;
+      padding: 16px;
+      margin: 16px 0;
+      border-radius: 4px;
+    }
+
+    /* STEPS */
+    .steps {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .steps li {
+      margin-bottom: 16px;
+      padding-left: 40px;
+      position: relative;
+    }
+
+    .steps li:before {
+      content: attr(data-step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: #667eea;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    /* FEATURES GRID */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .feature {
+      background: #f9f9f9;
+      padding: 16px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+    }
+
+    .feature h4 {
+      color: #667eea;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .feature p {
+      font-size: 13px;
+      margin: 0;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 6px;
+      text-align: center;
+      margin-top: 40px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* TABLE */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 13px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background: #667eea;
+      color: white;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+
+    /* PRINT */
+    @media print {
+      body { padding: 0; }
+      .container { padding: 0; }
+      .section { page-break-inside: avoid; }
+      .no-print { display: none; }
+    }
+
+    .code {
+      background: #f4f4f4;
+      padding: 4px 8px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #d63384;
+    }
+
+    .button-style {
+      display: inline-block;
+      background: #667eea;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 12px;
+      font-weight: 500;
+      margin: 0 2px;
+    }
+
+    .icon {
+      font-size: 20px;
+      margin-right: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .features { grid-template-columns: 1fr; }
+      .header h1 { font-size: 24px; }
+      .section h2 { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <div class="header">
+      <h1>📚 Hướng Dẫn Sử Dụng CMS Admin</h1>
+      <p>Quản lý nội dung website Hồi Xuân Đường</p>
+      <p style="font-size: 12px; margin-top: 10px; opacity: 0.8;">Phiên bản 1.0 - Tháng 8 năm 2026</p>
+    </div>
+
+    <!-- GIỚI THIỆU -->
+    <div class="section">
+      <h2><span class="icon">🎯</span>Giới Thiệu CMS Admin</h2>
+      <p>CMS Admin là hệ thống quản lý nội dung giúp bạn chỉnh sửa thông tin website <strong>Hồi Xuân Đường</strong> mà không cần kiến thức kỹ thuật.</p>
+
+      <div class="highlight">
+        <strong>✨ Điểm mạnh:</strong><br>
+        ✓ Dễ sử dụng, giao diện đơn giản<br>
+        ✓ Chỉnh sửa mọi nội dung từ A-Z<br>
+        ✓ Upload ảnh dễ dàng (drag & drop)<br>
+        ✓ Tự động cập nhật lên website<br>
+        ✓ Không cần reload hay deploy code
+      </div>
+
+      <h3>📊 Có thể quản lý những gì?</h3>
+      <div class="features">
+        <div class="feature">
+          <h4>📋 Thông tin chung</h4>
+          <p>Tên, giới thiệu, điện thoại, email, giờ làm việc</p>
+        </div>
+        <div class="feature">
+          <h4>🎯 Dịch vụ</h4>
+          <p>Thêm/sửa/xóa dịch vụ, ảnh, icon</p>
+        </div>
+        <div class="feature">
+          <h4>📦 Sản phẩm</h4>
+          <p>Tên, giá, danh mục, mô tả, ảnh</p>
+        </div>
+        <div class="feature">
+          <h4>🏢 Chi nhánh</h4>
+          <p>Thêm/xóa cơ sở, địa chỉ, điện thoại</p>
+        </div>
+        <div class="feature">
+          <h4>👥 Nhân viên</h4>
+          <p>Tên, chức vụ, tiểu sử, ảnh</p>
+        </div>
+        <div class="feature">
+          <h4>📞 Liên hệ</h4>
+          <p>Zalo, Facebook, YouTube</p>
+        </div>
+        <div class="feature">
+          <h4>🎨 Banner chính</h4>
+          <p>Tiêu đề, mô tả, nút CTA, ảnh</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BẮAT ĐẦU -->
+    <div class="section">
+      <h2><span class="icon">🚀</span>Bắt Đầu Sử Dụng</h2>
+
+      <h3>Bước 1: Truy cập Admin Panel</h3>
+      <ol class="steps">
+        <li data-step="1">Mở trình duyệt (Chrome, Firefox, Safari, Edge)</li>
+        <li data-step="2">Truy cập địa chỉ: <span class="code">https://hoixuanduong.com.vn/admin/cms-admin.html</span></li>
+        <li data-step="3">Nhập mật khẩu: <span class="code">hoixuanduong2026</span></li>
+        <li data-step="4">Bấm nút <span class="button-style">✓ Đăng Nhập</span></li>
+      </ol>
+
+      <div class="success">
+        <strong>✓ Thành công!</strong> Bạn sẽ thấy giao diện admin với 7 tab quản lý.
+      </div>
+
+      <h3>Bước 2: Chọn Section Cần Chỉnh Sửa</h3>
+      <p>Giao diện admin có 7 tab ở đầu trang. Bạn có thể click vào tab để chỉnh sửa:</p>
+      <ul>
+        <li>📋 <strong>Thông Tin Phòng Khám</strong> - Thông tin chung</li>
+        <li>🎯 <strong>Dịch Vụ</strong> - Danh sách dịch vụ</li>
+        <li>📦 <strong>Sản Phẩm</strong> - Danh sách sản phẩm</li>
+        <li>🏢 <strong>Chi Nhánh</strong> - Danh sách cơ sở</li>
+        <li>👥 <strong>Nhân Viên</strong> - Danh sách nhân viên</li>
+        <li>📞 <strong>Liên Hệ</strong> - Liên hệ & mạng xã hội</li>
+        <li>🎨 <strong>Banner Chính</strong> - Hình banner lớn đầu trang</li>
+      </ul>
+    </div>
+
+    <!-- HƯỚNG DẪN CHI TIẾT -->
+    <div class="section">
+      <h2><span class="icon">📖</span>Hướng Dẫn Chi Tiết Từng Section</h2>
+
+      <h3>1️⃣ Thông Tin Phòng Khám</h3>
+      <p>Chỉnh sửa thông tin cơ bản của phòng khám:</p>
+      <ul>
+        <li><strong>Tên Phòng Khám:</strong> Ví dụ "Hồi Xuân Đường"</li>
+        <li><strong>Email:</strong> Địa chỉ email liên hệ</li>
+        <li><strong>Số Điện Thoại:</strong> Hotline của phòng khám</li>
+        <li><strong>Giờ Làm Việc:</strong> Ví dụ "8:00 – 20:00, Thứ 2 – Chủ nhật"</li>
+        <li><strong>Giới Thiệu:</strong> Mô tả về phòng khám (tối đa 500 từ)</li>
+      </ul>
+      <p>Sau khi chỉnh sửa, bấm nút <span class="button-style">💾 Lưu Thay Đổi</span></p>
+
+      <h3>2️⃣ Dịch Vụ</h3>
+      <p>Quản lý danh sách dịch vụ:</p>
+      <ul>
+        <li>Bấm nút <span class="button-style">➕ Thêm Dịch Vụ Mới</span> để thêm dịch vụ</li>
+        <li>Điền <strong>Tên Dịch Vụ</strong> (ví dụ: "Bấm huyệt - Cạo gió")</li>
+        <li>Chọn <strong>Icon Emoji</strong> (ví dụ: 🖐️)</li>
+        <li>Viết <strong>Mô Tả</strong> chi tiết về dịch vụ</li>
+        <li>Tải <strong>Ảnh Dịch Vụ</strong> (kéo thả hoặc click chọn)</li>
+        <li>Bấm <span class="button-style">💾 Lưu Dịch Vụ</span></li>
+      </ul>
+      <p>Để <strong>sửa</strong> hoặc <strong>xóa</strong>, bấm nút ở cột "Thao Tác" trong bảng danh sách.</p>
+
+      <h3>3️⃣ Sản Phẩm</h3>
+      <p>Quản lý sản phẩm thảo dược:</p>
+      <ul>
+        <li>Bấm <span class="button-style">➕ Thêm Sản Phẩm Mới</span></li>
+        <li>Điền <strong>Tên Sản Phẩm</strong> (ví dụ: "Trà dưỡng sinh Hồi Xuân")</li>
+        <li>Chọn <strong>Danh Mục</strong>:
+          <ul>
+            <li>🍵 Trà thảo dược</li>
+            <li>🧴 Tinh dầu</li>
+            <li>💊 Cao & viên thảo dược</li>
+            <li>✨ Chăm sóc da</li>
+          </ul>
+        </li>
+        <li>Nhập <strong>Giá</strong> (chỉ số, ví dụ: 150000)</li>
+        <li>Nhập <strong>Đơn Vị</strong> (ví dụ: "hộp 20 gói")</li>
+        <li>Viết <strong>Mô Tả</strong> sản phẩm</li>
+        <li>Tải <strong>Ảnh Sản Phẩm</strong></li>
+        <li>Bấm <span class="button-style">💾 Lưu Sản Phẩm</span></li>
+      </ul>
+
+      <h3>4️⃣ Chi Nhánh</h3>
+      <p>Thêm/xóa cơ sở kinh doanh:</p>
+      <ul>
+        <li>Bấm <span class="button-style">➕ Thêm Chi Nhánh Mới</span></li>
+        <li>Điền <strong>Tên Chi Nhánh</strong> (ví dụ: "Chi nhánh 1 (CS1)")</li>
+        <li>Điền <strong>Địa Chỉ</strong> chi tiết</li>
+        <li>Điền <strong>Số Điện Thoại</strong> (không bắt buộc)</li>
+        <li>Bấm <span class="button-style">💾 Lưu Chi Nhánh</span></li>
+      </ul>
+      <p>Để <strong>xóa</strong> chi nhánh, bấm nút <span class="button-style">Xóa</span> trong bảng danh sách.</p>
+
+      <h3>5️⃣ Nhân Viên</h3>
+      <p>Quản lý thông tin nhân viên/ban lãnh đạo:</p>
+      <ul>
+        <li>Bấm <span class="button-style">➕ Thêm Nhân Viên Mới</span></li>
+        <li>Điền <strong>Tên Nhân Viên</strong></li>
+        <li>Điền <strong>Chức Vụ</strong> (ví dụ: "Giám đốc")</li>
+        <li>Viết <strong>Tiểu Sử</strong> (quá trình, thành tích)</li>
+        <li>Tải <strong>Ảnh</strong> nhân viên</li>
+        <li>Bấm <span class="button-style">💾 Lưu Nhân Viên</span></li>
+      </ul>
+
+      <h3>6️⃣ Liên Hệ & Mạng Xã Hội</h3>
+      <p>Cập nhật các liên lạc trực tuyến:</p>
+      <ul>
+        <li><strong>Số Zalo:</strong> Ví dụ "0912 994 888"</li>
+        <li><strong>Facebook URL:</strong> Ví dụ "https://facebook.com/hoixuanduong"</li>
+        <li><strong>YouTube URL:</strong> Ví dụ "https://youtube.com/@hoixuanduong"</li>
+      </ul>
+      <p>Bấm <span class="button-style">💾 Lưu Liên Hệ</span> sau khi chỉnh sửa.</p>
+
+      <h3>7️⃣ Banner Chính (Hero Section)</h3>
+      <p>Chỉnh sửa phần hình banner lớn đầu trang:</p>
+      <ul>
+        <li><strong>Tiêu Đề Chính:</strong> Ví dụ "Hồi Xuân Đường"</li>
+        <li><strong>Phụ Đề:</strong> Ví dụ "Tinh hoa Đông y, Thanh xuân bất tận"</li>
+        <li><strong>Eyebrow:</strong> Dòng nhỏ phía trên tiêu đề</li>
+        <li><strong>Mô Tả:</strong> Đoạn văn giới thiệu ngắn</li>
+        <li><strong>Nút CTA Chính:</strong> Văn bản nút chính (ví dụ: "Đặt lịch tư vấn")</li>
+        <li><strong>Nút CTA Thứ 2:</strong> Văn bản nút phụ (ví dụ: "Xem sản phẩm")</li>
+        <li><strong>Banner Image:</strong> Ảnh background cho banner</li>
+      </ul>
+      <p>Bấm <span class="button-style">💾 Lưu Banner</span> sau khi chỉnh sửa.</p>
+    </div>
+
+    <!-- UPLOAD ẢNH -->
+    <div class="section">
+      <h2><span class="icon">🖼️</span>Hướng Dẫn Upload Ảnh</h2>
+
+      <h3>Cách upload ảnh - Drag & Drop</h3>
+      <ol class="steps">
+        <li data-step="1">Tìm phần <strong>"Kéo ảnh vào hoặc click để chọn"</strong></li>
+        <li data-step="2">Kéo file ảnh từ máy tính vào khung đó</li>
+        <li data-step="3">Hoặc click vào khung để mở cửa sổ chọn file</li>
+        <li data-step="4">Chọn ảnh từ thư mục máy tính</li>
+        <li data-step="5">Xem preview ảnh để kiểm tra</li>
+      </ol>
+
+      <div class="warning">
+        <strong>⚠️ Lưu ý:</strong><br>
+        ✓ Chỉ upload ảnh JPG, PNG, WebP<br>
+        ✓ Dung lượng tối đa: 5MB<br>
+        ✓ Nên dùng ảnh đã cắt nhỏ (dưới 2MB)
+      </div>
+
+      <h3>Kích thước ảnh khuyên dùng</h3>
+      <table>
+        <tr>
+          <th>Loại Ảnh</th>
+          <th>Kích Thước (pixel)</th>
+          <th>Tỉ Lệ</th>
+        </tr>
+        <tr>
+          <td>Ảnh Dịch Vụ</td>
+          <td>400 × 300</td>
+          <td>4:3</td>
+        </tr>
+        <tr>
+          <td>Ảnh Sản Phẩm</td>
+          <td>300 × 400</td>
+          <td>3:4</td>
+        </tr>
+        <tr>
+          <td>Ảnh Nhân Viên</td>
+          <td>300 × 300</td>
+          <td>1:1</td>
+        </tr>
+        <tr>
+          <td>Banner Chính</td>
+          <td>2200 × 836</td>
+          <td>16:6</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- LỖI THƯỜNG GẶP -->
+    <div class="section">
+      <h2><span class="icon">❓</span>Câu Hỏi Thường Gặp</h2>
+
+      <h3>❓ Tôi quên mật khẩu làm sao?</h3>
+      <p><strong>Trả lời:</strong> Liên hệ người quản trị để cấp lại mật khẩu mới. Mật khẩu được cấp an toàn qua email hoặc điện thoại.</p>
+
+      <h3>❓ Thay đổi tốn bao lâu để hiển thị trên website?</h3>
+      <p><strong>Trả lời:</strong> Hầu như ngay lập tức! Sau khi bấm "Lưu", dữ liệu cập nhật trong vài giây. Bạn có thể reload trang website để xem thay đổi.</p>
+
+      <h3>❓ Có thể sửa lại sau không?</h3>
+      <p><strong>Trả lời:</strong> Có! Bất kỳ lúc nào bạn cũng có thể vào admin panel để chỉnh sửa hoặc xóa nội dung.</p>
+
+      <h3>❓ Có cách nào để phục hồi dữ liệu cũ?</h3>
+      <p><strong>Trả lời:</strong> Có, vì tất cả dữ liệu được lưu lại. Liên hệ người quản trị để phục hồi.</p>
+
+      <h3>❓ Tôi có thể xóa hoàn toàn một sản phẩm không?</h3>
+      <p><strong>Trả lời:</strong> Có! Bấm nút <span class="button-style">Xóa</span> trong bảng danh sách. Sản phẩm sẽ bị xóa khỏi website ngay lập tức.</p>
+
+      <h3>❓ Chỉnh sửa tên sản phẩm có ảnh hưởng gì không?</h3>
+      <p><strong>Trả lời:</strong> Không! Bạn có thể chỉnh sửa tên, giá, mô tả bất kỳ lúc nào mà không ảnh hưởng đến dữ liệu khác.</p>
+
+      <h3>❓ Có giới hạn số sản phẩm/dịch vụ không?</h3>
+      <p><strong>Trả lời:</strong> Không! Bạn có thể thêm bao nhiêu sản phẩm, dịch vụ tùy ý.</p>
+    </div>
+
+    <!-- TIPS -->
+    <div class="section">
+      <h2><span class="icon">💡</span>Mẹo & Lưu Ý</h2>
+
+      <div class="highlight">
+        <strong>💡 Mẹo 1:</strong> Luôn cập nhật ảnh mới để website trông chuyên nghiệp. Nên chụp ảnh tốt với ánh sáng tốt.
+      </div>
+
+      <div class="highlight">
+        <strong>💡 Mẹo 2:</strong> Viết mô tả sản phẩm chi tiết, rõ ràng. Điều này giúp khách hàng hiểu rõ hơn.
+      </div>
+
+      <div class="highlight">
+        <strong>💡 Mẹo 3:</strong> Nên kiểm tra website sau khi lưu để đảm bảo mọi thứ hiển thị đúng.
+      </div>
+
+      <div class="highlight">
+        <strong>💡 Mẹo 4:</strong> Giữ danh sách sản phẩm/dịch vụ luôn cập nhật. Bỏ những mục không còn bán.
+      </div>
+
+      <div class="warning">
+        <strong>⚠️ Cảnh báo:</strong> Đừng chia sẻ mật khẩu với bất kỳ ai. Chỉ những người được phép mới nên có quyền truy cập admin.
+      </div>
+    </div>
+
+    <!-- LIÊN HỆ -->
+    <div class="section">
+      <h2><span class="icon">📞</span>Liên Hệ Hỗ Trợ</h2>
+
+      <p>Nếu gặp vấn đề hoặc cần hỗ trợ kỹ thuật:</p>
+
+      <ul>
+        <li><strong>Email:</strong> contact@hoixuanduong.vn</li>
+        <li><strong>Điện thoại:</strong> 0912 994 888</li>
+        <li><strong>Zalo:</strong> 0912 994 888</li>
+      </ul>
+
+      <div class="success">
+        <strong>✓ Cảm ơn bạn đã sử dụng hệ thống CMS Admin!</strong><br>
+        Nếu có đề xuất để cải thiện, vui lòng liên hệ chúng tôi.
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <p>📄 Hướng Dẫn Sử Dụng CMS Admin v1.0<br>
+      Hồi Xuân Đường | Phòng Khám & Trị Liệu Đông Y<br>
+      <em>Tháng 8 năm 2026</em></p>
+      <p style="margin-top: 10px;"><strong>Để in PDF:</strong> Bấm Ctrl+P (hoặc Cmd+P trên Mac) rồi chọn "In thành PDF"</p>
+    </div>
+  </div>
+
+  <script>
+    // Highlight steps
+    document.querySelectorAll('.steps li').forEach((li, index) => {
+      li.setAttribute('data-step', index + 1);
+    });
+  </script>
+</body>
+</html>
