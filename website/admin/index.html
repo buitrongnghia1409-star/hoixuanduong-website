@@ -4,404 +4,184 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Hồi Xuân Đường</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.prod.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .container {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            max-width: 600px;
-            width: 100%;
-            padding: 40px;
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-weight: 500;
-            font-size: 14px;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        textarea,
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-            font-family: inherit;
-            transition: border-color 0.3s;
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="password"]:focus,
-        textarea:focus,
-        select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 5px rgba(102, 126, 234, 0.2);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        .success {
-            background: #10b981;
-            padding: 15px;
-            border-radius: 5px;
-            color: white;
-            margin-bottom: 20px;
-            text-align: center;
-            display: none;
-        }
-
-        .success.show {
-            display: block;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        .error {
-            background: #ef4444;
-            padding: 15px;
-            border-radius: 5px;
-            color: white;
-            margin-bottom: 20px;
-            text-align: center;
-            display: none;
-        }
-
-        .error.show {
-            display: block;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .loading {
-            text-align: center;
-            color: #667eea;
-        }
-
-        .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .login-form {
-            max-width: 300px;
-            margin: 0 auto;
-        }
-
-        .logout-btn {
-            background: #ef4444;
-            margin-top: 20px;
-        }
-
-        .logout-btn:hover {
-            box-shadow: 0 5px 20px rgba(239, 68, 68, 0.4);
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .user-info {
-            font-size: 14px;
-            color: #666;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .container { background: white; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); max-width: 600px; width: 100%; padding: 40px; }
+        h1 { color: #333; text-align: center; margin-bottom: 30px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #333; font-weight: bold; }
+        input, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; font-size: 14px; }
+        input:focus, textarea:focus { outline: none; border-color: #667eea; box-shadow: 0 0 5px rgba(102, 126, 234, 0.2); }
+        textarea { resize: vertical; min-height: 100px; }
+        button { width: 100%; padding: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        button:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .success { background: #10b981; color: white; padding: 15px; border-radius: 5px; text-align: center; display: none; margin-bottom: 20px; }
+        .success.show { display: block; }
+        .error { background: #ef4444; color: white; padding: 15px; border-radius: 5px; text-align: center; display: none; margin-bottom: 20px; }
+        .error.show { display: block; }
+        #loginForm { max-width: 300px; margin: 0 auto; }
+        #adminPanel { display: none; }
+        .logout-btn { background: #ef4444 !important; }
     </style>
 </head>
 <body>
-    <div id="app">
-        <div class="container">
-            <!-- Login Form -->
-            <div v-if="!isLoggedIn" class="login-form">
-                <h1>🔐 Đăng Nhập</h1>
-                <p class="subtitle">Quản lý nội dung phòng khám</p>
+    <div class="container">
+        <!-- Login -->
+        <div id="loginForm">
+            <h1>🔐 Đăng Nhập</h1>
+            <div class="form-group">
+                <label>Mật khẩu:</label>
+                <input type="password" id="password" placeholder="Nhập mật khẩu">
+            </div>
+            <button onclick="login()">Đăng Nhập</button>
+        </div>
 
-                <div class="error" :class="{ show: error }">{{ error }}</div>
+        <!-- Admin Panel -->
+        <div id="adminPanel">
+            <h1>📋 Quản Lý Nội Dung</h1>
+            <button class="logout-btn" onclick="logout()" style="margin-bottom: 20px;">Đăng xuất</button>
+
+            <div id="successMsg" class="success"></div>
+            <div id="errorMsg" class="error"></div>
+
+            <div id="loadingMsg" style="text-align: center; color: #667eea;">Đang tải dữ liệu...</div>
+
+            <div id="formContainer" style="display: none;">
+                <div class="form-group">
+                    <label>📌 Tên phòng khám</label>
+                    <input type="text" id="clinic_name" placeholder="Hồi Xuân Đường">
+                </div>
 
                 <div class="form-group">
-                    <label>Mật khẩu admin</label>
-                    <input
-                        v-model="password"
-                        type="password"
-                        placeholder="Nhập mật khẩu"
-                        @keyup.enter="login"
-                    >
+                    <label>📝 Giới thiệu</label>
+                    <textarea id="introduction" placeholder="Nhập giới thiệu"></textarea>
                 </div>
 
-                <button @click="login" :disabled="loading">
-                    {{ loading ? 'Đang xử lý...' : 'Đăng Nhập' }}
-                </button>
-            </div>
-
-            <!-- Admin Dashboard -->
-            <div v-else>
-                <div class="header">
-                    <h1>📋 Quản Lý Nội Dung</h1>
-                    <button class="logout-btn" @click="logout">Đăng xuất</button>
+                <div class="form-group">
+                    <label>📞 Số điện thoại</label>
+                    <input type="text" id="phone" placeholder="0912 994 888">
                 </div>
 
-                <div class="success" :class="{ show: successMessage }">
-                    ✓ {{ successMessage }}
+                <div class="form-group">
+                    <label>📧 Email</label>
+                    <input type="email" id="email" placeholder="info@hoixuanduong.com">
                 </div>
 
-                <div class="error" :class="{ show: error }">
-                    ✗ {{ error }}
+                <div class="form-group">
+                    <label>📍 Địa chỉ</label>
+                    <textarea id="address" placeholder="Nhập địa chỉ"></textarea>
                 </div>
 
-                <div v-if="loading" class="loading">
-                    <div class="spinner"></div>
-                    Đang tải dữ liệu...
+                <div class="form-group">
+                    <label>🕒 Giờ làm việc</label>
+                    <input type="text" id="business_hours" placeholder="8:00 - 20:00">
                 </div>
 
-                <div v-else>
-                    <!-- Clinic Info -->
-                    <div class="form-group">
-                        <label>📌 Tên phòng khám</label>
-                        <input v-model="data.clinic_name" type="text" placeholder="Hồi Xuân Đường">
-                    </div>
-
-                    <div class="form-group">
-                        <label>📝 Giới thiệu</label>
-                        <textarea v-model="data.introduction" placeholder="Nhập giới thiệu về phòng khám"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label>📞 Số điện thoại</label>
-                        <input v-model="data.phone" type="text" placeholder="0912 994 888">
-                    </div>
-
-                    <div class="form-group">
-                        <label>📧 Email</label>
-                        <input v-model="data.email" type="email" placeholder="info@hoixuanduong.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label>📍 Địa chỉ</label>
-                        <textarea v-model="data.address" placeholder="Nhập địa chỉ phòng khám"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label>🕒 Giờ làm việc</label>
-                        <input v-model="data.business_hours" type="text" placeholder="8:00 - 20:00, Thứ 2 - Chủ nhật">
-                    </div>
-
-                    <button @click="saveData" :disabled="loading">
-                        {{ loading ? '⏳ Đang lưu...' : '💾 Lưu thay đổi' }}
-                    </button>
-                </div>
+                <button onclick="saveData()">💾 Lưu thay đổi</button>
             </div>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        const { createClient } = window.supabase;
-        const supabase = createClient(
+        const supabase = window.supabase.createClient(
             'https://epdjnjcfzxhllklusmet.supabase.co',
             'sb_publishable_pIjbFKuEUhUGxoMZvB6AsQ_dlpJUSO_'
         );
 
-        const { createApp } = Vue;
+        const adminPassword = 'hoixuanduong2026';
 
-        createApp({
-            data() {
-                return {
-                    isLoggedIn: localStorage.getItem('admin_logged_in') === 'true',
-                    password: '',
-                    adminPassword: 'hoixuanduong2026', // Change this to your password
-                    data: {
-                        clinic_name: '',
-                        introduction: '',
-                        phone: '',
-                        email: '',
-                        address: '',
-                        business_hours: ''
-                    },
-                    loading: false,
-                    error: '',
-                    successMessage: ''
-                };
-            },
-
-            methods: {
-                async login() {
-                    if (this.password === this.adminPassword) {
-                        localStorage.setItem('admin_logged_in', 'true');
-                        this.isLoggedIn = true;
-                        this.error = '';
-                        this.fetchData();
-                    } else {
-                        this.error = 'Mật khẩu không đúng!';
-                    }
-                },
-
-                logout() {
-                    localStorage.removeItem('admin_logged_in');
-                    this.isLoggedIn = false;
-                    this.password = '';
-                    this.data = {
-                        clinic_name: '',
-                        introduction: '',
-                        phone: '',
-                        email: '',
-                        address: '',
-                        business_hours: ''
-                    };
-                },
-
-                async fetchData() {
-                    this.loading = true;
-                    try {
-                        const { data, error } = await supabase
-                            .from('clinic_data')
-                            .select('*')
-                            .eq('id', 1)
-                            .single();
-
-                        if (error) throw error;
-
-                        if (data) {
-                            this.data = {
-                                clinic_name: data.clinic_name || '',
-                                introduction: data.introduction || '',
-                                phone: data.phone || '',
-                                email: data.email || '',
-                                address: data.address || '',
-                                business_hours: data.business_hours || ''
-                            };
-                        }
-                    } catch (err) {
-                        this.error = 'Lỗi khi tải dữ liệu: ' + err.message;
-                    } finally {
-                        this.loading = false;
-                    }
-                },
-
-                async saveData() {
-                    this.loading = true;
-                    this.error = '';
-                    this.successMessage = '';
-
-                    try {
-                        const { data, error } = await supabase
-                            .from('clinic_data')
-                            .upsert({
-                                id: 1,
-                                clinic_name: this.data.clinic_name,
-                                introduction: this.data.introduction,
-                                phone: this.data.phone,
-                                email: this.data.email,
-                                address: this.data.address,
-                                business_hours: this.data.business_hours,
-                                updated_at: new Date()
-                            });
-
-                        if (error) throw error;
-
-                        this.successMessage = 'Dữ liệu đã được lưu thành công!';
-                        setTimeout(() => this.successMessage = '', 3000);
-                    } catch (err) {
-                        this.error = 'Lỗi khi lưu dữ liệu: ' + err.message;
-                    } finally {
-                        this.loading = false;
-                    }
-                }
-            },
-
-            mounted() {
-                if (this.isLoggedIn) {
-                    this.fetchData();
-                }
+        function login() {
+            const pwd = document.getElementById('password').value;
+            if (pwd === adminPassword) {
+                localStorage.setItem('logged_in', 'true');
+                showAdmin();
+            } else {
+                showError('Mật khẩu không đúng!');
             }
-        }).mount('#app');
+        }
+
+        function logout() {
+            localStorage.removeItem('logged_in');
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('password').value = '';
+        }
+
+        function showAdmin() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            loadData();
+        }
+
+        async function loadData() {
+            try {
+                const { data, error } = await supabase
+                    .from('clinic_data')
+                    .select('*')
+                    .eq('id', 1)
+                    .single();
+
+                if (error) throw error;
+
+                if (data) {
+                    document.getElementById('clinic_name').value = data.clinic_name || '';
+                    document.getElementById('introduction').value = data.introduction || '';
+                    document.getElementById('phone').value = data.phone || '';
+                    document.getElementById('email').value = data.email || '';
+                    document.getElementById('address').value = data.address || '';
+                    document.getElementById('business_hours').value = data.business_hours || '';
+                }
+
+                document.getElementById('loadingMsg').style.display = 'none';
+                document.getElementById('formContainer').style.display = 'block';
+            } catch (err) {
+                showError('Lỗi: ' + err.message);
+            }
+        }
+
+        async function saveData() {
+            try {
+                const { error } = await supabase
+                    .from('clinic_data')
+                    .update({
+                        clinic_name: document.getElementById('clinic_name').value,
+                        introduction: document.getElementById('introduction').value,
+                        phone: document.getElementById('phone').value,
+                        email: document.getElementById('email').value,
+                        address: document.getElementById('address').value,
+                        business_hours: document.getElementById('business_hours').value,
+                        updated_at: new Date()
+                    })
+                    .eq('id', 1);
+
+                if (error) throw error;
+
+                showSuccess('✓ Dữ liệu đã được lưu thành công!');
+            } catch (err) {
+                showError('Lỗi khi lưu: ' + err.message);
+            }
+        }
+
+        function showSuccess(msg) {
+            const el = document.getElementById('successMsg');
+            el.textContent = msg;
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 3000);
+        }
+
+        function showError(msg) {
+            const el = document.getElementById('errorMsg');
+            el.textContent = msg;
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 3000);
+        }
+
+        // Check if logged in
+        if (localStorage.getItem('logged_in') === 'true') {
+            showAdmin();
+        }
     </script>
 </body>
 </html>
