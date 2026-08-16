@@ -581,15 +581,19 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-    let supabase;
-    try {
-      supabase = window.supabase.createClient(
-        'https://epdjnjcfzxhllklusmet.supabase.co',
-        'sb_publishable_pIjbFKuEUhUGxoMZvB6AsQ_dlpJUSO_'
-      );
-    } catch (e) {
-      console.log('Supabase already initialized');
-    }
+    // Initialize Supabase client
+    const supabaseClient = (function() {
+      if (typeof window.supabase !== 'undefined') {
+        return window.supabase.createClient(
+          'https://epdjnjcfzxhllklusmet.supabase.co',
+          'sb_publishable_pIjbFKuEUhUGxoMZvB6AsQ_dlpJUSO_'
+        );
+      }
+      return null;
+    })();
+
+    // Use alias for compatibility
+    const supabase = supabaseClient;
 
     let currentEditId = null;
 
