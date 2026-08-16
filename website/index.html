@@ -35,11 +35,11 @@
 <div class="topbar">
   <div class="container">
     <div class="topbar-items">
-      <span>📍 CS1: 955, Tổ 2 Khu 10, Bãi Cháy, Hạ Long, Quảng Ninh</span>
-      <span>🕗 8:00 – 20:00, Thứ 2 – Chủ nhật</span>
+      <span id="topbarAddress">📍 CS1: 955, Tổ 2 Khu 10, Bãi Cháy, Hạ Long, Quảng Ninh</span>
+      <span id="topbarHours">🕗 8:00 – 20:00, Thứ 2 – Chủ nhật</span>
     </div>
     <div class="topbar-items">
-      <a href="tel:0912994888">☎ 0912&nbsp;994&nbsp;888</a>
+      <a href="tel:0912994888" id="topbarPhone">☎ 0912&nbsp;994&nbsp;888</a>
       <a href="#lien-he">Đặt lịch tư vấn</a>
     </div>
   </div>
@@ -569,15 +569,15 @@
           </div>
           <div class="info-item">
             <span class="icon reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.7a2 2 0 01-.5 2.1L8 9.6a16 16 0 006 6l1.1-1.1a2 2 0 012.1-.5c.9.3 1.8.5 2.7.6a2 2 0 011.7 2.1z"/></svg></span>
-            <div><strong>Hotline</strong><a href="tel:0912994888">0912&nbsp;994&nbsp;888</a></div>
+            <div><strong>Hotline</strong><a id="contactPhone" href="tel:0912994888">0912&nbsp;994&nbsp;888</a></div>
           </div>
           <div class="info-item">
             <span class="icon reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg></span>
-            <div><strong>Email</strong><a href="mailto:contact@hoixuanduong.vn">contact@hoixuanduong.vn</a></div>
+            <div><strong>Email</strong><a id="contactEmail" href="mailto:contact@hoixuanduong.vn">contact@hoixuanduong.vn</a></div>
           </div>
           <div class="info-item">
             <span class="icon reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
-            <div><strong>Giờ mở cửa</strong><span>8:00 – 20:00, Thứ 2 – Chủ nhật</span></div>
+            <div><strong>Giờ mở cửa</strong><span id="contactHours">8:00 – 20:00, Thứ 2 – Chủ nhật</span></div>
           </div>
         </div>
 
@@ -637,10 +637,10 @@
       <div>
         <h4>Liên hệ</h4>
         <ul>
-          <li>CS1: 955, Tổ 2 Khu 10, Bãi Cháy, Hạ Long</li>
-          <li>CS2: A1205, KĐT Monbay, P. Hồng Hà, Hạ Long</li>
-          <li><a href="tel:0912994888">0912&nbsp;994&nbsp;888</a></li>
-          <li><a href="mailto:contact@hoixuanduong.vn">contact@hoixuanduong.vn</a></li>
+          <li id="footerAddress">CS1: 955, Tổ 2 Khu 10, Bãi Cháy, Hạ Long</li>
+          <li id="footerAddress2">CS2: A1205, KĐT Monbay, P. Hồng Hà, Hạ Long</li>
+          <li><a id="footerPhone" href="tel:0912994888">0912&nbsp;994&nbsp;888</a></li>
+          <li><a id="footerEmail" href="mailto:contact@hoixuanduong.vn">contact@hoixuanduong.vn</a></li>
         </ul>
       </div>
     </div>
@@ -672,6 +672,9 @@
 
 <div class="toast" id="toast"></div>
 
+<!-- Supabase Integration -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/supabase-clinic.js"></script>
 <script src="assets/js/script.js?v=2"></script>
 </body>
 </html>
