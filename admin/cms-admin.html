@@ -289,13 +289,13 @@
 
     <!-- TABS -->
     <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('clinic')">📋 Thông Tin Phòng Khám</button>
-      <button class="tab-btn" onclick="switchTab('services')">🎯 Dịch Vụ</button>
-      <button class="tab-btn" onclick="switchTab('products')">📦 Sản Phẩm</button>
-      <button class="tab-btn" onclick="switchTab('branches')">🏢 Chi Nhánh</button>
-      <button class="tab-btn" onclick="switchTab('team')">👥 Nhân Viên</button>
-      <button class="tab-btn" onclick="switchTab('contact')">📞 Liên Hệ</button>
-      <button class="tab-btn" onclick="switchTab('hero')">🎨 Banner Chính</button>
+      <button class="tab-btn active" onclick="switchTab('clinic', this)">📋 Thông Tin Phòng Khám</button>
+      <button class="tab-btn" onclick="switchTab('services', this)">🎯 Dịch Vụ</button>
+      <button class="tab-btn" onclick="switchTab('products', this)">📦 Sản Phẩm</button>
+      <button class="tab-btn" onclick="switchTab('branches', this)">🏢 Chi Nhánh</button>
+      <button class="tab-btn" onclick="switchTab('team', this)">👥 Nhân Viên</button>
+      <button class="tab-btn" onclick="switchTab('contact', this)">📞 Liên Hệ</button>
+      <button class="tab-btn" onclick="switchTab('hero', this)">🎨 Banner Chính</button>
     </div>
 
     <!-- TAB 1: CLINIC INFO -->
@@ -588,12 +588,12 @@
 
     let currentEditId = null;
 
-    function switchTab(tabName) {
+    function switchTab(tabName, element) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
 
       document.getElementById(tabName).classList.add('active');
-      event.target.classList.add('active');
+      element.classList.add('active');
 
       if (tabName === 'services') loadServices();
       if (tabName === 'products') loadProducts();
