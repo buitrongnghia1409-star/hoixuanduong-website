@@ -20,7 +20,15 @@ TASTE_SKILL_AUDIT_REPORT.md
 
 # website-v2 orphaned experimental assets (not referenced by index.html)
 website-v2/assets/meridian-3d-clean/
-website-v2/assets/models/
+# Mô hình kinh lạc 3D phải được deploy — chỉ loại trừ các model thử nghiệm khác.
+# Dùng "models/*" thay vì "models/" vì git không cho phép đưa lại file nằm trong
+# thư mục đã bị loại trừ.
+website-v2/assets/models/*
+!website-v2/assets/models/meridian.glb
+!website-v2/assets/models/README-nen-model.md
+
+# Sân thử nghiệm cục bộ, không cần đưa lên máy chủ
+website-v2-test/
 website-v2/video-frames/
 website-v2/assets/videos/meridian-3d-cinema.mp4
 website-v2/assets/js/app.js
