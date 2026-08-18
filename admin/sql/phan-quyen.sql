@@ -18,8 +18,11 @@ create table if not exists admin_profiles (
   id         uuid primary key references auth.users(id) on delete cascade,
   email      text,
   ho_ten     text,
-  role       text not null default 'trang_chinh'
-             check (role in ('mo_phong_3d', 'trang_chinh', 'toan_quyen')),
+  -- KHÔNG đặt giá trị mặc định: tài khoản mới phải được gán quyền bằng tay.
+  -- Nếu để mặc định là một vai trò có quyền ghi thì bất kỳ ai đăng ký được
+  -- tài khoản sẽ tự động sửa được nội dung website.
+  role       text
+             check (role is null or role in ('mo_phong_3d', 'trang_chinh', 'toan_quyen')),
   is_active  boolean not null default true,
   created_at timestamptz default now()
 );
@@ -113,6 +116,8 @@ end $$;
 
 
 -- ---------- 5. Gán vai trò ----------
+-- BẮT BUỘC: tài khoản mới sinh ra không có quyền gì (role = null).
+-- Phải gán tay ở đây thì người đó mới sửa được nội dung.
 -- SỬA EMAIL CHO ĐÚNG rồi chạy 2 dòng dưới:
 --
 --   update admin_profiles set role = 'toan_quyen'  where email = 'email-cua-ban@...';
