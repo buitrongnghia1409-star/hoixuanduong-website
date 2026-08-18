@@ -85,6 +85,64 @@
     }
 
     /* FORM */
+    /* ===== Màn hình đăng nhập ===== */
+    #authGate {
+      position: fixed; inset: 0; z-index: 9999; display: flex;
+      align-items: center; justify-content: center; padding: 20px;
+      background: linear-gradient(135deg, #2f4a26 0%, #14211a 100%);
+    }
+    #authGate[hidden] { display: none; }
+    .auth-box {
+      width: 100%; max-width: 380px; background: #fff; border-radius: 12px;
+      padding: 32px 28px; box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+    .auth-box h1 { font-size: 20px; color: #2f4a26; margin-bottom: 4px; text-align: center; }
+    .auth-box .sub { font-size: 12.5px; color: #7a8697; text-align: center; margin-bottom: 22px; }
+    .auth-box input { width: 100%; padding: 11px 12px; margin-bottom: 12px;
+      border: 1px solid #d7dce3; border-radius: 6px; font-size: 14px; }
+    .auth-box button { width: 100%; padding: 12px; border: 0; border-radius: 6px;
+      background: #2f4a26; color: #fff; font-weight: 600; font-size: 14px; cursor: pointer; }
+    .auth-box button:disabled { opacity: .6; cursor: default; }
+    .auth-err { margin-top: 12px; font-size: 13px; color: #d93025; min-height: 18px; text-align: center; }
+    .auth-note { margin-top: 16px; font-size: 11.5px; color: #9aa4b2; line-height: 1.5; text-align: center; }
+    #authUser { font-size: 12.5px; color: #5b6650; margin-right: 10px; }
+
+    /* ===== Tab Huyệt Đạo 3D ===== */
+    .acu-layout { display: grid; grid-template-columns: 1fr 320px; gap: 16px; margin-bottom: 20px; }
+    .acu-stage { position: relative; background: #0d1424; border-radius: 8px; overflow: hidden; min-height: 520px; }
+    #acuViewer { position: absolute; inset: 0 0 56px 0; cursor: grab; }
+    #acuViewer:active { cursor: grabbing; }
+    #acuViewer.picking { cursor: crosshair; }
+    .acu-loading { position: absolute; inset: 0 0 56px 0; display: flex; align-items: center;
+                   justify-content: center; color: #9fb0c9; font-size: 14px; }
+    .acu-toolbar { position: absolute; left: 0; right: 0; bottom: 0; height: 56px; display: flex;
+                   align-items: center; gap: 10px; padding: 0 12px; background: #131c30; }
+    .acu-toolbar .btn { padding: 7px 14px; font-size: 13px; background: #26314b; color: #dbe4f2; }
+    .acu-toolbar .btn-pick.on { background: #2ecc71; color: #fff; }
+    .acu-coord { font-size: 12px; color: #8fa0ba; margin-left: auto; font-family: monospace; }
+
+    .acu-listcol { display: flex; flex-direction: column; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; }
+    .acu-listhead { display: flex; align-items: center; justify-content: space-between;
+                    padding: 10px 12px; background: #f5f6f8; font-weight: 600; font-size: 14px; }
+    .btn-sm { padding: 5px 12px !important; font-size: 12px !important; }
+    .acu-list { flex: 1; overflow-y: auto; max-height: 464px; }
+    .acu-item { display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 12px;
+                border: 0; border-bottom: 1px solid #eee; background: #fff; cursor: pointer; text-align: left; }
+    .acu-item:hover { background: #f0f6ff; }
+    .acu-item.active { background: #e8f0fe; box-shadow: inset 3px 0 0 #1a73e8; }
+    .acu-item .n { font-size: 11px; color: #9aa4b2; min-width: 20px; }
+    .acu-item .t { font-weight: 600; font-size: 13.5px; color: #202124; }
+    .acu-item .c { font-size: 11px; color: #7a8697; }
+    .acu-item .warn { margin-left: auto; font-size: 11px; color: #e67e22; }
+
+    .acu-form-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 16px; }
+    .acu-actions { display: flex; gap: 10px; margin-top: 8px; }
+
+    @media (max-width: 1000px) {
+      .acu-layout { grid-template-columns: 1fr; }
+      .acu-form-grid { grid-template-columns: 1fr; }
+    }
+
     .form-group {
       margin-bottom: 16px;
     }
@@ -274,6 +332,22 @@
   </style>
 </head>
 <body>
+  <!-- ===== CỔNG ĐĂNG NHẬP ===== -->
+  <div id="authGate">
+    <form class="auth-box" id="authForm">
+      <h1>🏥 Hồi Xuân Đường</h1>
+      <div class="sub">Trang quản trị nội dung</div>
+      <input type="email" id="authEmail" placeholder="Email quản trị" autocomplete="username" required>
+      <input type="password" id="authPass" placeholder="Mật khẩu" autocomplete="current-password" required>
+      <button type="submit" id="authBtn">Đăng nhập</button>
+      <div class="auth-err" id="authErr"></div>
+      <div class="auth-note">
+        Tài khoản do quản trị viên tạo trong Supabase.<br>
+        Quên mật khẩu thì đặt lại trong Supabase → Authentication → Users.
+      </div>
+    </form>
+  </div>
+
   <div class="container">
     <!-- HEADER -->
     <div class="header">
@@ -283,6 +357,7 @@
       </div>
       <div class="user-info">
         <p id="userGreeting">Xin chào Admin</p>
+        <span id="authUser"></span>
         <button class="logout-btn" onclick="logout()">Đăng xuất</button>
       </div>
     </div>
@@ -296,6 +371,7 @@
       <button class="tab-btn" onclick="switchTab('team', this)">👥 Nhân Viên</button>
       <button class="tab-btn" onclick="switchTab('contact', this)">📞 Liên Hệ</button>
       <button class="tab-btn" onclick="switchTab('hero', this)">🎨 Banner Chính</button>
+      <button class="tab-btn" onclick="switchTab('acupoints', this)">🧭 Huyệt Đạo 3D</button>
     </div>
 
     <!-- TAB 1: CLINIC INFO -->
@@ -574,6 +650,97 @@
             <img id="heroBannerImagePreview" class="image-preview" style="display:none">
           </div>
           <button type="submit" class="btn btn-primary">💾 Lưu Banner</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- TAB 8: HUYỆT ĐẠO 3D -->
+    <div id="acupoints" class="tab-content">
+      <div class="card">
+        <h2>🧭 Huyệt Đạo 3D</h2>
+        <div id="acuMsg" class="message"></div>
+
+        <div class="acu-layout">
+          <!-- Mô hình 3D -->
+          <div class="acu-stage">
+            <div id="acuViewer"></div>
+            <div class="acu-loading" id="acuLoading">Đang tải mô hình 3D…</div>
+            <div class="acu-toolbar">
+              <button type="button" class="btn btn-pick" id="acuPickBtn">📍 Bấm chọn vị trí</button>
+              <button type="button" class="btn" id="acuResetBtn">🔄 Toàn thân</button>
+              <span class="acu-coord" id="acuCoord">Chọn một huyệt ở danh sách bên phải</span>
+            </div>
+          </div>
+
+          <!-- Danh sách huyệt -->
+          <div class="acu-listcol">
+            <div class="acu-listhead">
+              <span>Danh sách huyệt</span>
+              <button type="button" class="btn btn-primary btn-sm" id="acuAddBtn">+ Thêm</button>
+            </div>
+            <div class="acu-list" id="acuList"></div>
+          </div>
+        </div>
+
+        <!-- Biểu mẫu nội dung -->
+        <form id="acuForm" class="acu-form" hidden>
+          <div class="acu-form-grid">
+            <div class="form-group">
+              <label>Tên huyệt *</label>
+              <input type="text" id="acuName" required placeholder="VD: Bách Hội">
+            </div>
+            <div class="form-group">
+              <label>Mã huyệt *</label>
+              <input type="text" id="acuCode" required placeholder="VD: GV20">
+            </div>
+            <div class="form-group">
+              <label>Kinh mạch • Vị trí</label>
+              <input type="text" id="acuChannel" placeholder="VD: Đốc Mạch • Đỉnh Đầu Não">
+            </div>
+            <div class="form-group">
+              <label>Hướng bám da</label>
+              <select id="acuSnap">
+                <option value="front">Mặt trước (ngực, bụng, mặt)</option>
+                <option value="back">Mặt sau (lưng, gáy)</option>
+                <option value="side">Bên hông (tay, thái dương)</option>
+                <option value="top">Từ trên (đỉnh đầu, vai)</option>
+                <option value="bottom">Từ dưới (gan bàn chân)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Góc camera khi chọn</label>
+              <select id="acuView">
+                <option value="front">Nhìn từ trước mặt</option>
+                <option value="back">Nhìn từ sau lưng</option>
+                <option value="right">Nhìn từ bên hông</option>
+                <option value="top">Nhìn từ trên xuống</option>
+                <option value="bottom">Nhìn từ dưới lên</option>
+                <option value="auto">Tự động vuông góc với da</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Độ phóng to (0.15 gần – 0.60 xa)</label>
+              <input type="number" id="acuZoom" step="0.01" min="0.12" max="1.2" value="0.42">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>🌿 Đặc trị &amp; chỉ định</label>
+            <textarea id="acuIndication" rows="4"></textarea>
+          </div>
+          <div class="form-group">
+            <label>🖐️ Phương pháp day bấm</label>
+            <textarea id="acuTechnique" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>⚠️ Lưu ý y khoa</label>
+            <textarea id="acuCaution" rows="3"></textarea>
+          </div>
+
+          <div class="acu-actions">
+            <button type="submit" class="btn btn-primary">💾 Lưu huyệt</button>
+            <button type="button" class="btn btn-danger" id="acuDeleteBtn">🗑 Xoá huyệt này</button>
+          </div>
         </form>
       </div>
     </div>
@@ -1032,15 +1199,319 @@
     }
 
     // ===== INIT =====
-    document.addEventListener('DOMContentLoaded', () => {
+    // Dữ liệu chỉ nạp sau khi đăng nhập thành công (xem phần Đăng nhập bên dưới)
+    window.loadAllData = function () {
       loadClinicInfo();
       loadContact();
       loadHero();
+    };
+
+    /* ================= ĐĂNG NHẬP (Supabase Auth) =================
+       Phiên đăng nhập do Supabase quản lý và tự lưu lại giữa các lần mở trang.
+       Khoá công khai trong mã nguồn KHÔNG cho quyền ghi — quyền ghi nằm ở
+       chính sách RLS, chỉ mở cho tài khoản đã đăng nhập.                     */
+    const gate = document.getElementById('authGate');
+
+    /* Tab nào thuộc vai trò nào.
+       mo_phong_3d = người phụ trách trang mô phỏng 3D
+       trang_chinh = người phụ trách nội dung trang chính
+       toan_quyen  = chủ phòng khám, thấy hết                       */
+    const QUYEN_TAB = {
+      acupoints: ['mo_phong_3d', 'toan_quyen'],
+      clinic:    ['trang_chinh', 'toan_quyen'],
+      services:  ['trang_chinh', 'toan_quyen'],
+      products:  ['trang_chinh', 'toan_quyen'],
+      branches:  ['trang_chinh', 'toan_quyen'],
+      team:      ['trang_chinh', 'toan_quyen'],
+      contact:   ['trang_chinh', 'toan_quyen'],
+      hero:      ['trang_chinh', 'toan_quyen']
+    };
+    const TEN_VAI_TRO = {
+      mo_phong_3d: 'Quản trị mô phỏng 3D',
+      trang_chinh: 'Quản trị trang chính',
+      toan_quyen:  'Toàn quyền'
+    };
+
+    async function moKhoa(session) {
+      // Lấy vai trò; chưa phân quyền thì không mở tab nào
+      let role = null;
+      const { data } = await cmsSupabase.from('admin_profiles')
+        .select('role, ho_ten').eq('id', session.user.id).maybeSingle();
+      role = data?.role || null;
+      window.vaiTroHienTai = role;
+
+      const duocPhep = t => (QUYEN_TAB[t] || []).includes(role);
+
+      // Ẩn nút tab ngoài quyền
+      let tabDau = null;
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        const m = /switchTab\('([^']+)'/.exec(btn.getAttribute('onclick') || '');
+        const tab = m && m[1];
+        const ok = tab && duocPhep(tab);
+        btn.style.display = ok ? '' : 'none';
+        btn.classList.remove('active');
+        if (ok && !tabDau) tabDau = { tab, btn };
+      });
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+
+      if (!tabDau) {
+        await cmsSupabase.auth.signOut();
+        khoaLai('Tài khoản này chưa được phân quyền. Liên hệ chủ phòng khám.');
+        return;
+      }
+
+      gate.hidden = true;
+      document.getElementById('authUser').textContent =
+        `${data?.ho_ten || session.user.email} — ${TEN_VAI_TRO[role] || role}`;
+
+      switchTab(tabDau.tab, tabDau.btn);
+
+      // Chỉ nạp dữ liệu trang chính khi người dùng có quyền đó
+      if (duocPhep('clinic')) window.loadAllData();
+    }
+
+    /* Gọi khoaLai() không tham số thì GIỮ NGUYÊN dòng thông báo đang có.
+       Cần vậy vì signOut() kích hoạt onAuthStateChange → khoaLai() lần nữa,
+       nếu để nó tự xoá thì báo lỗi "chưa được phân quyền" biến mất và người
+       dùng nhìn màn hình đăng nhập trống, không hiểu vì sao vào không được. */
+    function khoaLai(thongBao) {
+      gate.hidden = false;
+      document.getElementById('authPass').value = '';
+      if (thongBao !== undefined) {
+        document.getElementById('authErr').textContent = thongBao;
+      }
+    }
+
+    document.getElementById('authForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('authBtn');
+      const err = document.getElementById('authErr');
+      btn.disabled = true; btn.textContent = 'Đang kiểm tra…'; err.textContent = '';
+
+      const { data, error } = await cmsSupabase.auth.signInWithPassword({
+        email: document.getElementById('authEmail').value.trim(),
+        password: document.getElementById('authPass').value
+      });
+
+      btn.disabled = false; btn.textContent = 'Đăng nhập';
+      if (error) {
+        err.textContent = error.message.includes('Invalid login')
+          ? 'Email hoặc mật khẩu không đúng.' : error.message;
+        return;
+      }
+      moKhoa(data.session);
     });
 
-    window.logout = function() {
-      window.location.href = '/admin/';
+    window.logout = async function () {
+      await cmsSupabase.auth.signOut();
+      khoaLai('');
+    };
+
+    // Còn phiên cũ thì vào thẳng, không bắt đăng nhập lại
+    cmsSupabase.auth.getSession().then(({ data }) => {
+      if (data.session) moKhoa(data.session); else khoaLai('');
+    });
+
+    // Phiên hết hạn hoặc đăng xuất ở tab khác → khoá lại ngay
+    cmsSupabase.auth.onAuthStateChange((event, session) => {
+      if (!session) khoaLai();
+    });
+  </script>
+
+  <!-- ============ TAB HUYỆT ĐẠO 3D ============ -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
     }
+  }
+  </script>
+  <script type="module">
+    const V = '?v=' + Date.now();
+    const { Meridian3DViewer } =
+      await import('../website-v2/assets/js/meridian-3d-viewer.js' + V);
+
+    const $ = id => document.getElementById(id);
+    const sb = window.cmsSupabase;
+
+    let viewer = null;
+    let currentId = null;     // huyệt đang mở trong biểu mẫu
+    let picking = false;      // đang ở chế độ bấm chọn vị trí
+    let started = false;
+
+    const msg = (text, ok = true) => {
+      const el = $('acuMsg');
+      el.textContent = text;
+      el.className = 'message ' + (ok ? 'success' : 'error');
+      el.style.display = 'block';
+      setTimeout(() => { el.style.display = 'none'; }, 4000);
+    };
+
+    // Chỉ dựng mô hình 3D khi người dùng mở tab (tránh tải 2.8 MB vô ích)
+    const origSwitchTab = window.switchTab;
+    window.switchTab = function (name, el) {
+      origSwitchTab(name, el);
+      if (name === 'acupoints' && !started) { started = true; boot(); }
+    };
+
+    // Đoạn mã này nạp sau phần đăng nhập. Nếu người dùng là quản trị 3D thì tab
+    // đã được mở sẵn trước khi hàm trên kịp gắn vào — phải tự khởi động ở đây.
+    if (document.getElementById('acupoints')?.classList.contains('active') && !started) {
+      started = true;
+      boot();
+    }
+
+    async function fetchRows() {
+      const { data, error } = await sb.from('acupoints')
+        .select('*').order('display_order');
+      if (error) throw error;
+      return data;
+    }
+
+    const toViewer = d => ({
+      id: d.id, code: d.code, name: d.name, channel: d.channel,
+      pos: [d.pos_x, d.pos_y, d.pos_z],
+      snap: d.snap, view: d.view, zoom: d.zoom, calibrated: true,
+      indication: d.indication, technique: d.technique, caution: d.caution
+    });
+
+    async function boot() {
+      let rows = [];
+      try { rows = await fetchRows(); }
+      catch (e) { msg('Không tải được danh sách huyệt: ' + e.message, false); }
+
+      viewer = new Meridian3DViewer('acuViewer',
+        '../website-v2/assets/models/meridian.glb', rows.map(toViewer));
+      window.__acuViewer = viewer;
+
+      addEventListener('meridian:modelLoaded', () => { $('acuLoading').style.display = 'none'; });
+      addEventListener('meridian:loadError', e =>
+        { $('acuLoading').textContent = 'Lỗi tải mô hình: ' + e.detail.message; });
+
+      // bấm vào chấm huyệt trên mô hình → mở huyệt đó trong biểu mẫu
+      addEventListener('meridian:acupointSelected', e => openForm(e.detail.acupoint.id));
+
+      // bấm lên cơ thể khi đang ở chế độ chọn vị trí
+      addEventListener('meridian:calibratePick', e => {
+        if (!currentId) { msg('Hãy chọn một huyệt trước khi đặt vị trí', false); return; }
+        viewer.updatePos(currentId, e.detail.pos);
+        $('acuCoord').textContent = `vị trí mới: [${e.detail.pos.join(', ')}] — nhớ bấm Lưu`;
+      });
+
+      renderList();
+    }
+
+    function renderList() {
+      const list = $('acuList');
+      list.innerHTML = '';
+      viewer.acupoints.forEach((a, i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'acu-item' + (a.id === currentId ? ' active' : '');
+        b.innerHTML = `<span class="n">${String(i + 1).padStart(2, '0')}</span>
+          <span><span class="t">${a.name} (${a.code})</span><br>
+          <span class="c">${a.channel || ''}</span></span>
+          ${a.isNew ? '<span class="warn">chưa lưu</span>' : ''}`;
+        b.onclick = () => { viewer.focus(a.id); openForm(a.id); };
+        list.appendChild(b);
+      });
+    }
+
+    function openForm(id) {
+      const a = viewer.getAcupoint(id);
+      if (!a) return;
+      currentId = id;
+      $('acuForm').hidden = false;
+      $('acuName').value = a.name || '';
+      $('acuCode').value = a.code || '';
+      $('acuChannel').value = a.channel || '';
+      $('acuSnap').value = a.snap || 'front';
+      $('acuView').value = a.view || 'front';
+      $('acuZoom').value = a.zoom ?? 0.42;
+      $('acuIndication').value = a.indication || '';
+      $('acuTechnique').value = a.technique || '';
+      $('acuCaution').value = a.caution || '';
+      $('acuCoord').textContent = `vị trí: [${a.pos.map(n => n.toFixed(3)).join(', ')}]`;
+      renderList();
+    }
+
+    // --- nút bấm chọn vị trí ---
+    $('acuPickBtn').onclick = () => {
+      if (!currentId) { msg('Hãy chọn một huyệt trước', false); return; }
+      picking = !picking;
+      viewer.setCalibrateMode(picking);
+      $('acuPickBtn').classList.toggle('on', picking);
+      $('acuPickBtn').textContent = picking ? '✅ Đang chọn — bấm lên cơ thể' : '📍 Bấm chọn vị trí';
+      $('acuViewer').classList.toggle('picking', picking);
+    };
+
+    $('acuResetBtn').onclick = () => viewer.resetView();
+
+    // --- thêm huyệt mới ---
+    $('acuAddBtn').onclick = () => {
+      const n = viewer.acupoints.length + 1;
+      const item = viewer.addAcupoint({
+        id: 'huyet-moi-' + Date.now().toString(36),
+        code: 'MỚI' + n, name: 'Huyệt mới ' + n
+      });
+      item.isNew = true;
+      viewer.focus(item.id);
+      openForm(item.id);
+      msg('Đã thêm huyệt mới. Bấm "Bấm chọn vị trí" rồi click lên cơ thể để đặt chỗ, sau đó bấm Lưu.');
+    };
+
+    // --- lưu ---
+    $('acuForm').onsubmit = async (ev) => {
+      ev.preventDefault();
+      const a = viewer.getAcupoint(currentId);
+      if (!a) return;
+
+      Object.assign(a, {
+        name: $('acuName').value.trim(),
+        code: $('acuCode').value.trim(),
+        channel: $('acuChannel').value.trim(),
+        snap: $('acuSnap').value,
+        view: $('acuView').value,
+        zoom: parseFloat($('acuZoom').value) || 0.42,
+        indication: $('acuIndication').value.trim(),
+        technique: $('acuTechnique').value.trim(),
+        caution: $('acuCaution').value.trim()
+      });
+
+      const row = {
+        id: a.id, code: a.code, name: a.name, channel: a.channel,
+        pos_x: a.pos[0], pos_y: a.pos[1], pos_z: a.pos[2],
+        snap: a.snap, view: a.view, zoom: a.zoom,
+        indication: a.indication, technique: a.technique, caution: a.caution,
+        display_order: viewer.acupoints.indexOf(a) + 1,
+        is_active: true, updated_at: new Date().toISOString()
+      };
+
+      const { error } = await sb.from('acupoints').upsert(row);
+      if (error) return msg('Lưu thất bại: ' + error.message, false);
+
+      delete a.isNew;
+      renderList();
+      msg(`Đã lưu huyệt ${a.name} (${a.code}).`);
+    };
+
+    // --- xoá ---
+    $('acuDeleteBtn').onclick = async () => {
+      const a = viewer.getAcupoint(currentId);
+      if (!a) return;
+      if (!confirm(`Xoá huyệt "${a.name} (${a.code})" khỏi mô hình 3D?\nThao tác này không hoàn tác được.`)) return;
+
+      if (!a.isNew) {
+        const { error } = await sb.from('acupoints').delete().eq('id', a.id);
+        if (error) return msg('Xoá thất bại: ' + error.message, false);
+      }
+      viewer.removeAcupoint(a.id);
+      currentId = null;
+      $('acuForm').hidden = true;
+      renderList();
+      msg(`Đã xoá huyệt ${a.name}.`);
+    };
   </script>
 </body>
 </html>

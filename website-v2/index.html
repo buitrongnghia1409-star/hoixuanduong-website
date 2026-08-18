@@ -38,6 +38,26 @@
        ========================================== -->
   <div id="hero3DCanvas" class="hero-3d-stage-canvas" aria-label="Sân khấu 3D Kinh Lạc Hồi Xuân Đường"></div>
 
+  <!-- Màn hình chờ trong lúc tải mô hình 3D -->
+  <div class="model-loading" id="modelLoading">
+    <div class="ml-title">Đang dựng mô hình kinh lạc…</div>
+    <div class="ml-bar"><i id="mlBar"></i></div>
+  </div>
+  <style>
+    .model-loading{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:14px;background:rgba(255,253,248,.86);
+      backdrop-filter:blur(6px);font-family:var(--font-sans);color:var(--c-primary-green);
+      transition:opacity .6s ease}
+    .model-loading.hidden{opacity:0;pointer-events:none}
+    .model-loading .ml-title{font-family:var(--font-serif);font-size:22px;font-weight:700}
+    .model-loading .ml-bar{width:220px;height:3px;background:var(--c-green-100);
+      border-radius:2px;overflow:hidden}
+    .model-loading .ml-bar i{display:block;height:100%;width:0;
+      background:linear-gradient(90deg,var(--c-gold),var(--c-gold-light));transition:width .25s ease}
+    .hero-3d-stage-canvas{cursor:grab}
+    .hero-3d-stage-canvas:active{cursor:grabbing}
+  </style>
+
   <!-- ==========================================
        2. MINIMAL BRAND SIGNATURE HEADER
        ========================================== -->
@@ -114,11 +134,119 @@
        4. SCRIPTS
        ========================================== -->
   <script type="module">
-    import './assets/js/hero-3d-meridian.js?v=8';
     import { GeminiAssistant } from './assets/js/gemini-assistant.js';
-    window.addEventListener('DOMContentLoaded', () => {
-      new GeminiAssistant();
+    window.addEventListener('DOMContentLoaded', () => { new GeminiAssistant(); });
+
+    const V = '?v=' + Date.now();
+    const { Meridian3DViewer, DEFAULT_ACUPOINTS } =
+      await import('./assets/js/meridian-3d-viewer.js' + V);
+
+    const $ = id => document.getElementById(id);
+    const fmtCode = c => `<span class="editorial-code">(${String(c).replace(/-/g, '‑')})</span>`;
+
+    /* --- Huyệt đạo lấy từ Supabase (sửa được ở trang quản trị).
+           Mạng lỗi thì dùng bản nhúng sẵn để trang vẫn chạy. --- */
+    const SB_URL = 'https://epdjnjcfzxhllklusmet.supabase.co';
+    const SB_KEY = 'sb_publishable_pIjbFKuEUhUGxoMZvB6AsQ_dlpJUSO_';
+
+    async function loadAcupoints() {
+      try {
+        const r = await fetch(`${SB_URL}/rest/v1/acupoints?is_active=eq.true&order=display_order`,
+          { headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` } });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        const rows = await r.json();
+        if (!rows.length) throw new Error('chưa có huyệt nào');
+        return rows.map(d => ({
+          id: d.id, code: d.code, name: d.name, channel: d.channel,
+          pos: [d.pos_x, d.pos_y, d.pos_z],
+          snap: d.snap, view: d.view, zoom: d.zoom, calibrated: true,
+          indication: d.indication, technique: d.technique, caution: d.caution
+        }));
+      } catch (err) {
+        console.warn('Dùng dữ liệu huyệt nhúng sẵn:', err.message);
+        return DEFAULT_ACUPOINTS;
+      }
+    }
+
+    const ACUPOINTS = await loadAcupoints();
+    const viewer = new Meridian3DViewer('hero3DCanvas', './assets/models/meridian.glb', ACUPOINTS);
+
+    addEventListener('meridian:loadProgress', e => {
+      $('mlBar').style.width = e.detail.percent + '%';
     });
+    addEventListener('meridian:modelLoaded', () => {
+      $('modelLoading').classList.add('hidden');
+      setTimeout(() => $('modelLoading').remove(), 700);
+    });
+    addEventListener('meridian:loadError', e => {
+      $('modelLoading').querySelector('.ml-title').textContent =
+        'Không tải được mô hình 3D. Vui lòng tải lại trang.';
+      console.error(e.detail.message);
+    });
+
+    /* --- Danh sách huyệt bên phải --- */
+    const list = $('acupointsRightList');
+    list.innerHTML = '';
+    ACUPOINTS.forEach((acu, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn-acu-item';
+      btn.dataset.id = acu.id;
+      btn.innerHTML = `
+        <span class="acu-idx">${String(i + 1).padStart(2, '0')}</span>
+        <div class="acu-info-col">
+          <span class="acu-name-txt">${acu.name} ${fmtCode(acu.code)}</span>
+          <span class="acu-chan-txt">${acu.channel || ''}</span>
+        </div>
+        <span class="acu-arrow">›</span>`;
+      btn.addEventListener('click', () => viewer.focus(acu.id));
+      list.appendChild(btn);
+    });
+
+    /* --- Bảng nội dung bên trái --- */
+    const panel = document.querySelector('.theatre-left-editorial');
+    const MO_DAU = {
+      title: 'Hồi Xuân Đường',
+      channel: 'TINH HOA ĐÔNG Y • ĐẢ THÔNG KINH LẠC',
+      indication: 'Trực quan hóa hệ thống Thập Nhị Kinh Lạc & Kỳ Kinh Bát Mạch trên không gian 3D. Khí hành thì huyết hành, kinh lạc thông suốt thì bách bệnh tự nhiên tiêu tan, thân tâm an lạc.',
+      technique: 'Kéo để xoay mô hình · Lăn chuột hoặc chụm hai ngón để phóng to · Chạm vào điểm sáng trên cơ thể, hoặc chọn huyệt ở danh sách bên phải.',
+      caution: 'Không tự ý thực hiện bấm huyệt trị liệu chuyên sâu khi chưa có chỉ định hoặc hướng dẫn trực tiếp từ bác sĩ chuyên khoa Đông y.'
+    };
+
+    const setPanel = (d) => {
+      panel.classList.remove('animate-in');
+      panel.classList.add('animate-out');
+      setTimeout(() => {
+        $('selectedAcuTitle').innerHTML = d.title;
+        $('selectedAcuChannel').textContent = d.channel;
+        $('selectedAcuIndication').textContent = d.indication || '';
+        $('selectedAcuTechnique').textContent = d.technique || '';
+        $('selectedAcuCaution').textContent = d.caution || '';
+        panel.classList.remove('animate-out');
+        panel.classList.add('animate-in');
+      }, 260);
+    };
+
+    addEventListener('meridian:acupointSelected', e => {
+      const a = e.detail.acupoint;
+      setPanel({ ...a, title: `${a.name} ${fmtCode(a.code)}`, channel: a.channel || '' });
+      document.querySelectorAll('.btn-acu-item')
+        .forEach(b => b.classList.toggle('active', b.dataset.id === a.id));
+    });
+
+    addEventListener('meridian:viewReset', () => {
+      setPanel(MO_DAU);
+      document.querySelectorAll('.btn-acu-item').forEach(b => b.classList.remove('active'));
+    });
+
+    $('btnResetToFullBody')?.addEventListener('click', () => viewer.resetView());
+
+    /* --- Nền video ao sen: vài trình duyệt chặn autoplay --- */
+    const pond = document.querySelector('.pond-bg-video');
+    const playPond = () => pond?.play().catch(() => {});
+    playPond();
+    ['pointerdown', 'keydown', 'visibilitychange'].forEach(ev =>
+      addEventListener(ev, playPond, { passive: true }));
   </script>
 </body>
 </html>
