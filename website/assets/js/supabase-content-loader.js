@@ -57,7 +57,9 @@
             <div class="service-card reveal">
               <div class="service-media">
                 <span class="service-num">${serviceNum}</span>
-                ${service.image_url ? `<img src="${service.image_url}" alt="${service.service_name}" loading="lazy">` : '<div style="background: #f0f0f0; height: 200px; display: flex; align-items: center; justify-content: center;"><span style="font-size: 48px;">${service.icon_emoji || "🏥"}</span></div>'}
+                ${service.image_url
+                    ? `<img src="${service.image_url}" alt="${service.service_name}" loading="lazy">`
+                    : `<div class="service-media-empty"><span>${service.icon_emoji || '🏥'}</span></div>`}
               </div>
               <div class="service-body">
                 <h3>${service.service_name}</h3>
