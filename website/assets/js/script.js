@@ -59,21 +59,49 @@
        (nhìn như ảnh vừa hiện đã biến mất). Gọi hàm này sau mỗi lần thay nội
        dung để bắt đầu theo dõi những thẻ mới. */
     window.observeReveal = function (root) {
-      var els = (root || document).querySelectorAll(".reveal");
+      var els = Array.prototype.slice.call((root || document).querySelectorAll(".reveal"));
       els.forEach(function (el) {
         io.observe(el);
       });
 
-      /* Lưới an toàn: nếu sau 1.2 giây mà phần tử đang nằm trong tầm nhìn vẫn
-         chưa được hiện, bật thẳng. Thà mất hiệu ứng còn hơn để khách nhìn
-         thấy khoảng trống. */
-      setTimeout(function () {
-        els.forEach(function (el) {
-          if (el.classList.contains("in")) return;
+      /* Lưới an toàn cho nội dung chèn sau khi tải trang.
+         Không thể chỉ trông vào IntersectionObserver: nó không kích hoạt khi
+         tab đang chạy nền, và khối nội dung thường nằm dưới màn hình lúc được
+         chèn vào. Nên kiểm tra thêm mỗi lần cuộn hoặc khi người dùng quay lại
+         tab, hiện thẳng những thẻ đã vào tầm nhìn mà vẫn còn trong suốt.
+         Kiểm xong hết thì tự gỡ, không để lại gánh nặng cho trang. */
+      var kiemTra = function () {
+        for (var i = els.length - 1; i >= 0; i--) {
+          var el = els[i];
+          if (el.classList.contains("in")) { els.splice(i, 1); continue; }
           var r = el.getBoundingClientRect();
-          if (r.top < window.innerHeight && r.bottom > 0) el.classList.add("in");
-        });
-      }, 1200);
+          if (r.top < window.innerHeight && r.bottom > 0) {
+            el.classList.add("in");
+            els.splice(i, 1);
+          }
+        }
+        if (!els.length) {
+          window.removeEventListener("scroll", hoan);
+          document.removeEventListener("visibilitychange", hoan);
+        }
+      };
+      /* Hãm nhịp theo mốc thời gian, KHÔNG dùng cờ "đang chờ" kèm setTimeout:
+         ở tab chạy nền trình duyệt hãm bộ đếm giờ, cờ đó có thể kẹt vĩnh viễn
+         khiến mọi lần cuộn sau đều bị bỏ qua và nội dung không bao giờ hiện. */
+      var lanCuoi = 0, hen = null;
+      var hoan = function () {
+        var now = Date.now();
+        // Lần chạy đầu không phụ thuộc bộ đếm giờ, nên không thể bị kẹt.
+        if (now - lanCuoi >= 150) { lanCuoi = now; kiemTra(); }
+        // Thêm một lần chạy đuôi, phòng khi khách cuộn nhanh rồi dừng lại —
+        // vị trí dừng cuối cùng vẫn được kiểm.
+        clearTimeout(hen);
+        hen = setTimeout(function () { lanCuoi = Date.now(); kiemTra(); }, 200);
+      };
+
+      window.addEventListener("scroll", hoan, { passive: true });
+      document.addEventListener("visibilitychange", hoan);
+      setTimeout(kiemTra, 1200);
     };
   } else {
     revealEls.forEach(function (el) {
