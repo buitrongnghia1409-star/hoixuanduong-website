@@ -12,6 +12,20 @@
     'sb_publishable_pIjbFKuEUhUGxoMZvB6AsQ_dlpJUSO_'
   );
 
+  /* Bật lại hiệu ứng hiện dần cho nội dung vừa nạp.
+     script.js định nghĩa window.observeReveal; nếu vì lý do nào đó nó chưa
+     chạy xong thì chờ tối đa ~1 giây rồi hiện thẳng, tuyệt đối không để
+     nội dung kẹt ở opacity:0. */
+  function hienLai(root, conLai) {
+    if (window.observeReveal) return window.observeReveal(root);
+    var n = (conLai === undefined) ? 20 : conLai;
+    if (n <= 0) {
+      root.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    setTimeout(function () { hienLai(root, n - 1); }, 50);
+  }
+
   // ===== HERO SECTION =====
   async function loadHeroSection() {
     try {
@@ -71,6 +85,7 @@
         });
 
         servicesGrid.innerHTML = html;
+        hienLai(servicesGrid);
       }
     } catch (err) {
       console.error('Error loading services:', err.message);
@@ -121,6 +136,7 @@
         });
 
         productsGrid.innerHTML = html;
+        hienLai(productsGrid);
 
         // Reinit cart buttons
         if (window.initCartButtons) window.initCartButtons();
@@ -165,6 +181,7 @@
             `;
           });
           infoList.innerHTML = html;
+          hienLai(infoList);
         }
 
         // Update footer

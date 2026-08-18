@@ -675,7 +675,9 @@
 <!-- Supabase Integration -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/supabase-clinic.js"></script>
-<script src="assets/js/supabase-content-loader.js"></script>
-<script src="assets/js/script.js?v=2"></script>
+<!-- script.js phải chạy TRƯỚC để định nghĩa window.observeReveal, nếu không
+     nội dung nạp từ Supabase sẽ nằm mãi ở opacity:0 (hiện rồi biến mất). -->
+<script src="assets/js/script.js?v=4"></script>
+<script src="assets/js/supabase-content-loader.js?v=2"></script>
 </body>
 </html>

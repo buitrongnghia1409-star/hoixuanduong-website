@@ -53,10 +53,38 @@
     revealEls.forEach(function (el) {
       io.observe(el);
     });
+
+    /* Nội dung nạp từ Supabase được chèn vào SAU khi đoạn này chạy xong, nên
+       các thẻ .reveal mới sinh ra không được theo dõi và nằm mãi ở opacity:0
+       (nhìn như ảnh vừa hiện đã biến mất). Gọi hàm này sau mỗi lần thay nội
+       dung để bắt đầu theo dõi những thẻ mới. */
+    window.observeReveal = function (root) {
+      var els = (root || document).querySelectorAll(".reveal");
+      els.forEach(function (el) {
+        io.observe(el);
+      });
+
+      /* Lưới an toàn: nếu sau 1.2 giây mà phần tử đang nằm trong tầm nhìn vẫn
+         chưa được hiện, bật thẳng. Thà mất hiệu ứng còn hơn để khách nhìn
+         thấy khoảng trống. */
+      setTimeout(function () {
+        els.forEach(function (el) {
+          if (el.classList.contains("in")) return;
+          var r = el.getBoundingClientRect();
+          if (r.top < window.innerHeight && r.bottom > 0) el.classList.add("in");
+        });
+      }, 1200);
+    };
   } else {
     revealEls.forEach(function (el) {
       el.classList.add("in");
     });
+    // Trình duyệt không hỗ trợ IntersectionObserver: hiện thẳng, không hiệu ứng
+    window.observeReveal = function (root) {
+      (root || document).querySelectorAll(".reveal").forEach(function (el) {
+        el.classList.add("in");
+      });
+    };
   }
 
   /* ---------- Toast ---------- */
