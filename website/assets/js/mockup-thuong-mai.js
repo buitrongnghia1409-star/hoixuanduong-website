@@ -60,13 +60,16 @@
     const panel = document.querySelector('.offer-panel');
     if (!panel || !offers.length) return;
     panel.innerHTML = offers.map(item => `
-      <article class="offer-card${item.featured ? ' featured' : ''}${item.image ? ' has-poster' : ''}"${item.image ? ` style="--offer-image:url('${esc(item.image)}')"` : ''}>
-        ${item.image ? `<img class="offer-poster" src="${esc(item.image)}" alt="${esc(item.title)}" loading="lazy">` : ''}
+      <article class="offer-card${item.image ? ' has-poster' : ''}"${item.image ? ` style="--offer-image:url('${esc(item.image)}')"` : ''}>
+        <div class="offer-media">
+          ${item.image ? `<img class="offer-poster" src="${esc(item.image)}" alt="${esc(item.title)}" loading="lazy">` : `<span>${esc(item.tag || 'Ưu đãi')}</span>`}
+        </div>
         <div class="offer-card-content">
           <span class="offer-tag">${esc(item.tag)}</span>
           <h3>${esc(item.title)}</h3>
+          ${item.price ? `<strong class="offer-price">${esc(item.price)}</strong>` : ''}
           <p>${esc(item.description)}</p>
-          <a href="#dat-lich" data-service="${esc(item.service || item.title)}" aria-label="Tư vấn ${esc(item.service || item.title)}">${esc(item.cta || 'Nhận tư vấn ↗')}</a>
+          <a class="offer-cta" href="#dat-lich" data-service="${esc(item.service || item.title)}" aria-label="Tư vấn ${esc(item.service || item.title)}">${esc(item.cta || 'Đặt lịch tư vấn ↗')}</a>
         </div>
       </article>`).join('');
   }

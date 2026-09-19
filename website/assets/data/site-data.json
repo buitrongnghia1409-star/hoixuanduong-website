@@ -97,6 +97,7 @@
       "image": "assets/images/poster-massage-co-vai-gay-299k.jpg",
       "tag": "POSTER ƯU ĐÃI",
       "title": "Massage cổ vai gáy",
+      "price": "299K",
       "description": "Ưu đãi trải nghiệm chỉ từ 299K / liệu trình.",
       "service": "Massage cổ vai gáy 299K",
       "cta": "Nhận tư vấn 299K ↗"
@@ -106,6 +107,7 @@
       "image": "assets/images/poster-giac-hoi-bam-huyet-399k.jpg",
       "tag": "POSTER ƯU ĐÃI",
       "title": "Giác hơi bấm huyệt",
+      "price": "399K",
       "description": "Ưu đãi trải nghiệm chỉ từ 399K / liệu trình.",
       "service": "Giác hơi bấm huyệt 399K",
       "cta": "Nhận tư vấn 399K ↗"
@@ -113,6 +115,7 @@
     {
       "tag": "GÓI TRẢI NGHIỆM",
       "title": "Khởi động hành trình dưỡng sinh",
+      "price": "Liên hệ",
       "description": "Cổ vai gáy · Mặt ngọc · Lưng eo · Vùng đầu · Đắp thuốc",
       "service": "Gói trải nghiệm 5 liệu trình",
       "cta": "Tư vấn gói này ↗"
@@ -120,6 +123,7 @@
     {
       "tag": "VOUCHER",
       "title": "Món quà thư giãn cho người thân",
+      "price": "Tùy chọn",
       "description": "Thiết kế cho dịp sinh nhật, lễ tết hoặc lời cảm ơn đặc biệt.",
       "service": "Voucher chăm sóc thân tâm",
       "cta": "Nhận tư vấn ↗"
@@ -127,6 +131,7 @@
     {
       "tag": "SỰ KIỆN THEO MÙA",
       "title": "Tuần lễ hồi xuân / workshop thảo dược",
+      "price": "Cập nhật",
       "description": "Khu vực để cập nhật chương trình theo tháng, theo mùa hoặc chiến dịch riêng.",
       "service": "Chương trình sự kiện",
       "cta": "Xem chương trình ↗"
