@@ -137,6 +137,19 @@
     if (type === 'icon') {
       return `<div class="field"><label for="${id}">${label}</label><select id="${id}" data-path="${path.join('.')}"><option value="tea"${value === 'tea' ? ' selected' : ''}>Trà</option><option value="oil"${value === 'oil' ? ' selected' : ''}>Tinh dầu</option><option value="box"${value === 'box' ? ' selected' : ''}>Hộp/cao</option><option value="serum"${value === 'serum' ? ' selected' : ''}>Serum</option></select></div>`;
     }
+    if (key === 'image') {
+      const source = String(value || '');
+      const canPreview = source.startsWith('assets/') || source.startsWith('data:image') || source.startsWith('http');
+      return `<div class="field full image-field">
+        <label for="${id}">${label}</label>
+        ${canPreview ? `<img class="image-preview" src="${escapeHtml(source)}" alt="Xem trước ảnh">` : ''}
+        <input id="${id}" data-path="${path.join('.')}" value="${escapeHtml(value)}">
+        <div class="image-actions">
+          <label class="image-picker">Chọn ảnh từ máy<input type="file" accept="image/*" data-image-picker="${path.join('.')}"></label>
+          <small>Có thể nhập đường dẫn ảnh hoặc chọn ảnh từ máy. Nên dùng ảnh đã nén để file dữ liệu nhẹ.</small>
+        </div>
+      </div>`;
+    }
     const hint = key === 'image' ? '<small>Nhập đường dẫn ảnh, ví dụ: assets/images/ten-anh.jpg</small>' : '';
     return `<div class="field${full}"><label for="${id}">${label}</label><input id="${id}" data-path="${path.join('.')}" value="${escapeHtml(value)}">${hint}</div>`;
   }
@@ -197,6 +210,23 @@
   });
 
   root.addEventListener('change', event => {
+    const picker = event.target.closest('[data-image-picker]');
+    if (picker) {
+      const file = picker.files?.[0];
+      if (!file) return;
+      if (file.size > 900 * 1024 && !confirm('Ảnh này khá lớn, có thể làm file dữ liệu nặng và website tải chậm. Bạn vẫn muốn dùng ảnh này?')) {
+        picker.value = '';
+        return;
+      }
+      const reader = new FileReader();
+      reader.addEventListener('load', () => {
+        setByPath(picker.dataset.imagePicker, reader.result);
+        render();
+        setStatus(`Đã chọn ảnh “${file.name}”. Bấm “Tải file dữ liệu” để lưu thay đổi.`);
+      }, { once: true });
+      reader.readAsDataURL(file);
+      return;
+    }
     const control = event.target.closest('[data-path]');
     if (!control) return;
     setByPath(control.dataset.path, control.value);
