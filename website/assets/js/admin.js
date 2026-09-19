@@ -1,9 +1,53 @@
 (() => {
+  const USER_HASH = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
+  const PASS_HASH = 'd778b05d1175765ee7b6066fe24c66e83db52374a09f344684c5988e8ea74edb';
+  const SESSION_KEY = 'hxd_admin_logged_in';
+  const loginScreen = document.querySelector('#login-screen');
+  const loginForm = document.querySelector('#login-form');
+  const loginError = document.querySelector('#login-error');
+  const app = document.querySelector('#admin-app');
+  const logoutButton = document.querySelector('#logout');
   const root = document.querySelector('#editor-root');
   const status = document.querySelector('#status');
   const downloadButton = document.querySelector('#download-json');
   const uploadInput = document.querySelector('#json-upload');
   let siteData = {};
+
+  async function sha256(value) {
+    const data = new TextEncoder().encode(value);
+    const hash = await crypto.subtle.digest('SHA-256', data);
+    return [...new Uint8Array(hash)].map(byte => byte.toString(16).padStart(2, '0')).join('');
+  }
+
+  function showApp() {
+    sessionStorage.setItem(SESSION_KEY, '1');
+    document.body.classList.add('is-logged-in');
+    document.body.classList.remove('is-locked');
+    loginScreen.hidden = true;
+    app.hidden = false;
+  }
+
+  function showLogin() {
+    sessionStorage.removeItem(SESSION_KEY);
+    document.body.classList.remove('is-logged-in');
+    document.body.classList.add('is-locked');
+    loginScreen.hidden = false;
+    app.hidden = true;
+  }
+
+  loginForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    loginError.textContent = '';
+    const username = loginForm.username.value.trim();
+    const password = loginForm.password.value;
+    if (await sha256(username) === USER_HASH && await sha256(password) === PASS_HASH) {
+      showApp();
+      return;
+    }
+    loginError.textContent = 'Tài khoản hoặc mật khẩu chưa đúng.';
+  });
+
+  logoutButton.addEventListener('click', showLogin);
 
   const labels = {
     settings: 'Thông tin thương hiệu',
@@ -200,6 +244,8 @@
   });
 
   async function init() {
+    if (sessionStorage.getItem(SESSION_KEY) === '1') showApp();
+    else showLogin();
     try {
       const response = await fetch('assets/data/site-data.json', { cache: 'no-cache' });
       siteData = await response.json();
