@@ -94,6 +94,23 @@
   "offers": [
     {
       "featured": true,
+      "image": "assets/images/poster-massage-co-vai-gay-299k.jpg",
+      "tag": "POSTER ƯU ĐÃI",
+      "title": "Massage cổ vai gáy",
+      "description": "Ưu đãi trải nghiệm chỉ từ 299K / liệu trình.",
+      "service": "Massage cổ vai gáy 299K",
+      "cta": "Nhận tư vấn 299K ↗"
+    },
+    {
+      "featured": true,
+      "image": "assets/images/poster-giac-hoi-bam-huyet-399k.jpg",
+      "tag": "POSTER ƯU ĐÃI",
+      "title": "Giác hơi bấm huyệt",
+      "description": "Ưu đãi trải nghiệm chỉ từ 399K / liệu trình.",
+      "service": "Giác hơi bấm huyệt 399K",
+      "cta": "Nhận tư vấn 399K ↗"
+    },
+    {
       "tag": "GÓI TRẢI NGHIỆM",
       "title": "Khởi động hành trình dưỡng sinh",
       "description": "Cổ vai gáy · Mặt ngọc · Lưng eo · Vùng đầu · Đắp thuốc",

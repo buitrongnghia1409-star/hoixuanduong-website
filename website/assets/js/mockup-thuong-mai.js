@@ -60,7 +60,8 @@
     const panel = document.querySelector('.offer-panel');
     if (!panel || !offers.length) return;
     panel.innerHTML = offers.map(item => `
-      <article class="offer-card${item.featured ? ' featured' : ''}">
+      <article class="offer-card${item.featured ? ' featured' : ''}${item.image ? ' has-poster' : ''}"${item.image ? ` style="--offer-image:url('${esc(item.image)}')"` : ''}>
+        ${item.image ? `<img class="offer-poster" src="${esc(item.image)}" alt="${esc(item.title)}" loading="lazy">` : ''}
         <div class="offer-card-content">
           <span class="offer-tag">${esc(item.tag)}</span>
           <h3>${esc(item.title)}</h3>

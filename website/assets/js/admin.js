@@ -103,7 +103,7 @@
   const templates = {
     hero: { image: 'assets/images/dms07238.jpg', alt: '', eyebrow: 'NHÃN HERO', title: 'Tiêu đề hero', slogan: 'Slogan nổi bật.', description: 'Mô tả ngắn cho ảnh hero.' },
     services: { category: 'tri-lieu', image: 'assets/images/phong-tri-lieu-2.jpg', alt: '', label: 'DỊCH VỤ', title: 'Tên dịch vụ mới', description: 'Mô tả ngắn.', detailTitle: 'Thông tin liệu trình', detail: 'Nội dung chi tiết.', priceLabel: 'GIÁ DỊCH VỤ', price: 'Liên hệ báo giá' },
-    offers: { tag: 'ƯU ĐÃI', title: 'Tên chương trình mới', description: 'Mô tả chương trình.', service: 'Tên chương trình mới', cta: 'Nhận tư vấn ↗' },
+    offers: { image: '', tag: 'ƯU ĐÃI', title: 'Tên chương trình mới', description: 'Mô tả chương trình.', service: 'Tên chương trình mới', cta: 'Nhận tư vấn ↗' },
     products: { category: 'NHÓM SẢN PHẨM', title: 'Tên sản phẩm mới', price: 'Liên hệ báo giá', service: 'Tên sản phẩm mới', icon: 'tea' },
     locations: { number: 'CƠ SỞ MỚI', name: 'Tên cơ sở', address: 'Địa chỉ sẽ cập nhật', map: '', branch: 'Tên cơ sở', future: true },
     faqs: { question: 'Câu hỏi mới?', answer: 'Câu trả lời.' }
