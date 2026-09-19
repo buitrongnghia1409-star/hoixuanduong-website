@@ -1,0 +1,137 @@
+{
+  "services": [
+    {
+      "category": "tri-lieu",
+      "image": "assets/images/phong-tri-lieu-2.jpg",
+      "alt": "Không gian phòng trị liệu tại Hồi Xuân Đường",
+      "label": "CHĂM SÓC CƠ THỂ",
+      "title": "Bấm huyệt & chăm sóc cổ vai gáy",
+      "description": "Chăm sóc vùng cổ, vai, gáy; trao đổi với kỹ thuật viên để lựa chọn liệu trình phù hợp.",
+      "detailTitle": "Thông tin liệu trình",
+      "detail": "Trao đổi nhu cầu trước khi thực hiện. Có thể kết hợp cạo gió hoặc giác hơi sau khi được tư vấn. Thời lượng và chi phí xác nhận theo nội dung lựa chọn.",
+      "priceLabel": "GIÁ DỊCH VỤ",
+      "price": "Liên hệ báo giá"
+    },
+    {
+      "category": "duong-sinh",
+      "image": "assets/images/dms07619.jpg",
+      "alt": "Phòng chăm sóc dưỡng sinh tại Hồi Xuân Đường",
+      "label": "DƯỠNG SINH THẢO DƯỢC",
+      "title": "Xông hơi thảo dược",
+      "description": "Một khoảng thư giãn với thảo dược, dành cho những ngày cơ thể cần được nghỉ ngơi.",
+      "detailTitle": "Thông tin liệu trình",
+      "detail": "Đội ngũ tư vấn trao đổi về thể trạng, hình thức xông hơi và các lưu ý trước khi thực hiện. Liên hệ để biết thời lượng và mức giá hiện tại.",
+      "priceLabel": "GIÁ DỊCH VỤ",
+      "price": "Liên hệ báo giá"
+    },
+    {
+      "category": "sac-dep",
+      "image": "assets/images/dms08035.jpg",
+      "alt": "Phòng chăm sóc sắc đẹp tại Hồi Xuân Đường",
+      "label": "CHĂM SÓC SẮC ĐẸP",
+      "title": "Chăm sóc da & sắc vóc",
+      "description": "Khám phá cách chăm sóc làn da, kết hợp thời gian thư giãn trong không gian riêng tư.",
+      "detailTitle": "Thông tin liệu trình",
+      "detail": "Tư vấn theo nhu cầu chăm sóc da và sắc vóc. Các bước, sản phẩm sử dụng và chi phí được trao đổi trước khi bạn quyết định lựa chọn.",
+      "priceLabel": "GIÁ DỊCH VỤ",
+      "price": "Liên hệ báo giá"
+    },
+    {
+      "category": "duong-sinh",
+      "image": "assets/images/dms08028-opt.webp",
+      "alt": "Buổi trao đổi và tư vấn tại Hồi Xuân Đường",
+      "label": "TƯ VẤN CÁ NHÂN",
+      "title": "Dưỡng sinh & dinh dưỡng",
+      "description": "Trao đổi về thói quen sinh hoạt và nhu cầu chăm sóc để xây dựng hướng dưỡng sinh phù hợp.",
+      "detailTitle": "Thông tin tư vấn",
+      "detail": "Chia sẻ mục tiêu chăm sóc, thói quen hằng ngày và những điều bạn quan tâm. Đội ngũ tư vấn sẽ giải đáp về dịch vụ, sản phẩm và các lựa chọn phù hợp tại cơ sở.",
+      "priceLabel": "CHI PHÍ TƯ VẤN",
+      "price": "Liên hệ báo giá"
+    }
+  ],
+  "offers": [
+    {
+      "featured": true,
+      "tag": "GÓI TRẢI NGHIỆM",
+      "title": "Khởi động hành trình dưỡng sinh",
+      "description": "Cổ vai gáy · Mặt ngọc · Lưng eo · Vùng đầu · Đắp thuốc",
+      "service": "Gói trải nghiệm 5 liệu trình",
+      "cta": "Tư vấn gói này ↗"
+    },
+    {
+      "tag": "VOUCHER",
+      "title": "Món quà thư giãn cho người thân",
+      "description": "Thiết kế cho dịp sinh nhật, lễ tết hoặc lời cảm ơn đặc biệt.",
+      "service": "Voucher chăm sóc thân tâm",
+      "cta": "Nhận tư vấn ↗"
+    },
+    {
+      "tag": "SỰ KIỆN THEO MÙA",
+      "title": "Tuần lễ hồi xuân / workshop thảo dược",
+      "description": "Khu vực để cập nhật chương trình theo tháng, theo mùa hoặc chiến dịch riêng.",
+      "service": "Chương trình sự kiện",
+      "cta": "Xem chương trình ↗"
+    }
+  ],
+  "products": [
+    { "category": "TRÀ THẢO DƯỢC", "title": "Trà dưỡng sinh", "price": "Liên hệ báo giá", "service": "Trà dưỡng sinh", "icon": "tea" },
+    { "category": "TINH DẦU", "title": "Tinh dầu thảo dược", "price": "Liên hệ báo giá", "service": "Tinh dầu thảo dược", "icon": "oil" },
+    { "category": "CAO THẢO DƯỢC", "title": "Cao dưỡng sinh", "price": "Liên hệ báo giá", "service": "Cao dưỡng sinh", "icon": "box" },
+    { "category": "CHĂM SÓC DA", "title": "Serum thảo dược", "price": "Liên hệ báo giá", "service": "Serum thảo dược", "icon": "serum" }
+  ],
+  "locations": [
+    {
+      "number": "CƠ SỞ 01",
+      "name": "Bãi Cháy",
+      "address": "955, Tổ 2 Khu 10, Bãi Cháy,\nHạ Long, Quảng Ninh",
+      "map": "https://www.google.com/maps/search/?api=1&query=955+To+2+Khu+10+Bai+Chay+Ha+Long",
+      "branch": "Bãi Cháy"
+    },
+    {
+      "number": "CƠ SỞ 02",
+      "name": "Monbay",
+      "address": "A1205, KĐT Monbay, phường Hồng Hà,\nHạ Long, Quảng Ninh",
+      "map": "https://www.google.com/maps/search/?api=1&query=A1205+Monbay+Ha+Long+Quang+Ninh",
+      "branch": "Monbay"
+    },
+    {
+      "number": "CƠ SỞ 03",
+      "name": "Cẩm Phả",
+      "address": "Chi nhánh đang chuẩn bị cập nhật địa chỉ.\nNhận tư vấn trước khi khai trương.",
+      "branch": "Cẩm Phả",
+      "future": true
+    },
+    {
+      "number": "CƠ SỞ 04",
+      "name": "Uông Bí",
+      "address": "Khu vực mở rộng hệ thống trong thời gian tới.\nThông tin chính thức sẽ bổ sung sau.",
+      "branch": "Uông Bí",
+      "future": true
+    },
+    {
+      "number": "CƠ SỞ 05",
+      "name": "Vân Đồn",
+      "address": "Điểm chờ mở rộng để hệ thống dễ thêm chi nhánh.\nĐịa chỉ sẽ được cập nhật khi sẵn sàng.",
+      "branch": "Vân Đồn",
+      "future": true
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Tôi nên chọn liệu trình nào?",
+      "answer": "Bạn có thể bắt đầu từ nhóm nhu cầu ở phần Dịch vụ. Nếu chưa chắc chắn, hãy chọn “Cần tư vấn lựa chọn” khi chuẩn bị yêu cầu để đội ngũ trao đổi cùng bạn."
+    },
+    {
+      "question": "Làm thế nào để biết giá dịch vụ?",
+      "answer": "Bảng giá chính thức đang được cập nhật. Chọn dịch vụ bạn quan tâm để hỏi mức giá, thời lượng và nội dung gói hiện tại qua hotline hoặc Zalo."
+    },
+    {
+      "question": "Có cần đặt lịch trước khi đến không?",
+      "answer": "Bạn nên liên hệ trước để đội ngũ xác nhận cơ sở và thời gian phù hợp. Lịch hẹn chỉ được xác nhận sau khi trao đổi với Hồi Xuân Đường."
+    },
+    {
+      "question": "Có thể mua sản phẩm chăm sóc tại nhà không?",
+      "answer": "Bạn có thể hỏi đội ngũ tư vấn về sản phẩm thảo dược hiện có, thông tin sử dụng và giá bán. Danh mục trên website đang được hoàn thiện."
+    }
+  ]
+}

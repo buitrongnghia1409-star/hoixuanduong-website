@@ -1,100 +1,259 @@
 (() => {
-  const menu = document.querySelector('.menu');
-  const nav = document.querySelector('#main-nav');
-  function closeMenu() { nav.classList.remove('open'); menu.setAttribute('aria-expanded','false'); menu.setAttribute('aria-label','Mở menu'); }
-  menu.addEventListener('click', () => { const open = nav.classList.toggle('open'); menu.setAttribute('aria-expanded', String(open)); menu.setAttribute('aria-label', open ? 'Đóng menu' : 'Mở menu'); });
-  nav.addEventListener('click', e => { if(e.target.closest('a')) closeMenu(); });
-  document.addEventListener('keydown', e => { if(e.key === 'Escape' && nav.classList.contains('open')) { closeMenu(); menu.focus(); } });
-  const heroSlides = [...document.querySelectorAll('.hero-slide')];
-  const heroDots = [...document.querySelectorAll('[data-hero-dot]')];
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let heroIndex = 0;
-  let heroTimer;
-  function showHeroSlide(index) {
-    if (!heroSlides.length) return;
-    heroIndex = (index + heroSlides.length) % heroSlides.length;
-    heroSlides.forEach((slide, slideIndex) => {
-      const active = slideIndex === heroIndex;
-      slide.classList.toggle('active', active);
-      slide.setAttribute('aria-hidden', String(!active));
-    });
-    heroDots.forEach((dot, dotIndex) => {
-      const active = dotIndex === heroIndex;
-      dot.classList.toggle('active', active);
-      if (active) dot.setAttribute('aria-current', 'true');
-      else dot.removeAttribute('aria-current');
-    });
+  const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+  const lines = value => esc(value).replace(/\n/g, '<br>');
+  const iconSvg = {
+    tea: '<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M35 28h50v76H35zM42 20h36v8M46 54c26-8 34 7 14 28-20-21-17-28-14-28zm14 9v19"/></svg>',
+    oil: '<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M49 15h22v18H49zM46 33h28v14l9 12v43H37V59l9-12zM37 66h46M37 89h46M57 76h6"/></svg>',
+    box: '<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M32 39h56v12H32zM36 51v47h48V51M36 64h48M36 85h48M52 74h16"/></svg>',
+    serum: '<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M51 15h18v25H51zM48 40h24v14l7 8v40H41V62l7-8zM41 72h38M53 83h14"/></svg>'
+  };
+
+  async function loadSiteData() {
+    try {
+      const response = await fetch('assets/data/site-data.json', { cache: 'no-cache' });
+      if (!response.ok) throw new Error(`Không tải được dữ liệu: ${response.status}`);
+      return await response.json();
+    } catch (error) {
+      console.warn('Hồi Xuân Đường: dùng nội dung dự phòng trong HTML.', error);
+      return null;
+    }
   }
-  function startHeroTimer() {
-    if (reduceMotion || heroSlides.length < 2) return;
-    clearInterval(heroTimer);
-    heroTimer = setInterval(() => showHeroSlide(heroIndex + 1), 9800);
+
+  function renderServices(services = []) {
+    const grid = document.querySelector('.service-grid');
+    if (!grid || !services.length) return;
+    grid.innerHTML = services.map(item => `
+      <article class="service-card" data-category="${esc(item.category)}">
+        <div class="service-image">
+          <img src="${esc(item.image)}" width="1800" height="1200" loading="lazy" alt="${esc(item.alt)}">
+          <span class="image-label">${esc(item.label)}</span>
+        </div>
+        <div class="card-body">
+          <h3>${esc(item.title)}</h3>
+          <p>${esc(item.description)}</p>
+          <details><summary>${esc(item.detailTitle || 'Thông tin liệu trình')} <span>+</span></summary><p>${esc(item.detail)}</p></details>
+          <div class="card-bottom">
+            <span class="price"><small>${esc(item.priceLabel || 'GIÁ DỊCH VỤ')}</small>${esc(item.price || 'Liên hệ báo giá')}</span>
+            <a href="#dat-lich" data-service="${esc(item.title)}" class="round-link" aria-label="Tư vấn ${esc(item.title)}">↗</a>
+          </div>
+        </div>
+      </article>`).join('');
   }
-  heroDots.forEach(dot => dot.addEventListener('click', () => {
-    showHeroSlide(Number(dot.dataset.heroDot));
-    startHeroTimer();
-  }));
-  showHeroSlide(0);
-  startHeroTimer();
-  function filterServices(category) {
-    let count = 0;
-    document.querySelectorAll('.service-card').forEach(card => { card.hidden = category !== 'all' && card.dataset.category !== category; if(!card.hidden) count++; });
-    document.querySelectorAll('[data-filter]').forEach(button => { const active = button.dataset.filter === category; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active)); });
-    const serviceCount = document.querySelector('#service-count');
-    if (serviceCount) serviceCount.textContent = `${count} dịch vụ`;
+
+  function renderOffers(offers = []) {
+    const panel = document.querySelector('.offer-panel');
+    if (!panel || !offers.length) return;
+    panel.innerHTML = offers.map(item => `
+      <article class="offer-card${item.featured ? ' featured' : ''}">
+        <div class="offer-card-content">
+          <span class="offer-tag">${esc(item.tag)}</span>
+          <h3>${esc(item.title)}</h3>
+          <p>${esc(item.description)}</p>
+          <a href="#dat-lich" data-service="${esc(item.service || item.title)}" aria-label="Tư vấn ${esc(item.service || item.title)}">${esc(item.cta || 'Nhận tư vấn ↗')}</a>
+        </div>
+      </article>`).join('');
   }
-  document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => filterServices(button.dataset.filter)));
-  document.querySelectorAll('[data-quick]').forEach(link => link.addEventListener('click', () => filterServices(link.dataset.quick)));
-  const form = document.querySelector('#booking-form');
-  const service = document.querySelector('#booking-service');
-  const branch = document.querySelector('#booking-branch');
-  const date = document.querySelector('#booking-date');
-  const result = document.querySelector('#booking-result');
-  const message = document.querySelector('#request-text');
-  const status = document.querySelector('#copy-status');
-  const now = new Date();
-  date.min = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-  document.querySelectorAll('[data-service],[data-branch]').forEach(link => link.addEventListener('click', () => { if(link.dataset.service) service.value=link.dataset.service; if(link.dataset.branch) branch.value=link.dataset.branch; result.hidden=true; }));
-  form.addEventListener('change', () => { result.hidden=true; });
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    const day = date.value ? `, dự kiến ngày ${date.value.split('-').reverse().join('/')}` : '';
-    message.textContent = `Chào Hồi Xuân Đường, tôi muốn được tư vấn về ${service.value.toLowerCase()} tại cơ sở ${branch.value}${day}. Vui lòng cho tôi biết giá, thời lượng và lịch trống phù hợp. Cảm ơn!`;
-    status.textContent='Nội dung đã sẵn sàng. Sao chép và gửi qua Zalo để được tư vấn.';
-    result.hidden=false;
-  });
-  document.querySelector('#copy-request').addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(message.textContent); status.textContent='Đã sao chép. Mở Zalo và dán nội dung để gửi tới Hồi Xuân Đường.'; }
-    catch { status.textContent='Bạn có thể chọn và sao chép đoạn nội dung phía trên để gửi qua Zalo.'; }
-  });
-  const clickableItems = document.querySelectorAll('a, button, summary, .product, .service-card, .offer-card, .locations article');
-  clickableItems.forEach(item => {
-    item.classList.add('is-clickable');
-    item.addEventListener('click', event => {
-      const rect = item.getBoundingClientRect();
-      item.style.setProperty('--ripple-x', `${event.clientX - rect.left}px`);
-      item.style.setProperty('--ripple-y', `${event.clientY - rect.top}px`);
-      const ripple = document.createElement('span');
-      ripple.className = 'click-ripple';
-      item.appendChild(ripple);
-      ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+
+  function renderProducts(products = []) {
+    const grid = document.querySelector('.product-grid');
+    if (!grid || !products.length) return;
+    grid.innerHTML = products.map(item => `
+      <article class="product">
+        <div class="product-placeholder">${iconSvg[item.icon] || iconSvg.tea}<span>HÌNH ẢNH SẮP CẬP NHẬT</span></div>
+        <p class="eyebrow">${esc(item.category)}</p>
+        <h3>${esc(item.title)}</h3>
+        <div class="product-bottom"><span>${esc(item.price || 'Liên hệ báo giá')}</span><a href="#dat-lich" data-service="${esc(item.service || item.title)}" aria-label="Hỏi về ${esc(item.title)}">↗</a></div>
+      </article>`).join('');
+  }
+
+  function renderLocations(locations = []) {
+    const grid = document.querySelector('.locations');
+    if (!grid || !locations.length) return;
+    grid.innerHTML = locations.map(item => `
+      <article class="${item.future ? 'location-future' : ''}">
+        <span class="location-number">${esc(item.number)}</span>
+        <h3>${esc(item.name)}</h3>
+        <p>${lines(item.address)}</p>
+        <div>
+          ${item.future ? '<span class="location-status">Sắp cập nhật</span>' : `<a class="text-link" href="${esc(item.map)}" target="_blank" rel="noopener">Chỉ đường ↗</a>`}
+          <a href="#dat-lich" data-branch="${esc(item.branch || item.name)}" class="button outline small">${item.future ? 'Quan tâm cơ sở này' : 'Chọn cơ sở này'}</a>
+        </div>
+      </article>`).join('');
+  }
+
+  function renderFaqs(faqs = []) {
+    const list = document.querySelector('.faq-list');
+    if (!list || !faqs.length) return;
+    list.innerHTML = faqs.map(item => `<details><summary>${esc(item.question)} <span>+</span></summary><p>${esc(item.answer)}</p></details>`).join('');
+  }
+
+  function fillBookingOptions(data) {
+    const serviceSelect = document.querySelector('#booking-service');
+    const branchSelect = document.querySelector('#booking-branch');
+    if (serviceSelect && data) {
+      const names = ['Cần tư vấn lựa chọn'];
+      (data.services || []).forEach(item => names.push(item.title));
+      (data.offers || []).forEach(item => names.push(item.service || item.title));
+      names.push('Sản phẩm thảo dược');
+      (data.products || []).forEach(item => names.push(item.service || item.title));
+      serviceSelect.innerHTML = [...new Set(names)].map(name => `<option>${esc(name)}</option>`).join('');
+    }
+    if (branchSelect && data?.locations?.length) {
+      branchSelect.innerHTML = data.locations.map(item => `<option>${esc(item.branch || item.name)}</option>`).join('');
+    }
+  }
+
+  function initMenu() {
+    const menu = document.querySelector('.menu');
+    const nav = document.querySelector('#main-nav');
+    if (!menu || !nav) return;
+    function closeMenu() {
+      nav.classList.remove('open');
+      menu.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-label', 'Mở menu');
+    }
+    menu.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menu.setAttribute('aria-expanded', String(open));
+      menu.setAttribute('aria-label', open ? 'Đóng menu' : 'Mở menu');
     });
-  });
-  const revealItems = document.querySelectorAll('main > section, .service-card, .offer-card, .product, .locations article, .faq-list details, .booking-grid');
-  revealItems.forEach((item, index) => {
-    item.classList.add('reveal-on-scroll');
-    item.style.setProperty('--reveal-delay', `${Math.min(index % 6, 5) * 70}ms`);
-  });
-  if ('IntersectionObserver' in window && !reduceMotion) {
-    const revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        revealObserver.unobserve(entry.target);
+    nav.addEventListener('click', event => { if (event.target.closest('a')) closeMenu(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && nav.classList.contains('open')) { closeMenu(); menu.focus(); } });
+  }
+
+  function initHero() {
+    const heroSlides = [...document.querySelectorAll('.hero-slide')];
+    const heroDots = [...document.querySelectorAll('[data-hero-dot]')];
+    let heroIndex = 0;
+    let heroTimer;
+    function showHeroSlide(index) {
+      if (!heroSlides.length) return;
+      heroIndex = (index + heroSlides.length) % heroSlides.length;
+      heroSlides.forEach((slide, slideIndex) => {
+        const active = slideIndex === heroIndex;
+        slide.classList.toggle('active', active);
+        slide.setAttribute('aria-hidden', String(!active));
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    revealItems.forEach(item => revealObserver.observe(item));
-  } else {
-    revealItems.forEach(item => item.classList.add('is-visible'));
+      heroDots.forEach((dot, dotIndex) => {
+        const active = dotIndex === heroIndex;
+        dot.classList.toggle('active', active);
+        if (active) dot.setAttribute('aria-current', 'true');
+        else dot.removeAttribute('aria-current');
+      });
+    }
+    function startHeroTimer() {
+      if (reduceMotion || heroSlides.length < 2) return;
+      clearInterval(heroTimer);
+      heroTimer = setInterval(() => showHeroSlide(heroIndex + 1), 9800);
+    }
+    heroDots.forEach(dot => dot.addEventListener('click', () => { showHeroSlide(Number(dot.dataset.heroDot)); startHeroTimer(); }));
+    showHeroSlide(0);
+    startHeroTimer();
   }
+
+  function initFilters() {
+    function filterServices(category) {
+      let count = 0;
+      document.querySelectorAll('.service-card').forEach(card => {
+        card.hidden = category !== 'all' && card.dataset.category !== category;
+        if (!card.hidden) count++;
+      });
+      document.querySelectorAll('[data-filter]').forEach(button => {
+        const active = button.dataset.filter === category;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      const serviceCount = document.querySelector('#service-count');
+      if (serviceCount) serviceCount.textContent = `${count} dịch vụ`;
+    }
+    document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => filterServices(button.dataset.filter)));
+    document.querySelectorAll('[data-quick]').forEach(link => link.addEventListener('click', () => filterServices(link.dataset.quick)));
+  }
+
+  function initBooking() {
+    const form = document.querySelector('#booking-form');
+    const service = document.querySelector('#booking-service');
+    const branch = document.querySelector('#booking-branch');
+    const date = document.querySelector('#booking-date');
+    const result = document.querySelector('#booking-result');
+    const message = document.querySelector('#request-text');
+    const status = document.querySelector('#copy-status');
+    const copy = document.querySelector('#copy-request');
+    if (!form || !service || !branch || !date || !result || !message || !status || !copy) return;
+    const now = new Date();
+    date.min = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    document.querySelectorAll('[data-service],[data-branch]').forEach(link => link.addEventListener('click', () => {
+      if (link.dataset.service) service.value = link.dataset.service;
+      if (link.dataset.branch) branch.value = link.dataset.branch;
+      result.hidden = true;
+    }));
+    form.addEventListener('change', () => { result.hidden = true; });
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const day = date.value ? `, dự kiến ngày ${date.value.split('-').reverse().join('/')}` : '';
+      message.textContent = `Chào Hồi Xuân Đường, tôi muốn được tư vấn về ${service.value.toLowerCase()} tại cơ sở ${branch.value}${day}. Vui lòng cho tôi biết giá, thời lượng và lịch trống phù hợp. Cảm ơn!`;
+      status.textContent = 'Nội dung đã sẵn sàng. Sao chép và gửi qua Zalo để được tư vấn.';
+      result.hidden = false;
+    });
+    copy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(message.textContent);
+        status.textContent = 'Đã sao chép. Mở Zalo và dán nội dung để gửi tới Hồi Xuân Đường.';
+      } catch {
+        status.textContent = 'Bạn có thể chọn và sao chép đoạn nội dung phía trên để gửi qua Zalo.';
+      }
+    });
+  }
+
+  function initEffects() {
+    document.querySelectorAll('.click-ripple').forEach(item => item.remove());
+    const clickableItems = document.querySelectorAll('a, button, summary, .product, .service-card, .offer-card, .locations article');
+    clickableItems.forEach(item => {
+      item.classList.add('is-clickable');
+      item.addEventListener('click', event => {
+        const rect = item.getBoundingClientRect();
+        item.style.setProperty('--ripple-x', `${event.clientX - rect.left}px`);
+        item.style.setProperty('--ripple-y', `${event.clientY - rect.top}px`);
+        const ripple = document.createElement('span');
+        ripple.className = 'click-ripple';
+        item.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+      });
+    });
+    const revealItems = document.querySelectorAll('main > section, .service-card, .offer-card, .product, .locations article, .faq-list details, .booking-grid');
+    revealItems.forEach((item, index) => {
+      item.classList.add('reveal-on-scroll');
+      item.style.setProperty('--reveal-delay', `${Math.min(index % 6, 5) * 70}ms`);
+    });
+    if ('IntersectionObserver' in window && !reduceMotion) {
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      revealItems.forEach(item => revealObserver.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add('is-visible'));
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    const data = await loadSiteData();
+    if (data) {
+      renderServices(data.services);
+      renderOffers(data.offers);
+      renderProducts(data.products);
+      renderLocations(data.locations);
+      renderFaqs(data.faqs);
+      fillBookingOptions(data);
+    }
+    initMenu();
+    initHero();
+    initFilters();
+    initBooking();
+    initEffects();
+  });
 })();
