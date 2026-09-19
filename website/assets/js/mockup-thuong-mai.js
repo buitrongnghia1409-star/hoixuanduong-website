@@ -41,6 +41,21 @@
       </article>`).join('');
   }
 
+  function renderHero(slides = []) {
+    const wrapper = document.querySelector('.hero-slides');
+    if (!wrapper || !slides.length) return;
+    wrapper.innerHTML = slides.map((item, index) => `
+      <article class="hero-slide${index === 0 ? ' active' : ''}${item.wide ? ' hero-slide-wide' : ''}" data-slide="${index}">
+        <img src="${esc(item.image)}" alt="${esc(item.alt)}"${index === 0 ? ' fetchpriority="high"' : ''}>
+        <div class="hero-shade"></div>
+        <div class="wrap hero-slide-content">
+          <p class="eyebrow light">${esc(item.eyebrow)}</p>
+          ${index === 0 ? `<h1 id="hero-title">${esc(item.title)}<br><em>${esc(item.slogan)}</em></h1>` : `<h2>${esc(item.title)}<br><em>${esc(item.slogan)}</em></h2>`}
+          <p class="hero-description">${esc(item.description)}</p>
+        </div>
+      </article>`).join('');
+  }
+
   function renderOffers(offers = []) {
     const panel = document.querySelector('.offer-panel');
     if (!panel || !offers.length) return;
@@ -86,6 +101,22 @@
     const list = document.querySelector('.faq-list');
     if (!list || !faqs.length) return;
     list.innerHTML = faqs.map(item => `<details><summary>${esc(item.question)} <span>+</span></summary><p>${esc(item.answer)}</p></details>`).join('');
+  }
+
+  function applySettings(settings = {}) {
+    if (!settings.phone && !settings.zalo && !settings.workingHours) return;
+    const phoneHref = settings.phone ? `tel:${settings.phone.replace(/\D/g, '')}` : null;
+    document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+      if (phoneHref) link.href = phoneHref;
+      if (link.classList.contains('booking-phone')) link.textContent = `${settings.phone} ↗`;
+      else if (link.textContent.match(/\d/)) link.textContent = settings.phone;
+    });
+    document.querySelectorAll('a[href*="zalo.me"]').forEach(link => {
+      if (settings.zalo) link.href = settings.zalo;
+    });
+    document.querySelectorAll('.booking-copy > span, .footer-grid span').forEach(node => {
+      if (node.textContent.includes('08:00') || node.textContent.includes('20:00')) node.textContent = settings.workingHours;
+    });
   }
 
   function fillBookingOptions(data) {
@@ -243,6 +274,8 @@
   document.addEventListener('DOMContentLoaded', async () => {
     const data = await loadSiteData();
     if (data) {
+      applySettings(data.settings);
+      renderHero(data.hero);
       renderServices(data.services);
       renderOffers(data.offers);
       renderProducts(data.products);

@@ -1,4 +1,45 @@
 {
+  "settings": {
+    "brandName": "Hồi Xuân Đường",
+    "brandTagline": "TINH HOA ĐÔNG Y",
+    "phone": "0912 994 888",
+    "zalo": "https://zalo.me/0912994888",
+    "workingHours": "08:00 – 20:00 mỗi ngày"
+  },
+  "hero": [
+    {
+      "image": "assets/images/dms07238.jpg",
+      "alt": "Không gian đón tiếp màu xanh ngọc và biểu tượng hoa sen của Hồi Xuân Đường",
+      "eyebrow": "KHÔNG GIAN DƯỠNG SINH TẠI HẠ LONG",
+      "title": "Hồi Xuân Đường.",
+      "slogan": "Chạm vào khoảng an yên.",
+      "description": "Không gian xanh ngọc, riêng tư và ấm áp để bạn bắt đầu một buổi chăm sóc thân tâm thật nhẹ nhàng."
+    },
+    {
+      "image": "assets/images/tri-lieu-nhom.jpg",
+      "alt": "Nhân viên Hồi Xuân Đường đang chăm sóc trị liệu cho khách hàng",
+      "eyebrow": "CHĂM SÓC CƠ THỂ",
+      "title": "Bấm huyệt, cổ vai gáy.",
+      "slogan": "Thả lỏng từng vùng căng mỏi.",
+      "description": "Trao đổi nhu cầu trước khi thực hiện để đội ngũ gợi ý liệu trình phù hợp với cơ thể của bạn."
+    },
+    {
+      "image": "assets/images/tu-van-kham-benh.jpg",
+      "alt": "Chuyên viên Hồi Xuân Đường đang tư vấn cho khách hàng",
+      "eyebrow": "DƯỠNG SINH THẢO DƯỢC",
+      "title": "Một khoảng nghỉ sâu.",
+      "slogan": "Cho cơ thể được hồi phục.",
+      "description": "Từ xông hơi thảo dược đến các gói dưỡng sinh, mọi lựa chọn đều bắt đầu bằng sự lắng nghe cơ thể."
+    },
+    {
+      "image": "assets/images/nhan-vien-cham-soc.jpg",
+      "alt": "Nhân viên Hồi Xuân Đường đang chăm sóc cho khách hàng trong phòng trị liệu",
+      "eyebrow": "CHĂM SÓC SẮC ĐẸP",
+      "title": "Chăm sóc da và sắc vóc.",
+      "slogan": "Dịu dàng, kín đáo, chỉn chu.",
+      "description": "Dành cho những ngày bạn muốn chăm lại làn da, vóc dáng và cảm giác thư thái trong một không gian riêng tư."
+    }
+  ],
   "services": [
     {
       "category": "tri-lieu",

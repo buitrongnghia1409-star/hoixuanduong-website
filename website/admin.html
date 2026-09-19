@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Quản lý nội dung | Hồi Xuân Đường</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/admin.css">
+  <script src="assets/js/admin.js" defer></script>
+</head>
+<body>
+  <header class="admin-hero">
+    <div>
+      <p class="eyebrow">HỒI XUÂN ĐƯỜNG CMS</p>
+      <h1>Quản lý nội dung website</h1>
+      <p>Sửa hero, slogan, dịch vụ, ưu đãi, sản phẩm, cơ sở và FAQ từ một file dữ liệu duy nhất.</p>
+    </div>
+    <nav>
+      <a href="index.html" target="_blank" rel="noopener">Xem website ↗</a>
+      <button id="download-json" type="button">Tải file dữ liệu</button>
+    </nav>
+  </header>
+
+  <main class="admin-shell">
+    <aside class="admin-guide">
+      <h2>Cách dùng nhanh</h2>
+      <ol>
+        <li>Sửa nội dung trong từng nhóm bên phải.</li>
+        <li>Bấm “Thêm mục” nếu cần thêm dịch vụ, hero, chi nhánh...</li>
+        <li>Bấm “Tải file dữ liệu”.</li>
+        <li>Thay file <code>website/assets/data/site-data.json</code> bằng file vừa tải rồi push lên GitHub.</li>
+      </ol>
+      <label class="upload-box">
+        <span>Nạp file dữ liệu khác</span>
+        <input id="json-upload" type="file" accept="application/json,.json">
+      </label>
+      <p class="note">Trang này không lưu trực tiếp lên server để tránh sửa nhầm. Dữ liệu chỉ được xuất ra file JSON.</p>
+    </aside>
+
+    <section class="editor">
+      <div id="status" role="status">Đang tải dữ liệu hiện tại…</div>
+      <div id="editor-root"></div>
+    </section>
+  </main>
+</body>
+</html>
