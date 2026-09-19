@@ -61,6 +61,7 @@
     brandTagline: 'Dòng mô tả logo',
     phone: 'Hotline',
     zalo: 'Link Zalo',
+    facebook: 'Link Facebook',
     workingHours: 'Giờ làm việc',
     image: 'Ảnh',
     alt: 'Mô tả ảnh',

@@ -114,6 +114,12 @@
     document.querySelectorAll('a[href*="zalo.me"]').forEach(link => {
       if (settings.zalo) link.href = settings.zalo;
     });
+    document.querySelectorAll('.social-zalo').forEach(link => {
+      if (settings.zalo) link.href = settings.zalo;
+    });
+    document.querySelectorAll('.social-facebook').forEach(link => {
+      if (settings.facebook) link.href = settings.facebook;
+    });
     document.querySelectorAll('.booking-copy > span, .footer-grid span').forEach(node => {
       if (node.textContent.includes('08:00') || node.textContent.includes('20:00')) node.textContent = settings.workingHours;
     });
