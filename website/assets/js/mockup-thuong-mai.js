@@ -74,7 +74,7 @@
       if (event.target.matches('details')) paused = event.target.open;
     }, true);
     function tick(now) {
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const isMobile = window.matchMedia('(max-width: 1180px)').matches;
       if (isMobile && !paused && grid.scrollWidth > grid.clientWidth) {
         const delta = Math.min(now - last, 40);
         grid.scrollLeft += delta * 0.018;

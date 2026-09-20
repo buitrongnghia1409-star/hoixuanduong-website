@@ -281,3 +281,16 @@ html{background:#edf5e7}body{position:relative;isolation:isolate;overflow-x:hidd
 @media(min-width:769px){
   .service-card-copy{display:none!important}
 }
+
+/* Force service carousel on phone / Zalo / narrow tablet viewports */
+@media(max-width:1180px){
+  #dich-vu{overflow:hidden!important}
+  #dich-vu .service-grid{display:flex!important;grid-template-columns:none!important;grid-auto-flow:column!important;gap:18px!important;width:100%!important;max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;padding:4px 0 18px!important;margin:0!important;scroll-snap-type:x mandatory!important;scrollbar-width:none!important;-webkit-overflow-scrolling:touch!important}
+  #dich-vu .service-grid::-webkit-scrollbar{display:none!important}
+  #dich-vu .service-card,#dich-vu .service-card-copy{display:flex!important;flex:0 0 min(78vw,330px)!important;width:min(78vw,330px)!important;max-width:min(78vw,330px)!important;min-height:390px!important;scroll-snap-align:start!important}
+  #dich-vu .service-card-copy[hidden]{display:none!important}
+}
+
+@media(min-width:1181px){
+  #dich-vu .service-card-copy{display:none!important}
+}
