@@ -157,13 +157,17 @@
     if (!menu || !nav) return;
     function closeMenu() {
       nav.classList.remove('open');
+      document.body.classList.remove('menu-open');
       menu.setAttribute('aria-expanded', 'false');
       menu.setAttribute('aria-label', 'Mở menu');
+      menu.textContent = '☰';
     }
     menu.addEventListener('click', () => {
       const open = nav.classList.toggle('open');
+      document.body.classList.toggle('menu-open', open);
       menu.setAttribute('aria-expanded', String(open));
       menu.setAttribute('aria-label', open ? 'Đóng menu' : 'Mở menu');
+      menu.textContent = open ? '×' : '☰';
     });
     nav.addEventListener('click', event => { if (event.target.closest('a')) closeMenu(); });
     document.addEventListener('keydown', event => { if (event.key === 'Escape' && nav.classList.contains('open')) { closeMenu(); menu.focus(); } });

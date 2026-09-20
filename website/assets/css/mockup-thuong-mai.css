@@ -251,3 +251,15 @@ html{background:#edf5e7}body{position:relative;isolation:isolate;overflow-x:hidd
 @media(min-width:769px){
   .chat-widget{display:none}
 }
+
+/* Mobile menu correction: clean overlay with visible close action */
+@media(max-width:768px){
+  body.menu-open{overflow:hidden!important}
+  body.menu-open .header{z-index:180!important}
+  .menu[aria-expanded="true"]{position:relative!important;z-index:205!important;color:#173e32!important;font-size:38px!important;line-height:1!important;background:#fffaf1!important;border:1px solid rgba(217,183,101,.7)!important;border-radius:50%!important;box-shadow:0 8px 22px rgba(23,62,50,.16)!important}
+  .header nav{display:none!important}
+  .header nav.open{display:flex!important;position:fixed!important;inset:0!important;z-index:190!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;margin:0!important;width:100vw!important;height:100dvh!important;padding:116px 28px 36px!important;background:linear-gradient(180deg,#fffaf1 0%,#f7efe4 100%)!important;border:0!important;border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important;overflow:auto!important}
+  .header nav.open:before{content:'Menu';position:absolute;left:28px;top:36px;font:800 13px var(--body);letter-spacing:2.8px;text-transform:uppercase;color:#b58a37}
+  .header nav.open a{display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;min-height:62px!important;padding:0!important;border-bottom:1px solid rgba(31,41,39,.28)!important;font:800 22px/1.2 var(--body)!important;text-transform:uppercase!important;letter-spacing:.4px!important;color:#1f2927!important;background:transparent!important}
+  .header nav.open a:after{content:'↗';font-size:18px;color:#b58a37}
+}
