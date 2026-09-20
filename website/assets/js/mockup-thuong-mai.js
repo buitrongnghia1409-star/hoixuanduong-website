@@ -272,7 +272,7 @@
         ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
       });
     });
-    const revealItems = document.querySelectorAll('main > section, .service-card, .offer-card, .product, .locations article, .faq-list details, .booking-grid');
+    const revealItems = document.querySelectorAll('main > section, .offer-card, .product, .locations article, .faq-list details, .booking-grid');
     revealItems.forEach((item, index) => {
       item.classList.add('reveal-on-scroll');
       item.style.setProperty('--reveal-delay', `${Math.min(index % 6, 5) * 70}ms`);
