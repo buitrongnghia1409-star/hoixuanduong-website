@@ -46,6 +46,48 @@
       </article>`).join('');
   }
 
+  function initServiceLoop() {
+    const grid = document.querySelector('.service-grid');
+    if (!grid) return;
+    grid.querySelectorAll('.service-card-copy').forEach(card => card.remove());
+    const cards = [...grid.querySelectorAll('.service-card:not(.service-card-copy)')];
+    if (cards.length < 2) return;
+    cards.forEach(card => {
+      const copy = card.cloneNode(true);
+      copy.classList.add('service-card-copy');
+      copy.setAttribute('data-loop-copy', 'true');
+      grid.appendChild(copy);
+    });
+  }
+
+  function initServiceAutoScroll() {
+    const grid = document.querySelector('.service-grid');
+    if (!grid || reduceMotion) return;
+    let paused = false;
+    let frame = 0;
+    let last = performance.now();
+    const pause = () => { paused = true; };
+    const resume = () => { paused = false; last = performance.now(); };
+    ['pointerdown', 'touchstart', 'focusin', 'mouseenter'].forEach(type => grid.addEventListener(type, pause, { passive: true }));
+    ['pointerup', 'touchend', 'focusout', 'mouseleave'].forEach(type => grid.addEventListener(type, () => setTimeout(resume, 1200), { passive: true }));
+    grid.addEventListener('toggle', event => {
+      if (event.target.matches('details')) paused = event.target.open;
+    }, true);
+    function tick(now) {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      if (isMobile && !paused && grid.scrollWidth > grid.clientWidth) {
+        const delta = Math.min(now - last, 40);
+        grid.scrollLeft += delta * 0.018;
+        const resetPoint = grid.scrollWidth / 2;
+        if (grid.scrollLeft >= resetPoint) grid.scrollLeft = 0;
+      }
+      last = now;
+      frame = requestAnimationFrame(tick);
+    }
+    frame = requestAnimationFrame(tick);
+    window.addEventListener('beforeunload', () => cancelAnimationFrame(frame), { once: true });
+  }
+
   function renderHero(slides = []) {
     const wrapper = document.querySelector('.hero-slides');
     if (!wrapper || !slides.length) return;
@@ -325,6 +367,8 @@
       renderFaqs(data.faqs);
       fillBookingOptions(data);
     }
+    initServiceLoop();
+    initServiceAutoScroll();
     initMenu();
     initHero();
     initFilters();

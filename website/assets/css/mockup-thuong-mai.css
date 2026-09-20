@@ -263,3 +263,21 @@ html{background:#edf5e7}body{position:relative;isolation:isolate;overflow-x:hidd
   .header nav.open a{display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;min-height:62px!important;padding:0!important;border-bottom:1px solid rgba(31,41,39,.28)!important;font:800 22px/1.2 var(--body)!important;text-transform:uppercase!important;letter-spacing:.4px!important;color:#1f2927!important;background:transparent!important}
   .header nav.open a:after{content:'↗';font-size:18px;color:#b58a37}
 }
+
+/* Mobile service carousel: quick horizontal browsing instead of a long vertical stack */
+.service-card-copy{display:none}
+@media(max-width:768px){
+  #dich-vu{overflow:hidden!important}
+  #dich-vu .fineprint{display:none!important}
+  .service-grid{display:flex!important;grid-template-columns:none!important;gap:18px!important;width:calc(100vw - 32px)!important;max-width:calc(100vw - 32px)!important;overflow-x:auto!important;overflow-y:hidden!important;padding:4px 16px 18px 0!important;margin-right:-16px!important;scroll-snap-type:x mandatory!important;scrollbar-width:none!important;-webkit-overflow-scrolling:touch!important}
+  .service-grid::-webkit-scrollbar{display:none!important}
+  .service-card,.service-card-copy{display:flex!important;flex:0 0 min(78vw,330px)!important;width:min(78vw,330px)!important;min-height:390px!important}
+  .service-card{scroll-snap-align:start!important}
+  .service-card-copy[hidden]{display:none!important}
+  .service-card details[open]{z-index:8}
+  .service-card details[open]~.card-bottom{margin-top:10px}
+}
+
+@media(min-width:769px){
+  .service-card-copy{display:none!important}
+}
