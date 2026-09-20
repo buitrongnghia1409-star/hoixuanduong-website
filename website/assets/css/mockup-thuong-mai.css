@@ -136,3 +136,31 @@ html{background:#edf5e7}body{position:relative;isolation:isolate;overflow-x:hidd
   .mobile-contact{z-index:80;grid-template-columns:.9fr 1.25fr 1.05fr!important}
   .mobile-contact a{min-height:46px!important;border-radius:999px!important}
 }
+
+/* Strong mobile override for Zalo / in-app browsers */
+@media(max-width:768px){
+  html{scroll-padding-top:64px!important}
+  body{overflow-x:hidden}
+  .header{position:sticky!important;top:0!important;z-index:90!important;background:#fffdf5f7!important}
+  .nav-row{min-height:58px!important;height:58px!important;display:flex!important;flex-wrap:nowrap!important;gap:8px!important;padding-block:0!important}
+  .brand{flex:1 1 auto!important;min-width:0!important}
+  .brand img{width:34px!important;height:34px!important}
+  .brand>span{font-size:18px!important;line-height:1!important;min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .brand small{display:none!important}
+  .nav-row>.button{display:none!important}
+  .menu{display:grid!important;place-items:center!important;flex:0 0 42px!important;width:42px!important;height:40px!important;margin-left:0!important;padding:0!important;border-radius:12px!important;background:#fffdf5!important}
+  .mobile-top-actions{display:none!important}
+  .hero-carousel{position:relative!important;display:block!important;min-height:calc(100svh - 58px)!important;height:calc(100svh - 58px)!important;max-height:none!important;overflow:hidden!important;background:#102d25!important;margin:0!important}
+  .hero-slides{position:absolute!important;inset:0!important;z-index:0!important}
+  .hero-slide{position:absolute!important;inset:0!important}
+  .hero-slide>img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}
+  .hero-shade{background:linear-gradient(180deg,rgba(8,37,31,.3) 0%,rgba(8,37,31,.42) 35%,rgba(8,37,31,.88) 100%)!important}
+  .hero-slide-content{position:relative!important;z-index:3!important;width:100%!important;min-height:calc(100svh - 58px)!important;height:calc(100svh - 58px)!important;max-height:none!important;padding:0 18px 94px!important;display:flex!important;flex-direction:column!important;justify-content:flex-end!important;align-items:flex-start!important;color:#fff!important}
+  .hero-slide-content .eyebrow{font-size:9px!important;letter-spacing:1.7px!important;margin-bottom:10px!important;color:#ffe8ac!important}
+  .hero-slide-content h1,.hero-slide-content h2,.hero-slide-wide .hero-slide-content h2{font-size:clamp(32px,9.2vw,44px)!important;line-height:1.12!important;max-width:350px!important;color:#fff!important;text-shadow:0 8px 30px rgba(0,0,0,.75)!important}
+  .hero-slide-content h1 em,.hero-slide-content h2 em{color:#ffe1a0!important}
+  .hero-slide-content .hero-description{font-size:14px!important;line-height:1.55!important;max-width:335px!important;margin-top:12px!important;color:#f2f8ef!important;text-shadow:0 5px 20px rgba(0,0,0,.75)!important}
+  .hero-controls{display:none!important}
+  .mobile-contact{position:fixed!important;left:0!important;right:0!important;bottom:0!important;z-index:100!important;display:grid!important;grid-template-columns:.9fr 1.25fr 1.05fr!important;background:#fffdf5!important}
+  main{margin-top:0!important}
+}
