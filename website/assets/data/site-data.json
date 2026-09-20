@@ -20,17 +20,17 @@
       "image": "assets/images/tri-lieu-nhom.jpg",
       "alt": "Nhân viên Hồi Xuân Đường đang chăm sóc trị liệu cho khách hàng",
       "eyebrow": "CHĂM SÓC CƠ THỂ",
-      "title": "Bấm huyệt, cổ vai gáy.",
-      "slogan": "Thả lỏng từng vùng căng mỏi.",
-      "description": "Trao đổi nhu cầu trước khi thực hiện để đội ngũ gợi ý liệu trình phù hợp với cơ thể của bạn."
+      "title": "Trị liệu căn gốc.",
+      "slogan": "Xử lý tận gốc vấn đề.",
+      "description": "Từ cơ xương khớp, thần kinh đến khí huyết, mỗi liệu trình được lựa chọn theo thể trạng và mục tiêu phục hồi."
     },
     {
       "image": "assets/images/tu-van-kham-benh.jpg",
       "alt": "Chuyên viên Hồi Xuân Đường đang tư vấn cho khách hàng",
       "eyebrow": "DƯỠNG SINH THẢO DƯỢC",
-      "title": "Một khoảng nghỉ sâu.",
-      "slogan": "Cho cơ thể được hồi phục.",
-      "description": "Từ xông hơi thảo dược đến các gói dưỡng sinh, mọi lựa chọn đều bắt đầu bằng sự lắng nghe cơ thể."
+      "title": "Dưỡng sinh ngũ tạng.",
+      "slogan": "Nuôi dưỡng từ bên trong.",
+      "description": "Các liệu trình dưỡng thận, dưỡng tâm, dưỡng phế, chăm sóc tỳ vị và thanh lọc cơ thể theo tinh thần Đông y."
     },
     {
       "image": "assets/images/nhan-vien-cham-soc.jpg",
@@ -44,51 +44,291 @@
   "services": [
     {
       "category": "tri-lieu",
+      "image": "assets/images/tri-lieu-nhom.jpg",
+      "alt": "Khởi thông cục bộ",
+      "label": "TRỊ LIỆU CĂN GỐC",
+      "title": "Khởi thông cục bộ",
+      "description": "Dành cho đau mỏi một vùng: cổ vai gáy, lưng eo, tay chân tê mỏi hoặc đau do ngồi lâu.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Hiệu quả mong đợi: giảm đau nhanh, thư giãn cơ, tăng lưu thông khí huyết.",
+      "priceLabel": "60 phút",
+      "price": "450.000đ"
+    },
+    {
+      "category": "tri-lieu",
+      "image": "assets/images/tri-lieu-nhom.jpg",
+      "alt": "Trị liệu chuỗi liên kết",
+      "label": "TRỊ LIỆU CĂN GỐC",
+      "title": "Trị liệu chuỗi liên kết",
+      "description": "Dành cho đau lan, tê bì, chèn ép thần kinh, cơ cứng lâu ngày hoặc hạn chế vận động.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Hiệu quả mong đợi: giải phóng chèn ép, cải thiện vận động, phục hồi thần kinh ngoại biên.",
+      "priceLabel": "90 phút",
+      "price": "550.000đ"
+    },
+    {
+      "category": "tri-lieu",
       "image": "assets/images/phong-tri-lieu-2.jpg",
-      "alt": "Không gian phòng trị liệu tại Hồi Xuân Đường",
-      "label": "CHĂM SÓC CƠ THỂ",
-      "title": "Bấm huyệt & chăm sóc cổ vai gáy",
-      "description": "Chăm sóc vùng cổ, vai, gáy; trao đổi với kỹ thuật viên để lựa chọn liệu trình phù hợp.",
-      "detailTitle": "Thông tin liệu trình",
-      "detail": "Trao đổi nhu cầu trước khi thực hiện. Có thể kết hợp cạo gió hoặc giác hơi sau khi được tư vấn. Thời lượng và chi phí xác nhận theo nội dung lựa chọn.",
-      "priceLabel": "GIÁ DỊCH VỤ",
-      "price": "Liên hệ báo giá"
+      "alt": "Trị liệu toàn trục chuyên sâu",
+      "label": "TRỊ LIỆU CĂN GỐC",
+      "title": "Trị liệu toàn trục chuyên sâu",
+      "description": "Dành cho đau mãn tính, tái phát nhiều lần, đau nhiều vùng trên cơ thể hoặc mất ngủ do đau.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Tập trung xử lý nguyên nhân gốc rễ, điều chỉnh toàn trục cơ thể và hạn chế tái phát lâu dài.",
+      "priceLabel": "120 phút",
+      "price": "850.000đ"
     },
     {
       "category": "duong-sinh",
       "image": "assets/images/dms07619.jpg",
-      "alt": "Phòng chăm sóc dưỡng sinh tại Hồi Xuân Đường",
-      "label": "DƯỠNG SINH THẢO DƯỢC",
-      "title": "Xông hơi thảo dược",
-      "description": "Một khoảng thư giãn với thảo dược, dành cho những ngày cơ thể cần được nghỉ ngơi.",
-      "detailTitle": "Thông tin liệu trình",
-      "detail": "Đội ngũ tư vấn trao đổi về thể trạng, hình thức xông hơi và các lưu ý trước khi thực hiện. Liên hệ để biết thời lượng và mức giá hiện tại.",
-      "priceLabel": "GIÁ DỊCH VỤ",
-      "price": "Liên hệ báo giá"
-    },
-    {
-      "category": "sac-dep",
-      "image": "assets/images/dms08035.jpg",
-      "alt": "Phòng chăm sóc sắc đẹp tại Hồi Xuân Đường",
-      "label": "CHĂM SÓC SẮC ĐẸP",
-      "title": "Chăm sóc da & sắc vóc",
-      "description": "Khám phá cách chăm sóc làn da, kết hợp thời gian thư giãn trong không gian riêng tư.",
-      "detailTitle": "Thông tin liệu trình",
-      "detail": "Tư vấn theo nhu cầu chăm sóc da và sắc vóc. Các bước, sản phẩm sử dụng và chi phí được trao đổi trước khi bạn quyết định lựa chọn.",
-      "priceLabel": "GIÁ DỊCH VỤ",
-      "price": "Liên hệ báo giá"
+      "alt": "Dưỡng thận hồi xuân",
+      "label": "DƯỠNG SINH NGŨ TẠNG",
+      "title": "Dưỡng thận hồi xuân",
+      "description": "Bổ gốc sinh lực, tăng sức bền và hỗ trợ nền tảng sức khỏe.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Phù hợp: mệt mỏi kéo dài, đau lưng mỏi gối, sinh lực suy giảm, cơ thể thiếu năng lượng.",
+      "priceLabel": "60 phút",
+      "price": "750.000đ"
     },
     {
       "category": "duong-sinh",
-      "image": "assets/images/dms08028-opt.webp",
-      "alt": "Buổi trao đổi và tư vấn tại Hồi Xuân Đường",
-      "label": "TƯ VẤN CÁ NHÂN",
-      "title": "Dưỡng sinh & dinh dưỡng",
-      "description": "Trao đổi về thói quen sinh hoạt và nhu cầu chăm sóc để xây dựng hướng dưỡng sinh phù hợp.",
-      "detailTitle": "Thông tin tư vấn",
-      "detail": "Chia sẻ mục tiêu chăm sóc, thói quen hằng ngày và những điều bạn quan tâm. Đội ngũ tư vấn sẽ giải đáp về dịch vụ, sản phẩm và các lựa chọn phù hợp tại cơ sở.",
-      "priceLabel": "CHI PHÍ TƯ VẤN",
-      "price": "Liên hệ báo giá"
+      "image": "assets/images/tu-van-kham-benh.jpg",
+      "alt": "An thần dưỡng tâm",
+      "label": "DƯỠNG SINH NGŨ TẠNG",
+      "title": "An thần dưỡng tâm",
+      "description": "Ngủ sâu hơn, tinh thần thư thái và ổn định cảm xúc.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Phù hợp: mất ngủ, stress, căng thẳng, tâm trạng bất an, hay suy nghĩ.",
+      "priceLabel": "60 phút",
+      "price": "750.000đ"
+    },
+    {
+      "category": "duong-sinh",
+      "image": "assets/images/dms07619.jpg",
+      "alt": "Ích khí dưỡng phế",
+      "label": "DƯỠNG SINH NGŨ TẠNG",
+      "title": "Ích khí dưỡng phế",
+      "description": "Tăng đề kháng, hỗ trợ hô hấp và phục hồi thể lực.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Phù hợp: dễ mệt, hay ốm, hô hấp yếu, thời tiết thay đổi dễ ảnh hưởng.",
+      "priceLabel": "60 phút",
+      "price": "750.000đ"
+    },
+    {
+      "category": "duong-sinh",
+      "image": "assets/images/nhan-vien-cham-soc.jpg",
+      "alt": "Chăm sóc tỳ vị",
+      "label": "DƯỠNG SINH NGŨ TẠNG",
+      "title": "Chăm sóc tỳ vị",
+      "description": "Tăng hấp thu, cải thiện chuyển hóa và giúp cơ thể nhẹ nhàng hơn.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Phù hợp: ăn uống kém, tiêu hóa yếu, đầy bụng khó tiêu, chậm hấp thu.",
+      "priceLabel": "60 phút",
+      "price": "750.000đ"
+    },
+    {
+      "category": "duong-sinh",
+      "image": "assets/images/dms07619.jpg",
+      "alt": "Dưỡng can – thanh lọc cơ thể",
+      "label": "DƯỠNG SINH NGŨ TẠNG",
+      "title": "Dưỡng can – thanh lọc cơ thể",
+      "description": "Hỗ trợ gan, giảm mệt mỏi và làm dịu cảm giác nóng trong.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Phù hợp: nóng trong người, da xỉn màu, nổi mụn, dễ cáu gắt, bức bối.",
+      "priceLabel": "60 phút",
+      "price": "750.000đ"
+    },
+    {
+      "category": "duong-sinh",
+      "image": "assets/images/dms07623.jpg",
+      "alt": "Thải độc hệ bạch huyết",
+      "label": "DƯỠNG SINH NGŨ TẠNG",
+      "title": "Thải độc hệ bạch huyết",
+      "description": "Làm sạch sâu, hỗ trợ miễn dịch và giảm cảm giác nặng người.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Phù hợp: cơ thể tích độc, mệt mỏi, phù nhẹ, nặng người, da xỉn màu.",
+      "priceLabel": "60 phút",
+      "price": "750.000đ"
+    },
+    {
+      "category": "tai-tao",
+      "image": "assets/images/dms08035.jpg",
+      "alt": "Điều thể giảm cân",
+      "label": "TÁI TẠO HÌNH THỂ",
+      "title": "Điều thể giảm cân",
+      "description": "Thanh lọc, đốt mỡ và tái cấu trúc vóc dáng theo lộ trình.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Liệu trình đề xuất: 22 buổi x 60 phút. Phù hợp mỡ bụng, tích nước, sau sinh, chuyển hóa chậm.",
+      "priceLabel": "22 buổi x 60 phút",
+      "price": "16.000.000đ"
+    },
+    {
+      "category": "tai-tao",
+      "image": "assets/images/dms08035.jpg",
+      "alt": "Điều thể tăng cân",
+      "label": "TÁI TẠO HÌNH THỂ",
+      "title": "Điều thể tăng cân",
+      "description": "Bồi bổ thể trạng, tăng cân tự nhiên, khỏe từ gốc.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Liệu trình đề xuất: 22 buổi x 60 phút. Phù hợp gầy lâu năm, hấp thu kém, thiếu năng lượng.",
+      "priceLabel": "22 buổi x 60 phút",
+      "price": "16.000.000đ"
+    },
+    {
+      "category": "tai-tao",
+      "image": "assets/images/dms08035.jpg",
+      "alt": "Điêu khắc body",
+      "label": "TÁI TẠO HÌNH THỂ",
+      "title": "Điêu khắc body",
+      "description": "Định hình đường nét, săn chắc cơ thể và hỗ trợ vóc dáng cân đối.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Phù hợp eo, bụng, đùi, bắp tay, thiếu săn chắc hoặc muốn định hình body cân đối.",
+      "priceLabel": "90 phút",
+      "price": "850.000đ"
+    },
+    {
+      "category": "tai-tao",
+      "image": "assets/images/dms08035.jpg",
+      "alt": "Tái tạo vùng nhỏ",
+      "label": "TÁI TẠO HÌNH THỂ",
+      "title": "Tái tạo vùng nhỏ",
+      "description": "Chăm sóc vùng cằm, eo, bắp tay hoặc vùng cục bộ cần cải thiện.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Phù hợp mỡ cục bộ, vùng thiếu cân đối hoặc cần chăm sóc tập trung.",
+      "priceLabel": "60 phút",
+      "price": "550.000đ"
+    },
+    {
+      "category": "bo-sung",
+      "image": "assets/images/nhan-vien-cham-soc.jpg",
+      "alt": "Gội đầu thường",
+      "label": "DỊCH VỤ BỔ SUNG",
+      "title": "Gội đầu thường",
+      "description": "Làm sạch da đầu, thư giãn nhẹ nhàng.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Phù hợp khi cần chăm sóc nhanh, nhẹ, dễ trải nghiệm.",
+      "priceLabel": "45 phút",
+      "price": "60.000đ"
+    },
+    {
+      "category": "bo-sung",
+      "image": "assets/images/nhan-vien-cham-soc.jpg",
+      "alt": "Gội dưỡng sinh",
+      "label": "DỊCH VỤ BỔ SUNG",
+      "title": "Gội dưỡng sinh",
+      "description": "Thư giãn, dưỡng sinh và giảm căng thẳng vùng đầu cổ.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Kết hợp chăm sóc da đầu, cổ vai gáy nhẹ và thư giãn tinh thần.",
+      "priceLabel": "60 phút",
+      "price": "250.000đ"
+    },
+    {
+      "category": "bo-sung",
+      "image": "assets/images/dms07619.jpg",
+      "alt": "Gội canh thảo dược",
+      "label": "DỊCH VỤ BỔ SUNG",
+      "title": "Gội canh thảo dược",
+      "description": "Gội thảo dược nuôi dưỡng tóc và da đầu.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Phù hợp người muốn chăm tóc bằng thảo dược, thư giãn sâu hơn gội thường.",
+      "priceLabel": "75 phút",
+      "price": "450.000đ"
+    },
+    {
+      "category": "bo-sung",
+      "image": "assets/images/tri-lieu-nhom.jpg",
+      "alt": "Truy phong tán hàn chuyên sâu",
+      "label": "DỊCH VỤ BỔ SUNG",
+      "title": "Truy phong tán hàn chuyên sâu",
+      "description": "Giải hàn, thông kinh lạc và phục hồi thể trạng.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Phù hợp người hay lạnh, mỏi, đau nhức do hàn khí hoặc cần làm ấm cơ thể.",
+      "priceLabel": "60 phút",
+      "price": "550.000đ"
+    },
+    {
+      "category": "bo-sung",
+      "image": "assets/images/tu-van-kham-benh.jpg",
+      "alt": "Chăm sóc mắt",
+      "label": "DỊCH VỤ BỔ SUNG",
+      "title": "Chăm sóc mắt",
+      "description": "Giảm mỏi mắt, thư giãn sâu và hỗ trợ thị lực.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Phù hợp người làm việc màn hình nhiều, mỏi mắt, căng mắt.",
+      "priceLabel": "60 phút",
+      "price": "550.000đ"
+    },
+    {
+      "category": "bo-sung",
+      "image": "assets/images/dms07619.jpg",
+      "alt": "Xông sục, tắm nóng lạnh",
+      "label": "DỊCH VỤ BỔ SUNG",
+      "title": "Xông sục, tắm nóng lạnh",
+      "description": "Thải độc, lưu thông khí huyết và thư giãn cơ thể.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Một lựa chọn ngắn gọn để làm nóng cơ thể, thư giãn và hỗ trợ tuần hoàn.",
+      "priceLabel": "30 phút",
+      "price": "150.000đ"
+    },
+    {
+      "category": "bo-sung",
+      "image": "assets/images/tri-lieu-nhom.jpg",
+      "alt": "Massage body",
+      "label": "DỊCH VỤ BỔ SUNG",
+      "title": "Massage body",
+      "description": "Thư giãn sâu, giảm đau nhức và tái tạo năng lượng.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Phù hợp khi cơ thể mệt mỏi toàn thân, căng cơ, cần nghỉ sâu.",
+      "priceLabel": "60 phút",
+      "price": "350.000đ"
+    },
+    {
+      "category": "bo-sung",
+      "image": "assets/images/dms08035.jpg",
+      "alt": "Chăm sóc “cô bé” SKB9",
+      "label": "DỊCH VỤ BỔ SUNG",
+      "title": "Chăm sóc “cô bé” SKB9",
+      "description": "Cân bằng, se khít, làm hồng và phục hồi chuyên sâu.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Dịch vụ tế nhị, tư vấn riêng trước khi thực hiện để chọn nội dung phù hợp.",
+      "priceLabel": "Theo tư vấn",
+      "price": "Tư vấn trực tiếp"
+    },
+    {
+      "category": "bo-sung",
+      "image": "assets/images/tu-van-kham-benh.jpg",
+      "alt": "Hồi phục sinh lực phái mạnh",
+      "label": "DỊCH VỤ BỔ SUNG",
+      "title": "Hồi phục sinh lực phái mạnh",
+      "description": "Bồi bổ, tăng cường sinh lực và cải thiện phong độ.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Liệu trình riêng theo thể trạng, cần trao đổi trực tiếp để tư vấn phù hợp.",
+      "priceLabel": "Theo tư vấn",
+      "price": "Tư vấn trực tiếp"
+    },
+    {
+      "category": "bo-sung",
+      "image": "assets/images/tu-van-kham-benh.jpg",
+      "alt": "Chăm sóc các bệnh mãn tính",
+      "label": "DỊCH VỤ BỔ SUNG",
+      "title": "Chăm sóc các bệnh mãn tính",
+      "description": "Hỗ trợ các vấn đề gout, tiểu đường, huyết áp, tim mạch, tai biến, trầm cảm, tăng động giảm chú ý…",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Trao đổi tình trạng trước khi tư vấn liệu trình phù hợp. Không thay thế điều trị y khoa.",
+      "priceLabel": "Theo tư vấn",
+      "price": "Tư vấn trực tiếp"
+    },
+    {
+      "category": "bo-sung",
+      "image": "assets/images/dms07623.jpg",
+      "alt": "Liệu trình VIP cá nhân hóa",
+      "label": "DỊCH VỤ BỔ SUNG",
+      "title": "Liệu trình VIP cá nhân hóa",
+      "description": "Xây dựng liệu trình riêng theo từng thể trạng.",
+      "detailTitle": "Phù hợp & hiệu quả",
+      "detail": "Dành cho khách cần phác đồ kết hợp nhiều nhóm chăm sóc và theo dõi kỹ hơn.",
+      "priceLabel": "Theo tư vấn",
+      "price": "Tư vấn trực tiếp"
     }
   ],
   "offers": [
@@ -135,13 +375,81 @@
       "description": "Khu vực để cập nhật chương trình theo tháng, theo mùa hoặc chiến dịch riêng.",
       "service": "Chương trình sự kiện",
       "cta": "Xem chương trình ↗"
+    },
+    {
+      "tag": "TRỊ LIỆU CĂN GỐC",
+      "title": "Khởi thông cục bộ",
+      "price": "450.000đ",
+      "description": "60 phút · dành cho đau mỏi một vùng.",
+      "service": "Khởi thông cục bộ",
+      "cta": "Đặt lịch 450K ↗"
+    },
+    {
+      "tag": "DƯỠNG SINH",
+      "title": "Dưỡng sinh ngũ tạng",
+      "price": "750.000đ",
+      "description": "60 phút · chọn theo tạng phủ và thể trạng.",
+      "service": "Dưỡng sinh ngũ tạng",
+      "cta": "Tư vấn liệu trình ↗"
+    },
+    {
+      "tag": "TÁI TẠO HÌNH THỂ",
+      "title": "Điêu khắc body",
+      "price": "850.000đ",
+      "description": "90 phút · định hình đường nét cơ thể.",
+      "service": "Điêu khắc body",
+      "cta": "Đặt lịch body ↗"
     }
   ],
   "products": [
-    { "category": "TRÀ THẢO DƯỢC", "title": "Trà dưỡng sinh", "price": "Liên hệ báo giá", "service": "Trà dưỡng sinh", "icon": "tea" },
-    { "category": "TINH DẦU", "title": "Tinh dầu thảo dược", "price": "Liên hệ báo giá", "service": "Tinh dầu thảo dược", "icon": "oil" },
-    { "category": "CAO THẢO DƯỢC", "title": "Cao dưỡng sinh", "price": "Liên hệ báo giá", "service": "Cao dưỡng sinh", "icon": "box" },
-    { "category": "CHĂM SÓC DA", "title": "Serum thảo dược", "price": "Liên hệ báo giá", "service": "Serum thảo dược", "icon": "serum" }
+    {
+      "category": "CAO THẢO DƯỢC",
+      "title": "Cao bổn thảo",
+      "price": "5.200.000đ / 1 hũ",
+      "service": "Cao bổn thảo",
+      "icon": "box",
+      "description": "Tăng hiệu quả phục hồi lục phủ ngũ tạng."
+    },
+    {
+      "category": "CAO THẢO DƯỢC",
+      "title": "Cao chuyển hóa",
+      "price": "5.200.000đ / 1 hũ",
+      "service": "Cao chuyển hóa",
+      "icon": "box",
+      "description": "Hỗ trợ chuyển hóa, phục hồi hệ tiêu hóa."
+    },
+    {
+      "category": "CAO THẢO DƯỢC",
+      "title": "Cao bài hàn",
+      "price": "1.600.000đ / 1 hũ",
+      "service": "Cao bài hàn",
+      "icon": "box",
+      "description": "Tán hàn, thông kinh, hỗ trợ giảm tích hàn."
+    },
+    {
+      "category": "PHÁC ĐỒ KẾT HỢP",
+      "title": "Trị liệu + Cao bài hàn",
+      "price": "Theo tư vấn",
+      "service": "Phác đồ trị liệu cơ xương khớp kết hợp Cao bài hàn",
+      "icon": "serum",
+      "description": "Kết hợp liệu trình cơ xương khớp với cao thảo dược phù hợp."
+    },
+    {
+      "category": "PHÁC ĐỒ KẾT HỢP",
+      "title": "Dưỡng sinh + Cao bổn thảo",
+      "price": "Theo tư vấn",
+      "service": "Phác đồ dưỡng sinh ngũ tạng kết hợp Cao bổn thảo",
+      "icon": "tea",
+      "description": "Hỗ trợ nuôi dưỡng ngũ tạng từ bên trong."
+    },
+    {
+      "category": "PHÁC ĐỒ KẾT HỢP",
+      "title": "Điều thể + Cao chuyển hóa",
+      "price": "Theo tư vấn",
+      "service": "Phác đồ điều thể kết hợp Cao chuyển hóa",
+      "icon": "oil",
+      "description": "Hỗ trợ tăng/giảm cân và cân bằng chuyển hóa."
+    }
   ],
   "locations": [
     {

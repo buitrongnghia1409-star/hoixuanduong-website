@@ -82,6 +82,7 @@
         <div class="product-placeholder">${iconSvg[item.icon] || iconSvg.tea}<span>HÌNH ẢNH SẮP CẬP NHẬT</span></div>
         <p class="eyebrow">${esc(item.category)}</p>
         <h3>${esc(item.title)}</h3>
+        ${item.description ? `<p class="product-desc">${esc(item.description)}</p>` : ''}
         <div class="product-bottom"><span>${esc(item.price || 'Liên hệ báo giá')}</span><a href="#dat-lich" data-service="${esc(item.service || item.title)}" aria-label="Hỏi về ${esc(item.title)}">↗</a></div>
       </article>`).join('');
   }

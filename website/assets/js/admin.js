@@ -102,9 +102,9 @@
 
   const templates = {
     hero: { image: 'assets/images/dms07238.jpg', alt: '', eyebrow: 'NHÃN HERO', title: 'Tiêu đề hero', slogan: 'Slogan nổi bật.', description: 'Mô tả ngắn cho ảnh hero.' },
-    services: { category: 'tri-lieu', image: 'assets/images/phong-tri-lieu-2.jpg', alt: '', label: 'DỊCH VỤ', title: 'Tên dịch vụ mới', description: 'Mô tả ngắn.', detailTitle: 'Thông tin liệu trình', detail: 'Nội dung chi tiết.', priceLabel: 'GIÁ DỊCH VỤ', price: 'Liên hệ báo giá' },
+    services: { category: 'tri-lieu', image: 'assets/images/phong-tri-lieu-2.jpg', alt: '', label: 'DỊCH VỤ', title: 'Tên dịch vụ mới', description: 'Mô tả ngắn.', detailTitle: 'Thông tin liệu trình', detail: 'Nội dung chi tiết.', priceLabel: '60 phút', price: 'Liên hệ báo giá' },
     offers: { image: '', tag: 'ƯU ĐÃI', title: 'Tên chương trình mới', price: 'Liên hệ', description: 'Mô tả chương trình.', service: 'Tên chương trình mới', cta: 'Đặt lịch tư vấn ↗' },
-    products: { category: 'NHÓM SẢN PHẨM', title: 'Tên sản phẩm mới', price: 'Liên hệ báo giá', service: 'Tên sản phẩm mới', icon: 'tea' },
+    products: { category: 'NHÓM SẢN PHẨM', title: 'Tên sản phẩm mới', price: 'Liên hệ báo giá', service: 'Tên sản phẩm mới', icon: 'tea', description: 'Mô tả ngắn.' },
     locations: { number: 'CƠ SỞ MỚI', name: 'Tên cơ sở', address: 'Địa chỉ sẽ cập nhật', map: '', branch: 'Tên cơ sở', future: true },
     faqs: { question: 'Câu hỏi mới?', answer: 'Câu trả lời.' }
   };
@@ -133,7 +133,7 @@
       return `<div class="field${full}"><label for="${id}">${label}</label><textarea id="${id}" data-path="${path.join('.')}">${escapeHtml(value)}</textarea></div>`;
     }
     if (type === 'category') {
-      return `<div class="field"><label for="${id}">${label}</label><select id="${id}" data-path="${path.join('.')}"><option value="tri-lieu"${value === 'tri-lieu' ? ' selected' : ''}>Chăm sóc cơ thể</option><option value="duong-sinh"${value === 'duong-sinh' ? ' selected' : ''}>Dưỡng sinh thảo dược</option><option value="sac-dep"${value === 'sac-dep' ? ' selected' : ''}>Chăm sóc sắc đẹp</option></select></div>`;
+      return `<div class="field"><label for="${id}">${label}</label><select id="${id}" data-path="${path.join('.')}"><option value="tri-lieu"${value === 'tri-lieu' ? ' selected' : ''}>Trị liệu căn gốc</option><option value="duong-sinh"${value === 'duong-sinh' ? ' selected' : ''}>Dưỡng sinh ngũ tạng</option><option value="tai-tao"${value === 'tai-tao' ? ' selected' : ''}>Tái tạo hình thể</option><option value="bo-sung"${value === 'bo-sung' ? ' selected' : ''}>Dịch vụ bổ sung</option><option value="sac-dep"${value === 'sac-dep' ? ' selected' : ''}>Chăm sóc sắc đẹp</option></select></div>`;
     }
     if (type === 'icon') {
       return `<div class="field"><label for="${id}">${label}</label><select id="${id}" data-path="${path.join('.')}"><option value="tea"${value === 'tea' ? ' selected' : ''}>Trà</option><option value="oil"${value === 'oil' ? ' selected' : ''}>Tinh dầu</option><option value="box"${value === 'box' ? ' selected' : ''}>Hộp/cao</option><option value="serum"${value === 'serum' ? ' selected' : ''}>Serum</option></select></div>`;

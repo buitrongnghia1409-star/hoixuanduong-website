@@ -80,6 +80,11 @@ html{background:#edf5e7}body{position:relative;isolation:isolate;overflow-x:hidd
 .offer-price{font:900 34px var(--body);line-height:1;color:#a06e1f;letter-spacing:-.8px}
 @media(max-width:980px){.offer-panel{grid-template-columns:repeat(2,minmax(0,1fr))!important}.offer-section{padding-block:58px}}
 @media(max-width:620px){.offer-panel{grid-template-columns:1fr!important;gap:18px!important}.offer-media{aspect-ratio:4/4.7}.offer-heading h2{font-size:30px}.offer-card-content{padding:18px!important}}
+
+/* Menu service data from client materials */
+.service-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.card-body h3{min-height:0}.card-body>p{min-height:0}.card-body details{margin-block:14px}.price{font-size:16px}.price small{color:#9c722a}.product-desc{font-size:13px;color:#66756b;line-height:1.6;margin:9px 12px 0;min-height:42px}.product-bottom span{font-weight:800;color:#9c722a}
+@media(max-width:980px){.service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.service-grid{grid-template-columns:1fr}.product-desc{min-height:0}}
 .topbar{display:none}.header{background:#fbfcf0f2;box-shadow:0 8px 28px #173e3210}.nav-row{min-height:76px;gap:24px}.brand img{width:48px;height:48px}.brand>span{font-size:23px}.brand small{font-size:8px;letter-spacing:2.6px;margin-top:4px}nav{gap:24px}.nav-row>.button{min-height:46px;padding:11px 19px;border-radius:8px}.hero-carousel{min-height:calc(100vh - 76px)}
 @media(max-width:900px){.nav-row{min-height:70px}.brand img{width:42px;height:42px}.brand>span{font-size:21px}.hero-carousel{min-height:calc(100vh - 70px)}}
 @media(max-width:620px){.nav-row{min-height:66px}.brand img{width:38px;height:38px}.brand>span{font-size:19px}.hero-carousel{min-height:690px}.nav-row>.button{min-height:36px}}
