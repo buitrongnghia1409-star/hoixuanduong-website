@@ -320,3 +320,35 @@ main{background:transparent!important}
   #dich-vu .service-card .click-ripple,#dich-vu .service-card-copy .click-ripple{display:none!important}
   #dich-vu .round-link{width:auto!important;min-width:86px!important;height:38px!important;border-radius:999px!important;background:linear-gradient(135deg,#fff4be,#d7b35f)!important;color:#123a2e!important;font-size:12px!important;font-weight:900!important;box-shadow:0 10px 22px rgba(0,0,0,.22)!important}
 }
+
+/* Category filter must beat the carousel's display:flex override */
+#dich-vu .service-card[hidden]{display:none!important}
+
+/* Pointing-hand icon replaces the diagonal arrow on tappable controls */
+.tap-icon{display:inline-block;width:16px;height:16px;margin-left:.4em;vertical-align:-.18em;flex:0 0 auto;line-height:0}
+.tap-icon svg{display:block;width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transform:rotate(-90deg)}
+.product-bottom a .tap-icon{margin-left:0;width:20px;height:20px}
+.text-link .tap-icon{margin-left:0}
+.service-card .round-link,#dich-vu .round-link{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:2px!important}
+
+/* Service CTA sits below the price in the visual hierarchy */
+#dich-vu .round-link{min-width:0!important;height:30px!important;padding:0 11px!important;font-size:11px!important;font-weight:800!important;gap:3px!important;box-shadow:0 6px 14px rgba(0,0,0,.18)!important}
+#dich-vu .round-link .tap-icon{width:13px;height:13px;margin-left:.25em}
+
+/* Photo-forward service cards: smaller type, no side scrim, text kept in the lower third */
+#dich-vu .service-image:after{background:linear-gradient(180deg,rgba(7,37,29,0) 0%,rgba(7,37,29,.04) 32%,rgba(7,37,29,.34) 60%,rgba(7,37,29,.62) 100%)!important}
+#dich-vu .card-body{padding-top:170px!important;background:linear-gradient(180deg,transparent 0%,transparent 32%,rgba(7,37,29,.30) 60%,rgba(7,37,29,.80) 100%)!important}
+#dich-vu .card-body h3{font-size:21px!important;line-height:1.2!important;text-shadow:0 2px 12px rgba(0,0,0,.92),0 1px 3px rgba(0,0,0,.85)!important}
+#dich-vu .card-body>p{font-size:12px!important;line-height:1.5!important;margin-top:8px!important;text-shadow:0 2px 10px rgba(0,0,0,.92)!important}
+
+/* Drop the whole text block down against the price rule, freeing the upper photo */
+#dich-vu .card-bottom{margin-top:14px!important}
+#dich-vu .card-body{padding-top:96px!important;background:linear-gradient(180deg,transparent 0%,transparent 44%,rgba(7,37,29,.32) 66%,rgba(7,37,29,.82) 100%)!important}
+#dich-vu .service-image:after{background:linear-gradient(180deg,rgba(7,37,29,0) 0%,rgba(7,37,29,.03) 44%,rgba(7,37,29,.32) 68%,rgba(7,37,29,.62) 100%)!important}
+
+/* Product cards can carry a real photo instead of the placeholder icon */
+.product-placeholder.has-photo{padding:0;gap:0;overflow:hidden;background:#fff}
+.product-placeholder.has-photo img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Section headings: smaller, lighter, with breathing room for the uppercase setting */
+.section-heading h2,.offer-heading h2{font-size:clamp(25px,6.9vw,34px)!important;font-weight:500!important;line-height:1.18!important;letter-spacing:.6px!important}

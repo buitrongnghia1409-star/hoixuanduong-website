@@ -70,6 +70,7 @@
     slogan: 'Slogan / dòng vàng',
     description: 'Mô tả',
     category: 'Nhóm',
+    hot: 'Sản phẩm Hot',
     label: 'Nhãn trên ảnh',
     detailTitle: 'Tiêu đề chi tiết',
     detail: 'Nội dung chi tiết',
@@ -102,9 +103,9 @@
 
   const templates = {
     hero: { image: 'assets/images/dms07238.jpg', alt: '', eyebrow: 'NHÃN HERO', title: 'Tiêu đề hero', slogan: 'Slogan nổi bật.', description: 'Mô tả ngắn cho ảnh hero.' },
-    services: { category: 'tri-lieu', image: 'assets/images/phong-tri-lieu-2.jpg', alt: '', label: 'DỊCH VỤ', title: 'Tên dịch vụ mới', description: 'Mô tả ngắn.', detailTitle: 'Thông tin liệu trình', detail: 'Nội dung chi tiết.', priceLabel: '60 phút', price: 'Liên hệ báo giá' },
+    services: { category: 'tri-lieu', image: 'assets/images/phong-tri-lieu-2.jpg', alt: '', label: 'DỊCH VỤ', title: 'Tên dịch vụ mới', description: 'Mô tả ngắn.', detailTitle: 'Thông tin liệu trình', detail: 'Nội dung chi tiết.', priceLabel: '60 phút', price: 'Liên hệ báo giá', hot: false },
     offers: { image: '', tag: 'ƯU ĐÃI', title: 'Tên chương trình mới', price: 'Liên hệ', description: 'Mô tả chương trình.', service: 'Tên chương trình mới', cta: 'Đặt lịch tư vấn ↗' },
-    products: { category: 'NHÓM SẢN PHẨM', title: 'Tên sản phẩm mới', price: 'Liên hệ báo giá', service: 'Tên sản phẩm mới', icon: 'tea', description: 'Mô tả ngắn.' },
+    products: { category: 'NHÓM SẢN PHẨM', image: '', title: 'Tên sản phẩm mới', price: 'Liên hệ báo giá', service: 'Tên sản phẩm mới', icon: 'tea', description: 'Mô tả ngắn.' },
     locations: { number: 'CƠ SỞ MỚI', name: 'Tên cơ sở', address: 'Địa chỉ sẽ cập nhật', map: '', branch: 'Tên cơ sở', future: true },
     faqs: { question: 'Câu hỏi mới?', answer: 'Câu trả lời.' }
   };

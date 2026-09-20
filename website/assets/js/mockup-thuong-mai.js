@@ -9,6 +9,13 @@
     serum: '<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M51 15h18v25H51zM48 40h24v14l7 8v40H41V62l7-8zM41 72h38M53 83h14"/></svg>'
   };
 
+  const tapIcon = '<span class="tap-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false">'
+    + '<path d="M8 13v-8.5a1.5 1.5 0 0 1 3 0v7.5"/>'
+    + '<path d="M11 11.5v-2a1.5 1.5 0 1 1 3 0v2.5"/>'
+    + '<path d="M14 10.5a1.5 1.5 0 0 1 3 0v1.5"/>'
+    + '<path d="M17 11.5a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1 -6 6h-2h.208a6 6 0 0 1 -5.012 -2.7a69.74 69.74 0 0 1 -.196 -.3c-.312 -.479 -1.407 -2.388 -3.286 -5.728a1.5 1.5 0 0 1 .536 -2.022a1.867 1.867 0 0 1 2.28 .28l1.47 1.47"/>'
+    + '</svg></span>';
+
   if (location.hash === '#dat-lich') {
     history.replaceState(null, '', location.pathname + location.search);
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
@@ -29,7 +36,7 @@
     const grid = document.querySelector('.service-grid');
     if (!grid || !services.length) return;
     grid.innerHTML = services.map(item => `
-      <article class="service-card" data-category="${esc(item.category)}">
+      <article class="service-card" data-category="${esc(item.category)}" data-hot="${item.hot ? 'true' : 'false'}">
         <div class="service-image">
           <img src="${esc(item.image)}" width="1800" height="1200" loading="lazy" alt="${esc(item.alt)}">
           <span class="image-label">${esc(item.label)}</span>
@@ -37,10 +44,9 @@
         <div class="card-body">
           <h3>${esc(item.title)}</h3>
           <p>${esc(item.description)}</p>
-          <details><summary>${esc(item.detailTitle || 'Thông tin liệu trình')} <span>+</span></summary><p>${esc(item.detail)}</p></details>
           <div class="card-bottom">
             <span class="price"><small>${esc(item.priceLabel || 'GIÁ DỊCH VỤ')}</small>${esc(item.price || 'Liên hệ báo giá')}</span>
-            <a href="#dat-lich" data-service="${esc(item.title)}" class="round-link" aria-label="Tư vấn ${esc(item.title)}">Liên hệ</a>
+            <a href="#dat-lich" data-service="${esc(item.title)}" class="round-link" aria-label="Tư vấn ${esc(item.title)}">Liên hệ${tapIcon}</a>
           </div>
         </div>
       </article>`).join('');
@@ -73,7 +79,7 @@
           <span class="offer-tag">${esc(item.tag)}</span>
           <h3>${esc(item.title)}</h3>
           ${item.price ? `<strong class="offer-price">${esc(item.price)}</strong>` : ''}
-          <p>${esc(item.description)}</p>
+          <p>${lines(item.description)}</p>
           <a class="offer-cta" href="#dat-lich" data-service="${esc(item.service || item.title)}" aria-label="Tư vấn ${esc(item.service || item.title)}">${esc(item.cta || 'Đặt lịch tư vấn ↗')}</a>
         </div>
       </article>`).join('');
@@ -84,7 +90,9 @@
     if (!grid || !products.length) return;
     grid.innerHTML = products.map(item => `
       <article class="product">
-        <div class="product-placeholder">${iconSvg[item.icon] || iconSvg.tea}<span>HÌNH ẢNH SẮP CẬP NHẬT</span></div>
+        ${item.image
+          ? `<div class="product-placeholder has-photo"><img src="${esc(item.image)}" alt="${esc(item.title)}" loading="lazy"></div>`
+          : `<div class="product-placeholder">${iconSvg[item.icon] || iconSvg.tea}<span>HÌNH ẢNH SẮP CẬP NHẬT</span></div>`}
         <p class="eyebrow">${esc(item.category)}</p>
         <h3>${esc(item.title)}</h3>
         ${item.description ? `<p class="product-desc">${esc(item.description)}</p>` : ''}
@@ -151,6 +159,26 @@
     }
   }
 
+  function applyTapIcons() {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const targets = [];
+    while (walker.nextNode()) {
+      if (walker.currentNode.nodeValue.includes('↗')) targets.push(walker.currentNode);
+    }
+    targets.forEach(node => {
+      const frag = document.createDocumentFragment();
+      node.nodeValue.split('↗').forEach((part, index) => {
+        if (index) {
+          const holder = document.createElement('span');
+          holder.innerHTML = tapIcon;
+          frag.appendChild(holder.firstChild);
+        }
+        if (part) frag.appendChild(document.createTextNode(part));
+      });
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
   function initMenu() {
     const menu = document.querySelector('.menu');
     const nav = document.querySelector('#main-nav');
@@ -207,7 +235,9 @@
     function filterServices(category) {
       let count = 0;
       document.querySelectorAll('.service-card').forEach(card => {
-        card.hidden = category !== 'all' && card.dataset.category !== category;
+        const match = category === 'all'
+          || (category === 'hot' ? card.dataset.hot === 'true' : card.dataset.category === category);
+        card.hidden = !match;
         if (!card.hidden) count++;
       });
       document.querySelectorAll('[data-filter]').forEach(button => {
@@ -217,9 +247,13 @@
       });
       const serviceCount = document.querySelector('#service-count');
       if (serviceCount) serviceCount.textContent = `${count} dịch vụ`;
+      const grid = document.querySelector('#dich-vu .service-grid');
+      if (grid) grid.scrollLeft = 0;
     }
     document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => filterServices(button.dataset.filter)));
     document.querySelectorAll('[data-quick]').forEach(link => link.addEventListener('click', () => filterServices(link.dataset.quick)));
+    const initial = document.querySelector('[data-filter].active');
+    if (initial) filterServices(initial.dataset.filter);
   }
 
   function initBooking() {
@@ -325,6 +359,7 @@
       renderFaqs(data.faqs);
       fillBookingOptions(data);
     }
+    applyTapIcons();
     initMenu();
     initHero();
     initFilters();
