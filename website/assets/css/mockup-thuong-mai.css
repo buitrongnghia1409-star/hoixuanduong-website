@@ -304,17 +304,19 @@ html{background:#edf5e7}body{position:relative;isolation:isolate;overflow-x:hidd
 }
 
 /* Restore Hoi Xuan Duong matcha background and stabilize service browsing */
-body{background:linear-gradient(120deg,#d9efc2 0%,#f5f0df 38%,#cfe8b7 70%,#edf7dc 100%)!important;background-size:220% 220%!important;animation:matchaFlow 18s ease-in-out infinite!important}
+body{background:linear-gradient(120deg,#c7e8a8 0%,#e8f5d3 26%,#f3edd5 48%,#bfe2a0 72%,#edf8dc 100%)!important;background-size:240% 240%!important;animation:matchaFlow 22s ease-in-out infinite!important}
 main{background:transparent!important}
-#dich-vu{background:transparent!important}
+#dich-vu{background:linear-gradient(135deg,rgba(215,239,190,.78),rgba(244,239,214,.58) 55%,rgba(194,226,160,.7))!important}
 @keyframes matchaFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 @media(max-width:1180px){
   #dich-vu .filter-row{gap:12px!important;margin-bottom:24px!important}
-  #dich-vu .filter{background:rgba(255,255,255,.72)!important;border:1.5px solid rgba(17,72,50,.55)!important;color:#173e32!important;box-shadow:0 8px 18px rgba(23,62,50,.08)!important}
-  #dich-vu .filter.active{background:linear-gradient(135deg,#0b4b35,#173e32)!important;border-color:#d9b765!important;color:#fff4c8!important;box-shadow:0 12px 28px rgba(23,62,50,.22),inset 0 0 0 1px rgba(255,232,172,.32)!important}
-  #dich-vu .service-grid{scroll-snap-type:none!important;scroll-behavior:auto!important;transform:none!important;perspective:none!important;contain:layout paint!important;touch-action:pan-x pan-y!important}
-  #dich-vu .service-card,#dich-vu .service-card-copy{scroll-snap-align:none!important;transition:none!important;transform:none!important;filter:none!important;will-change:auto!important;box-shadow:0 14px 30px rgba(23,62,50,.15),inset 0 0 0 1px rgba(255,245,199,.22)!important}
+  #dich-vu .filter{background:rgba(255,253,244,.9)!important;border:1.5px solid rgba(17,72,50,.45)!important;color:#173e32!important;box-shadow:0 8px 18px rgba(23,62,50,.08)!important}
+  #dich-vu .filter.active,#dich-vu .filter[aria-pressed="true"]{background:linear-gradient(135deg,#073d2d,#15593f)!important;border-color:#f1d28c!important;color:#ffeaa8!important;box-shadow:0 14px 30px rgba(7,61,45,.26),inset 0 0 0 1px rgba(255,232,172,.45)!important}
+  #dich-vu .service-grid{scroll-snap-type:none!important;scroll-behavior:auto!important;transform:none!important;perspective:none!important;contain:layout paint!important;touch-action:pan-x pan-y!important;-webkit-overflow-scrolling:auto!important}
+  #dich-vu .service-card,#dich-vu .service-card-copy{scroll-snap-align:none!important;transition:none!important;transform:none!important;filter:none!important;will-change:auto!important;backface-visibility:visible!important;box-shadow:0 14px 30px rgba(23,62,50,.15),inset 0 0 0 1px rgba(255,245,199,.22)!important}
   #dich-vu .service-card *,#dich-vu .service-card-copy *{transition:none!important;animation:none!important;transform:none!important;will-change:auto!important}
+  #dich-vu .service-card:hover,#dich-vu .service-card:active,#dich-vu .service-card:focus-within{transform:none!important}
   #dich-vu .service-card.is-clickable:active,#dich-vu .service-card-copy.is-clickable:active{transform:none!important}
   #dich-vu .service-card .click-ripple,#dich-vu .service-card-copy .click-ripple{display:none!important}
+  #dich-vu .round-link{width:auto!important;min-width:86px!important;height:38px!important;border-radius:999px!important;background:linear-gradient(135deg,#fff4be,#d7b35f)!important;color:#123a2e!important;font-size:12px!important;font-weight:900!important;box-shadow:0 10px 22px rgba(0,0,0,.22)!important}
 }

@@ -46,20 +46,6 @@
       </article>`).join('');
   }
 
-  function initServiceLoop() {
-    const grid = document.querySelector('.service-grid');
-    if (!grid) return;
-    grid.querySelectorAll('.service-card-copy').forEach(card => card.remove());
-    const cards = [...grid.querySelectorAll('.service-card:not(.service-card-copy)')];
-    if (cards.length < 2) return;
-    cards.forEach(card => {
-      const copy = card.cloneNode(true);
-      copy.classList.add('service-card-copy');
-      copy.setAttribute('data-loop-copy', 'true');
-      grid.appendChild(copy);
-    });
-  }
-
   function renderHero(slides = []) {
     const wrapper = document.querySelector('.hero-slides');
     if (!wrapper || !slides.length) return;
@@ -273,7 +259,7 @@
 
   function initEffects() {
     document.querySelectorAll('.click-ripple').forEach(item => item.remove());
-    const clickableItems = document.querySelectorAll('a, button, summary, .product, .service-card, .offer-card, .locations article');
+    const clickableItems = document.querySelectorAll('a, button, summary, .product, .offer-card, .locations article');
     clickableItems.forEach(item => {
       item.classList.add('is-clickable');
       item.addEventListener('click', event => {
@@ -339,7 +325,6 @@
       renderFaqs(data.faqs);
       fillBookingOptions(data);
     }
-    initServiceLoop();
     initMenu();
     initHero();
     initFilters();
