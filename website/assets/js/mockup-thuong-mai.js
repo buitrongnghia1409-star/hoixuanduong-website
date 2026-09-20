@@ -40,7 +40,7 @@
           <details><summary>${esc(item.detailTitle || 'Thông tin liệu trình')} <span>+</span></summary><p>${esc(item.detail)}</p></details>
           <div class="card-bottom">
             <span class="price"><small>${esc(item.priceLabel || 'GIÁ DỊCH VỤ')}</small>${esc(item.price || 'Liên hệ báo giá')}</span>
-            <a href="#dat-lich" data-service="${esc(item.title)}" class="round-link" aria-label="Tư vấn ${esc(item.title)}">↗</a>
+            <a href="#dat-lich" data-service="${esc(item.title)}" class="round-link" aria-label="Tư vấn ${esc(item.title)}">Liên hệ</a>
           </div>
         </div>
       </article>`).join('');
@@ -58,34 +58,6 @@
       copy.setAttribute('data-loop-copy', 'true');
       grid.appendChild(copy);
     });
-  }
-
-  function initServiceAutoScroll() {
-    const grid = document.querySelector('.service-grid');
-    if (!grid || reduceMotion) return;
-    let paused = false;
-    let frame = 0;
-    let last = performance.now();
-    const pause = () => { paused = true; };
-    const resume = () => { paused = false; last = performance.now(); };
-    ['pointerdown', 'touchstart', 'focusin', 'mouseenter'].forEach(type => grid.addEventListener(type, pause, { passive: true }));
-    ['pointerup', 'touchend', 'focusout', 'mouseleave'].forEach(type => grid.addEventListener(type, () => setTimeout(resume, 1200), { passive: true }));
-    grid.addEventListener('toggle', event => {
-      if (event.target.matches('details')) paused = event.target.open;
-    }, true);
-    function tick(now) {
-      const isMobile = window.matchMedia('(max-width: 1180px)').matches;
-      if (isMobile && !paused && grid.scrollWidth > grid.clientWidth) {
-        const delta = Math.min(now - last, 40);
-        grid.scrollLeft += delta * 0.018;
-        const resetPoint = grid.scrollWidth / 2;
-        if (grid.scrollLeft >= resetPoint) grid.scrollLeft = 0;
-      }
-      last = now;
-      frame = requestAnimationFrame(tick);
-    }
-    frame = requestAnimationFrame(tick);
-    window.addEventListener('beforeunload', () => cancelAnimationFrame(frame), { once: true });
   }
 
   function renderHero(slides = []) {
@@ -368,7 +340,6 @@
       fillBookingOptions(data);
     }
     initServiceLoop();
-    initServiceAutoScroll();
     initMenu();
     initHero();
     initFilters();
