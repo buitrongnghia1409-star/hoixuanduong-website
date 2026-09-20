@@ -228,3 +228,26 @@ html{background:#edf5e7}body{position:relative;isolation:isolate;overflow-x:hidd
   .hero-carousel,.hero-slide-content{height:390px!important;min-height:390px!important;max-height:390px!important}
   .hero-slide-content{padding:136px 20px 26px!important}
 }
+
+/* Mobile correction: no blank first screens, single chat entry */
+@media(max-width:768px){
+  .mobile-contact{display:none!important}
+  .hero-carousel{position:relative!important;display:block!important;height:390px!important;min-height:390px!important;max-height:390px!important;overflow:hidden!important;background:#12382d!important}
+  .hero-slides{position:absolute!important;inset:0!important;z-index:1!important;height:100%!important}
+  .hero-slide{position:absolute!important;inset:0!important;height:100%!important;min-height:0!important;opacity:0!important;visibility:hidden!important}
+  .hero-slide.active{opacity:1!important;visibility:visible!important}
+  .hero-slide>img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;display:block!important;object-fit:cover!important}
+  .hero-slide-content{position:relative!important;z-index:3!important;height:390px!important;min-height:390px!important;max-height:390px!important}
+  .reveal-on-scroll{opacity:1!important;transform:none!important}
+  #dich-vu,.offer-section,.products-section{content-visibility:visible!important;contain-intrinsic-size:auto!important}
+  .chat-widget{position:fixed;right:18px;bottom:18px;z-index:150}
+  .chat-toggle{width:62px;height:62px;border:0;border-radius:50%;background:linear-gradient(135deg,#07583d,#0a7b55);color:#fff;font-size:27px;display:grid;place-items:center;box-shadow:0 14px 34px rgba(7,72,51,.34),inset 0 0 0 2px rgba(255,232,172,.3)}
+  .chat-panel{position:absolute;right:0;bottom:74px;display:grid;gap:10px;width:178px;padding:12px;border:1px solid rgba(217,183,101,.75);border-radius:18px;background:#fffaf1;box-shadow:0 18px 42px rgba(23,62,50,.2)}
+  .chat-panel a{min-height:44px;display:flex;align-items:center;justify-content:center;border-radius:13px;color:#fff;font-weight:900;text-decoration:none}
+  .chat-panel .social-zalo{background:#0a8fdc}
+  .chat-panel .social-facebook{background:#315fba}
+}
+
+@media(min-width:769px){
+  .chat-widget{display:none}
+}

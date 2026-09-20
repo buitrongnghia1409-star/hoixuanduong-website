@@ -9,6 +9,11 @@
     serum: '<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M51 15h18v25H51zM48 40h24v14l7 8v40H41V62l7-8zM41 72h38M53 83h14"/></svg>'
   };
 
+  if (location.hash === '#dat-lich') {
+    history.replaceState(null, '', location.pathname + location.search);
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }
+
   async function loadSiteData() {
     try {
       const response = await fetch('assets/data/site-data.json', { cache: 'no-cache' });
@@ -282,6 +287,28 @@
     }
   }
 
+  function initChatWidget() {
+    const widget = document.querySelector('.chat-widget');
+    const toggle = document.querySelector('.chat-toggle');
+    const panel = document.querySelector('.chat-panel');
+    if (!widget || !toggle || !panel) return;
+    function setOpen(open) {
+      widget.classList.toggle('open', open);
+      panel.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+    toggle.addEventListener('click', event => {
+      event.stopPropagation();
+      setOpen(!widget.classList.contains('open'));
+    });
+    document.addEventListener('click', event => {
+      if (!widget.contains(event.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') setOpen(false);
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', async () => {
     const data = await loadSiteData();
     if (data) {
@@ -299,5 +326,6 @@
     initFilters();
     initBooking();
     initEffects();
+    initChatWidget();
   });
 })();
