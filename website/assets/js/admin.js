@@ -328,17 +328,19 @@
     setStatus('Đã tải bản dự phòng site-data.json về máy.');
   });
 
-  uploadInput.addEventListener('change', async () => {
-    const file = uploadInput.files[0];
-    if (!file) return;
-    try {
-      siteData = JSON.parse(await file.text());
-      render();
-      setStatus('Đã nạp file dữ liệu mới.');
-    } catch {
-      setStatus('File vừa chọn không đúng định dạng JSON. Vui lòng kiểm tra lại.');
-    }
-  });
+  if (uploadInput) {
+    uploadInput.addEventListener('change', async () => {
+      const file = uploadInput.files[0];
+      if (!file) return;
+      try {
+        siteData = JSON.parse(await file.text());
+        render();
+        setStatus('Đã nạp file dữ liệu mới.');
+      } catch {
+        setStatus('File vừa chọn không đúng định dạng JSON. Vui lòng kiểm tra lại.');
+      }
+    });
+  }
 
   async function loadEditorData() {
     // Ưu tiên nội dung đang chạy trên Supabase; nếu trống thì lấy file gốc để
