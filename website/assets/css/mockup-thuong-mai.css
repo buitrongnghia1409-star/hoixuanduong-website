@@ -352,3 +352,9 @@ main{background:transparent!important}
 
 /* Section headings: smaller, lighter, with breathing room for the uppercase setting */
 .section-heading h2,.offer-heading h2{font-size:clamp(25px,6.9vw,34px)!important;font-weight:500!important;line-height:1.18!important;letter-spacing:.6px!important}
+
+/* Tiêu đề mục về đúng font serif Playfair như hero — bỏ dáng sans in hoa thô */
+.section-heading h2,.offer-heading h2{font-family:var(--display)!important;font-weight:600!important;text-transform:none!important;letter-spacing:normal!important;font-size:clamp(26px,7vw,36px)!important;line-height:1.16!important}
+/* Bớt đậm cho nhãn nhỏ và giá để nhẹ mắt hơn */
+.eyebrow{font-weight:600!important}
+#dich-vu .price{font-weight:600!important;letter-spacing:-.3px!important}
