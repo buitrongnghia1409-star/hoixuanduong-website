@@ -381,4 +381,24 @@
     initEffects();
     initChatWidget();
   });
+
+  // Xem trước sống cho trang admin: nhận dữ liệu qua postMessage và vẽ lại các
+  // khối nội dung ngay lập tức. Trên web thật không có ai gửi nên vô hại.
+  window.addEventListener('message', function (event) {
+    var msg = event.data;
+    if (!msg || msg.type !== 'HXD_PREVIEW' || !msg.data) return;
+    var data = msg.data;
+    try {
+      applySettings(data.settings || {});
+      renderHero(data.hero || []);
+      renderServices(data.services || []);
+      renderOffers(data.offers || []);
+      renderProducts(data.products || []);
+      renderLocations(data.locations || []);
+      renderFaqs(data.faqs || []);
+      applyTapIcons();
+      var active = document.querySelector('[data-filter].active') || document.querySelector('[data-filter]');
+      if (active) active.click();
+    } catch (err) { /* xem trước lỗi thì bỏ qua, không làm hỏng gì */ }
+  });
 })();

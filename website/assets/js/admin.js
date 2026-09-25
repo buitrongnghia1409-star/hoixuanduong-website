@@ -13,7 +13,24 @@
   const saveCloudButton = document.querySelector('#save-cloud');
   const uploadInput = document.querySelector('#json-upload');
   const cloud = window.HXD && window.HXD.configured ? window.HXD : null;
+  const previewFrame = document.querySelector('#preview-frame');
   let siteData = {};
+
+  // Gửi dữ liệu hiện tại sang khung xem trước (website thật trong iframe).
+  let previewTimer = null;
+  function pushPreview() {
+    if (!previewFrame || !previewFrame.contentWindow) return;
+    clearTimeout(previewTimer);
+    previewTimer = setTimeout(function () {
+      try {
+        previewFrame.contentWindow.postMessage(
+          { type: 'HXD_PREVIEW', data: siteData }, '*');
+      } catch (e) { /* bỏ qua nếu iframe chưa sẵn sàng */ }
+    }, 180);
+  }
+  if (previewFrame) {
+    previewFrame.addEventListener('load', function () { pushPreview(); });
+  }
 
   async function sha256(value) {
     const data = new TextEncoder().encode(value);
@@ -215,6 +232,7 @@
       renderArrayGroup('faqs'),
       `<section class="group"><div class="group-head"><div><h2>Xem nhanh file dữ liệu</h2><p>Phần này để kiểm tra tổng thể trước khi tải file.</p></div></div><div class="items"><pre class="json-preview">${escapeHtml(JSON.stringify(siteData, null, 2))}</pre></div></section>`
     ].join('');
+    pushPreview();
   }
 
   root.addEventListener('input', event => {
@@ -223,7 +241,8 @@
     setByPath(control.dataset.path, control.value);
     const preview = document.querySelector('.json-preview');
     if (preview) preview.textContent = JSON.stringify(siteData, null, 2);
-    setStatus('Đã cập nhật trong trình duyệt. Bấm “Tải file dữ liệu” để lưu ra file.');
+    pushPreview();
+    setStatus('Đã cập nhật. Bấm “Lưu lên website” để hiển thị cho khách.');
   });
 
   root.addEventListener('change', event => {
