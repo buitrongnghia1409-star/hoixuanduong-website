@@ -10,7 +10,9 @@
   const root = document.querySelector('#editor-root');
   const status = document.querySelector('#status');
   const downloadButton = document.querySelector('#download-json');
+  const saveCloudButton = document.querySelector('#save-cloud');
   const uploadInput = document.querySelector('#json-upload');
+  const cloud = window.HXD && window.HXD.configured ? window.HXD : null;
   let siteData = {};
 
   async function sha256(value) {
@@ -40,6 +42,16 @@
     loginError.textContent = '';
     const username = loginForm.username.value.trim();
     const password = loginForm.password.value;
+
+    // Khi đã kết nối Supabase: đăng nhập thật qua máy chủ (an toàn, không dò
+    // được từ mã nguồn). Khi chưa cấu hình: tạm dùng mã băm cũ để không kẹt.
+    if (cloud) {
+      loginError.textContent = 'Đang đăng nhập…';
+      const res = await cloud.signIn(username, password);
+      if (res.ok) { loginError.textContent = ''; await enterApp(); return; }
+      loginError.textContent = 'Email hoặc mật khẩu chưa đúng.';
+      return;
+    }
     if (await sha256(username) === USER_HASH && await sha256(password) === PASS_HASH) {
       showApp();
       return;
@@ -47,7 +59,10 @@
     loginError.textContent = 'Tài khoản hoặc mật khẩu chưa đúng.';
   });
 
-  logoutButton.addEventListener('click', showLogin);
+  logoutButton.addEventListener('click', async () => {
+    if (cloud) await cloud.signOut();
+    showLogin();
+  });
 
   const labels = {
     settings: 'Thông tin thương hiệu',
@@ -216,6 +231,22 @@
     if (picker) {
       const file = picker.files?.[0];
       if (!file) return;
+      if (cloud) {
+        // Nén trong trình duyệt rồi tải lên kho ảnh Supabase, lưu đường dẫn.
+        setStatus(`Đang tải ảnh “${file.name}” lên…`);
+        cloud.uploadImage(file, picker.dataset.imagePicker.split('.').pop())
+          .then(res => {
+            if (!res.ok) {
+              setStatus(`Không tải được ảnh: ${res.error}. Hãy chắc bạn đã đăng nhập.`);
+              return;
+            }
+            setByPath(picker.dataset.imagePicker, res.url);
+            render();
+            setStatus(`Đã tải ảnh lên. Bấm “Lưu lên website” để hiển thị cho khách.`);
+          });
+        return;
+      }
+      // Chưa kết nối Supabase: nhúng tạm ảnh vào dữ liệu (dùng cho bản dự phòng).
       if (file.size > 900 * 1024 && !confirm('Ảnh này khá lớn, có thể làm file dữ liệu nặng và website tải chậm. Bạn vẫn muốn dùng ảnh này?')) {
         picker.value = '';
         return;
@@ -224,7 +255,7 @@
       reader.addEventListener('load', () => {
         setByPath(picker.dataset.imagePicker, reader.result);
         render();
-        setStatus(`Đã chọn ảnh “${file.name}”. Bấm “Tải file dữ liệu” để lưu thay đổi.`);
+        setStatus(`Đã chọn ảnh “${file.name}”. Bấm “Tải file dự phòng” để lưu thay đổi.`);
       }, { once: true });
       reader.readAsDataURL(file);
       return;
@@ -252,6 +283,21 @@
     }
   });
 
+  if (saveCloudButton) {
+    saveCloudButton.addEventListener('click', async () => {
+      if (!cloud) {
+        setStatus('Chưa kết nối Supabase. Hãy dán khóa vào supabase-config.js, hoặc dùng “Tải file dự phòng”.');
+        return;
+      }
+      saveCloudButton.disabled = true;
+      setStatus('Đang lưu lên website…');
+      const res = await cloud.saveContent(siteData);
+      saveCloudButton.disabled = false;
+      if (res.ok) setStatus('Đã lưu. Website sẽ hiển thị nội dung mới trong khoảng 1 phút.');
+      else setStatus(`Lưu chưa thành công: ${res.error}. Hãy chắc bạn đang đăng nhập rồi thử lại.`);
+    });
+  }
+
   downloadButton.addEventListener('click', () => {
     const blob = new Blob([JSON.stringify(siteData, null, 2)], { type: 'application/json;charset=utf-8' });
     const url = URL.createObjectURL(blob);
@@ -260,7 +306,7 @@
     link.download = 'site-data.json';
     link.click();
     URL.revokeObjectURL(url);
-    setStatus('Đã tải file site-data.json. Thay file này trong website/assets/data/ để cập nhật website.');
+    setStatus('Đã tải bản dự phòng site-data.json về máy.');
   });
 
   uploadInput.addEventListener('change', async () => {
@@ -275,17 +321,46 @@
     }
   });
 
-  async function init() {
-    if (sessionStorage.getItem(SESSION_KEY) === '1') showApp();
-    else showLogin();
+  async function loadEditorData() {
+    // Ưu tiên nội dung đang chạy trên Supabase; nếu trống thì lấy file gốc để
+    // lần lưu đầu tiên sẽ đưa toàn bộ nội dung hiện tại lên đám mây.
+    if (cloud) {
+      const online = await cloud.loadContent(4000);
+      if (online && online.services) {
+        siteData = online;
+        render();
+        setStatus('Đã tải nội dung đang chạy trên website. Bạn có thể chỉnh sửa.');
+        return;
+      }
+    }
     try {
       const response = await fetch('assets/data/site-data.json', { cache: 'no-cache' });
       siteData = await response.json();
       render();
-      setStatus('Đã tải dữ liệu hiện tại. Bạn có thể bắt đầu chỉnh sửa.');
+      setStatus(cloud
+        ? 'Chưa có dữ liệu trên đám mây — đang dùng nội dung gốc. Bấm “Lưu lên website” để đưa lên lần đầu.'
+        : 'Đã tải dữ liệu hiện tại. Bạn có thể bắt đầu chỉnh sửa.');
     } catch {
       setStatus('Không tải được dữ liệu hiện tại. Hãy nạp file site-data.json thủ công.');
     }
+  }
+
+  async function enterApp() {
+    showApp();
+    await loadEditorData();
+  }
+
+  async function init() {
+    if (cloud) {
+      // Đăng nhập bằng Supabase: nếu phiên còn hiệu lực thì vào thẳng.
+      const user = await cloud.currentUser();
+      if (user) { await enterApp(); return; }
+      showLogin();
+      return;
+    }
+    if (sessionStorage.getItem(SESSION_KEY) === '1') showApp();
+    else showLogin();
+    await loadEditorData();
   }
 
   init();

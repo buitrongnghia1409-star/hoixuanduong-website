@@ -21,7 +21,7 @@
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }
 
-  async function loadSiteData() {
+  async function loadBundledData() {
     try {
       const response = await fetch('assets/data/site-data.json', { cache: 'no-cache' });
       if (!response.ok) throw new Error(`Không tải được dữ liệu: ${response.status}`);
@@ -30,6 +30,20 @@
       console.warn('Hồi Xuân Đường: dùng nội dung dự phòng trong HTML.', error);
       return null;
     }
+  }
+
+  async function loadSiteData() {
+    // Ưu tiên nội dung mới nhất trên Supabase; nếu chưa cấu hình, lỗi, hoặc
+    // trống thì dùng file dữ liệu đóng gói sẵn — web không bao giờ trắng trang.
+    if (window.HXD && window.HXD.configured) {
+      try {
+        const cloud = await window.HXD.loadContent(3500);
+        if (cloud && cloud.services) return cloud;
+      } catch (error) {
+        console.warn('Hồi Xuân Đường: Supabase không phản hồi, dùng dữ liệu dự phòng.', error);
+      }
+    }
+    return loadBundledData();
   }
 
   function renderServices(services = []) {
