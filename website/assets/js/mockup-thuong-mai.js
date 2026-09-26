@@ -114,10 +114,10 @@
 
   function renderSocialChannels(settings = {}) {
     if (settings.youtube) {
-      document.querySelectorAll('.social-channel-card.yt').forEach(el => { el.href = settings.youtube; });
+      document.querySelectorAll('.sc-btn.yt').forEach(el => { el.href = settings.youtube; });
     }
     if (settings.tiktok) {
-      document.querySelectorAll('.social-channel-card.tt').forEach(el => { el.href = settings.tiktok; });
+      document.querySelectorAll('.sc-btn.tt').forEach(el => { el.href = settings.tiktok; });
     }
   }
 
@@ -492,7 +492,7 @@
   }
 
   function initInlineVideos() {
-    const frames = document.querySelectorAll('.offer-video-frame[data-src]');
+    const frames = document.querySelectorAll('.offer-video-frame[data-src], .experience-video-frame[data-src]');
     if (!frames.length) return;
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {

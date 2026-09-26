@@ -393,6 +393,13 @@ main{background:transparent!important}
 .offer-video-frame:-webkit-full-screen{width:100vw;height:100vh}
 .offer-video-frame:fullscreen{width:100vw;height:100vh}
 
+/* Experience section inline video */
+.experience-video-wrap{flex:0 0 auto;width:55%;border-radius:20px;overflow:hidden;background:#0f2a20}
+.experience-video-frame{display:block;width:100%;aspect-ratio:16/9;border:0}
+.experience-video-frame:-webkit-full-screen{width:100vw;height:100vh}
+.experience-video-frame:fullscreen{width:100vw;height:100vh}
+@media(max-width:900px){.experience-video-wrap{width:100%}}
+
 /* Video modal (for testimonial lightbox – unchanged) */
 .video-modal-overlay{position:fixed;inset:0;z-index:9000;background:#000000bb;display:flex;align-items:center;justify-content:center;padding:20px;animation:vmo-in .18s ease}
 @keyframes vmo-in{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
@@ -402,21 +409,18 @@ main{background:transparent!important}
 .video-modal-frame{position:relative;padding-bottom:56.25%;height:0;background:#111}
 .video-modal-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 
-/* Social channels section */
-.social-channels-section{background:var(--paper);padding-block:64px}
-.social-channels-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
-.social-channel-card{display:flex;flex-direction:column;gap:14px;padding:26px 28px;background:#fff;border:1px solid var(--gold-line);border-radius:20px;text-decoration:none;color:var(--ink);box-shadow:inset 0 0 0 1px #fff4dc,0 6px 20px #173e320a;transition:box-shadow .2s,transform .2s}
-.social-channel-card:hover{box-shadow:0 14px 36px #173e3222;transform:translateY(-3px)}
-.sc-platform{display:flex;align-items:center;gap:12px}
-.sc-platform svg{width:34px;height:34px;flex-shrink:0}
-.sc-platform strong{font-size:16px;font-weight:800;color:var(--ink)}
-.yt .sc-platform svg{fill:#ff0000}
-.tt .sc-platform svg{fill:#010101}
-.sc-info{flex:1}
-.sc-name{display:block;font-size:15px;font-weight:700;color:var(--green);margin-bottom:4px}
-.sc-desc{display:block;font-size:13px;color:var(--muted);line-height:1.7}
-.sc-follow{display:inline-block;font-size:13px;font-weight:800;color:var(--gold-dark);letter-spacing:.3px;margin-top:4px}
-@media(max-width:680px){.social-channels-grid{grid-template-columns:1fr}.social-channels-section{padding-block:48px}}
+/* Social channels — compact pill buttons */
+.social-channels-section{background:var(--paper);padding-block:36px 40px;text-align:center}
+.social-channels-wrap .eyebrow{margin-bottom:18px}
+.social-channel-btns{display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.sc-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 24px;border-radius:999px;text-decoration:none;font-weight:800;font-size:14px;letter-spacing:.3px;border:1.5px solid transparent;transition:transform .18s,box-shadow .18s}
+.sc-btn svg{flex-shrink:0}
+.sc-btn.yt{background:#ff0000;color:#fff;border-color:#cc0000}
+.sc-btn.yt svg{fill:#fff}
+.sc-btn.yt:hover{background:#cc0000;transform:translateY(-2px);box-shadow:0 8px 20px #ff000044}
+.sc-btn.tt{background:#010101;color:#fff;border-color:#333}
+.sc-btn.tt svg{fill:#fff}
+.sc-btn.tt:hover{background:#222;transform:translateY(-2px);box-shadow:0 8px 20px #00000044}
 
 /* BUG-03: 3 products in grid → 3 columns (not 4), no empty slot */
 .product-grid{grid-template-columns:repeat(3,1fr)!important}
