@@ -112,7 +112,8 @@
     testimonials: 'Đánh giá khách hàng',
     rating: 'Số sao (1–5)',
     location: 'Địa điểm',
-    text: 'Nội dung đánh giá'
+    text: 'Nội dung đánh giá',
+    image: 'Ảnh xác thực (screenshot Zalo/Facebook)'
   };
 
   const descriptions = {
@@ -133,7 +134,7 @@
     products: { category: 'NHÓM SẢN PHẨM', image: '', title: 'Tên sản phẩm mới', price: 'Liên hệ báo giá', service: 'Tên sản phẩm mới', icon: 'tea', description: 'Mô tả ngắn.' },
     locations: { number: 'CƠ SỞ MỚI', name: 'Tên cơ sở', address: 'Địa chỉ sẽ cập nhật', map: '', branch: 'Tên cơ sở', future: true },
     faqs: { question: 'Câu hỏi mới?', answer: 'Câu trả lời.' },
-    testimonials: { name: 'Tên khách hàng', location: 'Hạ Long', service: 'Tên dịch vụ', rating: 5, text: 'Nội dung đánh giá của khách hàng.' }
+    testimonials: { name: 'Tên khách hàng', location: 'Hạ Long', service: 'Tên dịch vụ', rating: 5, text: 'Nội dung đánh giá của khách hàng.', image: '' }
   };
 
   function setStatus(message) {

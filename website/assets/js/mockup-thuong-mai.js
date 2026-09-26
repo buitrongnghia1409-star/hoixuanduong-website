@@ -143,9 +143,13 @@
       const stars = '★'.repeat(n);
       const initial = (item.name || 'K').trim().charAt(0).toUpperCase();
       const meta = [esc(item.service), esc(item.location)].filter(Boolean).join(' · ');
-      return `<article class="testimonial-card">`
+      const imgHtml = item.image
+        ? `<div class="testimonial-image-wrap"><img class="testimonial-image" src="${esc(item.image)}" alt="Ảnh xác thực từ ${esc(item.name)}" loading="lazy"></div>`
+        : '';
+      return `<article class="testimonial-card${item.image ? ' has-image' : ''}">`
         + `<div class="testimonial-stars">${stars}</div>`
         + `<p class="testimonial-text">${esc(item.text)}</p>`
+        + imgHtml
         + `<div class="testimonial-author">`
         + `<div class="testimonial-avatar">${initial}</div>`
         + `<div class="testimonial-author-info"><strong>${esc(item.name)}</strong><span>${meta}</span></div>`
@@ -412,7 +416,24 @@
     initBooking();
     initEffects();
     initChatWidget();
+    initTestimonialLightbox();
   });
+
+  function initTestimonialLightbox() {
+    document.addEventListener('click', e => {
+      const img = e.target.closest('.testimonial-image');
+      if (!img) return;
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:#000c;display:flex;align-items:center;justify-content:center;cursor:zoom-out;padding:20px';
+      const clone = document.createElement('img');
+      clone.src = img.src;
+      clone.alt = img.alt;
+      clone.style.cssText = 'max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 8px 40px #000a';
+      overlay.appendChild(clone);
+      overlay.addEventListener('click', () => overlay.remove());
+      document.body.appendChild(overlay);
+    });
+  }
 
   // Xem trước sống cho trang admin: nhận dữ liệu qua postMessage và vẽ lại các
   // khối nội dung ngay lập tức. Trên web thật không có ai gửi nên vô hại.
