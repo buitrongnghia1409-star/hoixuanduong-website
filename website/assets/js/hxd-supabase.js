@@ -85,6 +85,19 @@
       .replace(/^-+|-+$/g, '').slice(0, 40) || 'anh';
   }
 
+  // Xóa ảnh cũ khỏi Storage nếu URL thuộc cùng bucket (không chặn luồng chính).
+  function deleteImage(url) {
+    var sb = getClient();
+    if (!sb || !url || typeof url !== 'string') return;
+    var bucket = cfg.bucket || 'site-images';
+    var marker = '/object/public/' + bucket + '/';
+    var idx = url.indexOf(marker);
+    if (idx === -1) return;
+    var path = url.slice(idx + marker.length);
+    if (!path) return;
+    sb.storage.from(bucket).remove([path]).catch(function () {});
+  }
+
   // Nén + tải ảnh lên Storage, trả về {ok, url, error}. Cần đã đăng nhập.
   function uploadImage(file, hint) {
     var sb = getClient();
@@ -127,6 +140,7 @@
     loadContent: loadContent,
     saveContent: saveContent,
     uploadImage: uploadImage,
+    deleteImage: deleteImage,
     signIn: signIn,
     signOut: signOut,
     currentUser: currentUser

@@ -239,6 +239,11 @@
       const file = picker.files?.[0];
       if (!file) return;
       if (cloud) {
+        // Xóa ảnh cũ khỏi Storage (nếu có) trước khi tải ảnh mới lên.
+        const oldUrl = getByPath(picker.dataset.imagePicker);
+        if (oldUrl && typeof oldUrl === 'string' && oldUrl.startsWith('http')) {
+          cloud.deleteImage(oldUrl);
+        }
         // Nén trong trình duyệt rồi tải lên kho ảnh Supabase, lưu đường dẫn.
         setStatus(`Đang tải ảnh “${file.name}” lên…`);
         cloud.uploadImage(file, picker.dataset.imagePicker.split('.').pop())

@@ -52,7 +52,7 @@
     grid.innerHTML = services.map(item => `
       <article class="service-card" data-category="${esc(item.category)}" data-hot="${item.hot ? 'true' : 'false'}">
         <div class="service-image">
-          <img src="${esc(item.image)}" width="1800" height="1200" loading="lazy" alt="${esc(item.alt)}">
+          <img src="${esc(item.image)}" loading="lazy" alt="${esc(item.alt)}">
           <span class="image-label">${esc(item.label)}</span>
         </div>
         <div class="card-body">
@@ -141,7 +141,7 @@
     document.querySelectorAll('a[href^="tel:"]').forEach(link => {
       if (phoneHref) link.href = phoneHref;
       if (link.classList.contains('booking-phone')) link.textContent = `${settings.phone} ↗`;
-      else if (link.textContent.match(/\d/)) link.textContent = settings.phone;
+      else if (/^[\d\s\+\-\(\)\.]+$/.test(link.textContent.trim())) link.textContent = settings.phone;
     });
     document.querySelectorAll('a[href*="zalo.me"]').forEach(link => {
       if (settings.zalo) link.href = settings.zalo;
