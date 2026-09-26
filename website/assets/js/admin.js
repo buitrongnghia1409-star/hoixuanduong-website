@@ -109,6 +109,7 @@
     future: 'Cơ sở sắp cập nhật',
     youtube: 'Link kênh YouTube',
     tiktok: 'Link kênh TikTok',
+    experienceVideoRatio: 'Tỷ lệ video trải nghiệm',
     video: 'Mã nhúng video (iframe Facebook/YouTube hoặc URL)',
     question: 'Câu hỏi',
     answer: 'Câu trả lời',
@@ -149,6 +150,7 @@
     if (['description', 'detail', 'address', 'answer', 'alt', 'video'].includes(key)) return 'textarea';
     if (key === 'category') return 'category';
     if (key === 'icon') return 'icon';
+    if (key === 'experienceVideoRatio') return 'videoratio';
     return 'text';
   }
 
@@ -168,6 +170,9 @@
     }
     if (type === 'icon') {
       return `<div class="field"><label for="${id}">${label}</label><select id="${id}" data-path="${path.join('.')}"><option value="tea"${value === 'tea' ? ' selected' : ''}>Trà</option><option value="oil"${value === 'oil' ? ' selected' : ''}>Tinh dầu</option><option value="box"${value === 'box' ? ' selected' : ''}>Hộp/cao</option><option value="serum"${value === 'serum' ? ' selected' : ''}>Serum</option></select></div>`;
+    }
+    if (type === 'videoratio') {
+      return `<div class="field"><label for="${id}">${label}</label><select id="${id}" data-path="${path.join('.')}"><option value="16:9"${value === '16:9' ? ' selected' : ''}>Ngang 16:9 (Facebook/YouTube thông thường)</option><option value="9:16"${value === '9:16' ? ' selected' : ''}>Dọc 9:16 (Reels, TikTok, video đứng)</option></select></div>`;
     }
     if (key === 'image') {
       const source = String(value || '');

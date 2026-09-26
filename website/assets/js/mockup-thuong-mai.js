@@ -119,6 +119,11 @@
     if (settings.tiktok) {
       document.querySelectorAll('.sc-btn.tt').forEach(el => { el.href = settings.tiktok; });
     }
+    if (settings.experienceVideoRatio) {
+      document.querySelectorAll('.experience-video-wrap').forEach(el => {
+        el.dataset.ratio = settings.experienceVideoRatio;
+      });
+    }
   }
 
   function renderProducts(products = []) {
