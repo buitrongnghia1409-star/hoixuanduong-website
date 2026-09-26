@@ -401,6 +401,12 @@ main{background:transparent!important}
 .exp-play-btn::before{content:'';position:absolute;width:70px;height:70px;border-radius:50%;background:#ffffffdd;backdrop-filter:blur(6px);transition:transform .2s,background .2s}
 .exp-play-btn:hover::before{transform:scale(1.08);background:#fff}
 .exp-play-btn svg{position:relative;fill:var(--green);margin-left:5px}
+/* Experience section full-width video layout */
+.experience-video-layout{display:block}
+.experience-video-layout .experience-video-wrap{position:relative;width:100%;padding-bottom:56.25%;height:0;border-radius:16px 16px 0 0;background:#0f2a20}
+.experience-video-layout .experience-copy{border-radius:0 0 16px 16px;padding:36px 56px}
+.experience-video-frame{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+@media(max-width:620px){.experience-video-layout .experience-copy{padding:28px 24px}}
 
 /* Video modal (for testimonial lightbox – unchanged) */
 .video-modal-overlay{position:fixed;inset:0;z-index:9000;background:#000000bb;display:flex;align-items:center;justify-content:center;padding:20px;animation:vmo-in .18s ease}
