@@ -492,7 +492,7 @@
   }
 
   function initInlineVideos() {
-    const frames = document.querySelectorAll('.offer-video-frame[data-src], .experience-video-frame[data-src]');
+    const frames = document.querySelectorAll('.offer-video-frame[data-src]');
     if (!frames.length) return;
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
