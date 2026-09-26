@@ -107,6 +107,7 @@
     map: 'Link chỉ đường',
     branch: 'Tên cơ sở trong form',
     future: 'Cơ sở sắp cập nhật',
+    video: 'Mã nhúng video (iframe Facebook/YouTube hoặc URL)',
     question: 'Câu hỏi',
     answer: 'Câu trả lời',
     testimonials: 'Đánh giá khách hàng',
@@ -130,7 +131,7 @@
   const templates = {
     hero: { image: 'assets/images/dms07238.jpg', alt: '', eyebrow: 'NHÃN HERO', title: 'Tiêu đề hero', slogan: 'Slogan nổi bật.', description: 'Mô tả ngắn cho ảnh hero.' },
     services: { category: 'tri-lieu', image: 'assets/images/phong-tri-lieu-2.jpg', alt: '', label: 'DỊCH VỤ', title: 'Tên dịch vụ mới', description: 'Mô tả ngắn.', detailTitle: 'Thông tin liệu trình', detail: 'Nội dung chi tiết.', priceLabel: '60 phút', price: 'Liên hệ báo giá', hot: false },
-    offers: { image: '', tag: 'ƯU ĐÃI', title: 'Tên chương trình mới', price: 'Liên hệ', description: 'Mô tả chương trình.', service: 'Tên chương trình mới', cta: 'Đặt lịch tư vấn ↗' },
+    offers: { image: '', tag: 'ƯU ĐÃI', title: 'Tên chương trình mới', price: 'Liên hệ', description: 'Mô tả chương trình.', service: 'Tên chương trình mới', cta: 'Đặt lịch tư vấn ↗', video: '' },
     products: { category: 'NHÓM SẢN PHẨM', image: '', title: 'Tên sản phẩm mới', price: 'Liên hệ báo giá', service: 'Tên sản phẩm mới', icon: 'tea', description: 'Mô tả ngắn.' },
     locations: { number: 'CƠ SỞ MỚI', name: 'Tên cơ sở', address: 'Địa chỉ sẽ cập nhật', map: '', branch: 'Tên cơ sở', future: true },
     faqs: { question: 'Câu hỏi mới?', answer: 'Câu trả lời.' },
@@ -143,7 +144,7 @@
 
   function fieldType(key, value) {
     if (typeof value === 'boolean') return 'checkbox';
-    if (['description', 'detail', 'address', 'answer', 'alt'].includes(key)) return 'textarea';
+    if (['description', 'detail', 'address', 'answer', 'alt', 'video'].includes(key)) return 'textarea';
     if (key === 'category') return 'category';
     if (key === 'icon') return 'icon';
     return 'text';

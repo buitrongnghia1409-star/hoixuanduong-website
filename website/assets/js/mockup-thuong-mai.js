@@ -81,22 +81,41 @@
       </article>`).join('');
   }
 
+  function extractVideoSrc(raw) {
+    if (!raw) return '';
+    const m = String(raw).match(/src=["']([^"']+)["']/);
+    return m ? m[1] : raw.trim();
+  }
+
   function renderOffers(offers = []) {
     const panel = document.querySelector('.offer-panel');
     if (!panel || !offers.length) return;
-    panel.innerHTML = offers.map(item => `
-      <article class="offer-card${item.image ? ' has-poster' : ''}"${item.image ? ` style="--offer-image:url('${esc(item.image)}')"` : ''}>
+    panel.innerHTML = offers.map(item => {
+      const videoSrc = extractVideoSrc(item.video || '');
+      const playBtn = videoSrc
+        ? `<button class="offer-play-btn" data-video="${esc(videoSrc)}" aria-label="Xem video giới thiệu">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+           </button>`
+        : '';
+      return `
+      <article class="offer-card${item.image ? ' has-poster' : ''}${videoSrc ? ' has-video' : ''}"${item.image ? ` style="--offer-image:url('${esc(item.image)}')"` : ''}>
         <div class="offer-media">
           ${item.image ? `<img class="offer-poster" src="${esc(item.image)}" alt="${esc(item.title)}" loading="lazy">` : `<span>${esc(item.tag || 'Ưu đãi')}</span>`}
+          ${playBtn}
         </div>
         <div class="offer-card-content">
           <span class="offer-tag">${esc(item.tag)}</span>
           <h3>${esc(item.title)}</h3>
           ${item.price ? `<strong class="offer-price">${esc(item.price)}</strong>` : ''}
           <p>${lines(item.description)}</p>
-          <a class="offer-cta" href="#dat-lich" data-service="${esc(item.service || item.title)}" aria-label="Tư vấn ${esc(item.service || item.title)}">${esc(item.cta || 'Đặt lịch tư vấn ↗')}</a>
+          ${videoSrc
+            ? `<button class="offer-cta offer-cta-video" data-video="${esc(videoSrc)}" type="button">▶ Xem video dịch vụ</button>
+               <a class="offer-cta offer-cta-book" href="#dat-lich" data-service="${esc(item.service || item.title)}">${esc(item.cta || 'Đặt lịch tư vấn ↗')}</a>`
+            : `<a class="offer-cta" href="#dat-lich" data-service="${esc(item.service || item.title)}" aria-label="Tư vấn ${esc(item.service || item.title)}">${esc(item.cta || 'Đặt lịch tư vấn ↗')}</a>`
+          }
         </div>
-      </article>`).join('');
+      </article>`;
+    }).join('');
   }
 
   function renderProducts(products = []) {
@@ -417,6 +436,7 @@
     initEffects();
     initChatWidget();
     initTestimonialLightbox();
+    initVideoModal();
   });
 
   function initTestimonialLightbox() {
@@ -432,6 +452,46 @@
       overlay.appendChild(clone);
       overlay.addEventListener('click', () => overlay.remove());
       document.body.appendChild(overlay);
+    });
+  }
+
+  function openVideoModal(src) {
+    const existing = document.getElementById('hxd-video-modal');
+    if (existing) existing.remove();
+    const overlay = document.createElement('div');
+    overlay.id = 'hxd-video-modal';
+    overlay.className = 'video-modal-overlay';
+    const box = document.createElement('div');
+    box.className = 'video-modal-box';
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'video-modal-close';
+    closeBtn.textContent = '✕';
+    closeBtn.setAttribute('aria-label', 'Đóng video');
+    const frameWrap = document.createElement('div');
+    frameWrap.className = 'video-modal-frame';
+    const iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('scrolling', 'no');
+    iframe.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share');
+    frameWrap.appendChild(iframe);
+    box.appendChild(closeBtn);
+    box.appendChild(frameWrap);
+    overlay.appendChild(box);
+    const close = () => { iframe.src = ''; overlay.remove(); };
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); }, { once: true });
+    document.body.appendChild(overlay);
+  }
+
+  function initVideoModal() {
+    document.addEventListener('click', e => {
+      const trigger = e.target.closest('[data-video]');
+      if (!trigger) return;
+      e.preventDefault();
+      openVideoModal(trigger.dataset.video);
     });
   }
 
