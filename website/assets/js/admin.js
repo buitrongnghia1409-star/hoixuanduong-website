@@ -107,6 +107,8 @@
     map: 'Link chỉ đường',
     branch: 'Tên cơ sở trong form',
     future: 'Cơ sở sắp cập nhật',
+    youtube: 'Link kênh YouTube',
+    tiktok: 'Link kênh TikTok',
     video: 'Mã nhúng video (iframe Facebook/YouTube hoặc URL)',
     question: 'Câu hỏi',
     answer: 'Câu trả lời',

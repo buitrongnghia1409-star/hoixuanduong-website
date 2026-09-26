@@ -92,30 +92,33 @@
     if (!panel || !offers.length) return;
     panel.innerHTML = offers.map(item => {
       const videoSrc = extractVideoSrc(item.video || '');
-      const playBtn = videoSrc
-        ? `<button class="offer-play-btn" data-video="${esc(videoSrc)}" aria-label="Xem video giới thiệu">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-           </button>`
-        : '';
+      const mediaHtml = videoSrc
+        ? `<iframe class="offer-video-frame" data-src="${esc(videoSrc)}" src="" title="Video giới thiệu ${esc(item.title)}" frameborder="0" scrolling="no" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; fullscreen" allowfullscreen></iframe>`
+        : item.image
+          ? `<img class="offer-poster" src="${esc(item.image)}" alt="${esc(item.title)}" loading="lazy">`
+          : `<span>${esc(item.tag || 'Ưu đãi')}</span>`;
       return `
-      <article class="offer-card${item.image ? ' has-poster' : ''}${videoSrc ? ' has-video' : ''}"${item.image ? ` style="--offer-image:url('${esc(item.image)}')"` : ''}>
-        <div class="offer-media">
-          ${item.image ? `<img class="offer-poster" src="${esc(item.image)}" alt="${esc(item.title)}" loading="lazy">` : `<span>${esc(item.tag || 'Ưu đãi')}</span>`}
-          ${playBtn}
-        </div>
+      <article class="offer-card${item.image ? ' has-poster' : ''}${videoSrc ? ' has-video' : ''}"${item.image && !videoSrc ? ` style="--offer-image:url('${esc(item.image)}')"` : ''}>
+        <div class="offer-media">${mediaHtml}</div>
         <div class="offer-card-content">
           <span class="offer-tag">${esc(item.tag)}</span>
           <h3>${esc(item.title)}</h3>
           ${item.price ? `<strong class="offer-price">${esc(item.price)}</strong>` : ''}
           <p>${lines(item.description)}</p>
-          ${videoSrc
-            ? `<button class="offer-cta offer-cta-video" data-video="${esc(videoSrc)}" type="button">▶ Xem video dịch vụ</button>
-               <a class="offer-cta offer-cta-book" href="#dat-lich" data-service="${esc(item.service || item.title)}">${esc(item.cta || 'Đặt lịch tư vấn ↗')}</a>`
-            : `<a class="offer-cta" href="#dat-lich" data-service="${esc(item.service || item.title)}" aria-label="Tư vấn ${esc(item.service || item.title)}">${esc(item.cta || 'Đặt lịch tư vấn ↗')}</a>`
-          }
+          <a class="offer-cta" href="#dat-lich" data-service="${esc(item.service || item.title)}" aria-label="Tư vấn ${esc(item.service || item.title)}">${esc(item.cta || 'Đặt lịch tư vấn ↗')}</a>
         </div>
       </article>`;
     }).join('');
+    initInlineVideos();
+  }
+
+  function renderSocialChannels(settings = {}) {
+    if (settings.youtube) {
+      document.querySelectorAll('.social-channel-card.yt').forEach(el => { el.href = settings.youtube; });
+    }
+    if (settings.tiktok) {
+      document.querySelectorAll('.social-channel-card.tt').forEach(el => { el.href = settings.tiktok; });
+    }
   }
 
   function renderProducts(products = []) {
@@ -426,6 +429,7 @@
       renderLocations(data.locations);
       renderFaqs(data.faqs);
       renderTestimonials(data.testimonials);
+      renderSocialChannels(data.settings || {});
       fillBookingOptions(data);
     }
     applyTapIcons();
@@ -437,6 +441,7 @@
     initChatWidget();
     initTestimonialLightbox();
     initVideoModal();
+    initInlineVideos();
   });
 
   function initTestimonialLightbox() {
@@ -486,6 +491,32 @@
     document.body.appendChild(overlay);
   }
 
+  function initInlineVideos() {
+    const frames = document.querySelectorAll('.offer-video-frame[data-src]');
+    if (!frames.length) return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const frame = entry.target;
+        try {
+          const url = new URL(frame.dataset.src);
+          if (url.hostname.includes('facebook.com')) {
+            url.searchParams.set('autoplay', 'true');
+            url.searchParams.set('muted', 'true');
+          } else {
+            url.searchParams.set('autoplay', '1');
+            url.searchParams.set('mute', '1');
+          }
+          frame.src = url.toString();
+        } catch (e) {
+          frame.src = frame.dataset.src;
+        }
+        obs.unobserve(frame);
+      });
+    }, { threshold: 0.35, rootMargin: '0px 0px -60px 0px' });
+    frames.forEach(f => obs.observe(f));
+  }
+
   function initVideoModal() {
     document.addEventListener('click', e => {
       const trigger = e.target.closest('[data-video]');
@@ -510,6 +541,7 @@
       renderLocations(data.locations || []);
       renderFaqs(data.faqs || []);
       renderTestimonials(data.testimonials || []);
+      renderSocialChannels(data.settings || {});
       fillBookingOptions(data);
       applyTapIcons();
       var active = document.querySelector('[data-filter].active') || document.querySelector('[data-filter]');
