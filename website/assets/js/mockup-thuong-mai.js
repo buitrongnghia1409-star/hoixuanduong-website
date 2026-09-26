@@ -110,7 +110,7 @@
         <p class="eyebrow">${esc(item.category)}</p>
         <h3>${esc(item.title)}</h3>
         ${item.description ? `<p class="product-desc">${esc(item.description)}</p>` : ''}
-        <div class="product-bottom"><span>${esc(item.price || 'Liên hệ báo giá')}</span><a href="#dat-lich" data-service="${esc(item.service || item.title)}" aria-label="Hỏi về ${esc(item.title)}">↗</a></div>
+        <div class="product-bottom"><span>${esc(item.price || 'Liên hệ báo giá')}</span><a href="#dat-lich" data-service="${esc(item.service || item.title)}" aria-label="Hỏi về ${esc(item.title)}">Tư vấn</a></div>
       </article>`).join('');
   }
 
@@ -243,6 +243,17 @@
       heroTimer = setInterval(() => showHeroSlide(heroIndex + 1), 9800);
     }
     heroDots.forEach(dot => dot.addEventListener('click', () => { showHeroSlide(Number(dot.dataset.heroDot)); startHeroTimer(); }));
+    const carousel = document.querySelector('.hero-carousel');
+    if (carousel) {
+      let touchStartX = 0;
+      carousel.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+      carousel.addEventListener('touchend', e => {
+        const delta = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(delta) < 40) return;
+        showHeroSlide(heroIndex + (delta < 0 ? 1 : -1));
+        startHeroTimer();
+      }, { passive: true });
+    }
     showHeroSlide(0);
     startHeroTimer();
   }
