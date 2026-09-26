@@ -369,3 +369,8 @@ main{background:transparent!important}
 /* BUG-04: offer card content must be readable on touch devices, not only on hover */
 .offer-card.has-poster .offer-card-content{transform:none!important}
 .offer-card.has-poster .offer-card-content h3,.offer-card.has-poster .offer-card-content p{display:block!important}
+
+/* BUG-03: 3 products in grid → 3 columns (not 4), no empty slot */
+.product-grid{grid-template-columns:repeat(3,1fr)!important}
+@media(max-width:900px){.product-grid{grid-template-columns:repeat(2,1fr)!important}}
+@media(max-width:620px){.product-grid{grid-template-columns:1fr 1fr!important}}

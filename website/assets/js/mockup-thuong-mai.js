@@ -293,7 +293,7 @@
     form.addEventListener('submit', event => {
       event.preventDefault();
       const day = date.value ? `, dự kiến ngày ${date.value.split('-').reverse().join('/')}` : '';
-      message.textContent = `Chào Hồi Xuân Đường, tôi muốn được tư vấn về ${service.value.toLowerCase()} tại cơ sở ${branch.value}${day}. Vui lòng cho tôi biết giá, thời lượng và lịch trống phù hợp. Cảm ơn!`;
+      message.textContent = `Chào Hồi Xuân Đường, tôi muốn được tư vấn về ${service.value} tại cơ sở ${branch.value}${day}. Vui lòng cho tôi biết giá, thời lượng và lịch trống phù hợp. Cảm ơn!`;
       status.textContent = 'Nội dung đã sẵn sàng. Sao chép và gửi qua Zalo để được tư vấn.';
       result.hidden = false;
     });
@@ -398,9 +398,11 @@
       renderProducts(data.products || []);
       renderLocations(data.locations || []);
       renderFaqs(data.faqs || []);
+      fillBookingOptions(data);
       applyTapIcons();
       var active = document.querySelector('[data-filter].active') || document.querySelector('[data-filter]');
       if (active) active.click();
+      initBooking();
     } catch (err) { /* xem trước lỗi thì bỏ qua, không làm hỏng gì */ }
   });
 })();
