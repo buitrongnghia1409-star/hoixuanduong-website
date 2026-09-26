@@ -1,6 +1,4 @@
 (() => {
-  const USER_HASH = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
-  const PASS_HASH = 'd778b05d1175765ee7b6066fe24c66e83db52374a09f344684c5988e8ea74edb';
   const SESSION_KEY = 'hxd_admin_logged_in';
   const loginScreen = document.querySelector('#login-screen');
   const loginForm = document.querySelector('#login-form');
@@ -32,12 +30,6 @@
     previewFrame.addEventListener('load', function () { pushPreview(); });
   }
 
-  async function sha256(value) {
-    const data = new TextEncoder().encode(value);
-    const hash = await crypto.subtle.digest('SHA-256', data);
-    return [...new Uint8Array(hash)].map(byte => byte.toString(16).padStart(2, '0')).join('');
-  }
-
   function showApp() {
     sessionStorage.setItem(SESSION_KEY, '1');
     document.body.classList.add('is-logged-in');
@@ -62,18 +54,14 @@
 
     // Khi đã kết nối Supabase: đăng nhập thật qua máy chủ (an toàn, không dò
     // được từ mã nguồn). Khi chưa cấu hình: tạm dùng mã băm cũ để không kẹt.
-    if (cloud) {
-      loginError.textContent = 'Đang đăng nhập…';
-      const res = await cloud.signIn(username, password);
-      if (res.ok) { loginError.textContent = ''; await enterApp(); return; }
-      loginError.textContent = 'Email hoặc mật khẩu chưa đúng.';
+    if (!cloud) {
+      loginError.textContent = 'Chưa kết nối Supabase. Kiểm tra cấu hình.';
       return;
     }
-    if (await sha256(username) === USER_HASH && await sha256(password) === PASS_HASH) {
-      showApp();
-      return;
-    }
-    loginError.textContent = 'Tài khoản hoặc mật khẩu chưa đúng.';
+    loginError.textContent = 'Đang đăng nhập…';
+    const res = await cloud.signIn(username, password);
+    if (res.ok) { loginError.textContent = ''; await enterApp(); return; }
+    loginError.textContent = 'Email hoặc mật khẩu chưa đúng.';
   });
 
   logoutButton.addEventListener('click', async () => {

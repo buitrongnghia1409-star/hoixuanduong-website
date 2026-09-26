@@ -332,7 +332,7 @@ main{background:transparent!important}
 .service-card .round-link,#dich-vu .round-link{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:2px!important}
 
 /* Service CTA sits below the price in the visual hierarchy */
-#dich-vu .round-link{min-width:0!important;height:30px!important;padding:0 11px!important;font-size:11px!important;font-weight:800!important;gap:3px!important;box-shadow:0 6px 14px rgba(0,0,0,.18)!important}
+#dich-vu .round-link{min-width:0!important;min-height:44px!important;height:auto!important;padding:0 13px!important;font-size:11px!important;font-weight:800!important;gap:3px!important;box-shadow:0 6px 14px rgba(0,0,0,.18)!important}
 #dich-vu .round-link .tap-icon{width:13px;height:13px;margin-left:.25em}
 
 /* Photo-forward service cards: smaller type, no side scrim, text kept in the lower third */
@@ -358,3 +358,7 @@ main{background:transparent!important}
 /* Bớt đậm cho nhãn nhỏ và giá để nhẹ mắt hơn */
 .eyebrow{font-weight:600!important}
 #dich-vu .price{font-weight:600!important;letter-spacing:-.3px!important}
+
+/* Touch target minimums (WCAG 44×44px) */
+.product-bottom a{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center}
+.text-link{min-height:44px}

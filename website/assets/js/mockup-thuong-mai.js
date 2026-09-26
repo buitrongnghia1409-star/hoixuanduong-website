@@ -37,7 +37,7 @@
     // trống thì dùng file dữ liệu đóng gói sẵn — web không bao giờ trắng trang.
     if (window.HXD && window.HXD.configured) {
       try {
-        const cloud = await window.HXD.loadContent(3500);
+        const cloud = await window.HXD.loadContent(1500);
         if (cloud && cloud.services) return cloud;
       } catch (error) {
         console.warn('Hồi Xuân Đường: Supabase không phản hồi, dùng dữ liệu dự phòng.', error);
