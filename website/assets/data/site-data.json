@@ -476,5 +476,42 @@
       "question": "Có thể mua sản phẩm chăm sóc tại nhà không?",
       "answer": "Bạn có thể hỏi đội ngũ tư vấn về sản phẩm thảo dược hiện có, thông tin sử dụng và giá bán. Danh mục trên website đang được hoàn thiện."
     }
+  ],
+  "testimonials": [
+    {
+      "name": "Chị Minh Ngọc",
+      "location": "Hạ Long",
+      "service": "Bấm huyệt & chăm sóc cổ vai gáy",
+      "rating": 5,
+      "text": "Đến cơ sở Bãi Cháy lần đầu theo lời giới thiệu. Kỹ thuật viên kiểm tra thể trạng kỹ trước khi thực hiện, giải thích từng bước rõ ràng. Sau 5 buổi cổ vai gáy đỡ hẳn, ngủ sâu giấc hơn trước."
+    },
+    {
+      "name": "Anh Thanh Bình",
+      "location": "Hạ Long",
+      "service": "Xông hơi thảo dược",
+      "rating": 5,
+      "text": "Không gian yên tĩnh, thơm mùi thảo dược tự nhiên, rất thư giãn. Nhân viên thân thiện, không giới thiệu thêm dịch vụ khi mình không hỏi. Sẽ quay lại và giới thiệu cho cả gia đình."
+    },
+    {
+      "name": "Chị Thu Hà",
+      "location": "Quảng Ninh",
+      "service": "Chăm sóc da & sắc vóc",
+      "rating": 5,
+      "text": "Tư vấn kỹ trước khi chọn liệu trình, không ép mua thêm combo. Da sau chăm sóc mịn và căng hơn thấy rõ. Mình hay bị da nhạy cảm nhưng quy trình ở đây nhẹ nhàng, không kích ứng."
+    },
+    {
+      "name": "Anh Quốc Dũng",
+      "location": "Hạ Long",
+      "service": "Dưỡng sinh & dinh dưỡng",
+      "rating": 5,
+      "text": "Đặt lịch tư vấn dưỡng sinh cho ba mình. Đội ngũ lắng nghe rất cẩn thận, đưa ra hướng chăm sóc phù hợp với người lớn tuổi. Ba hài lòng, cảm thấy được tôn trọng."
+    },
+    {
+      "name": "Chị Lan Anh",
+      "location": "Hạ Long",
+      "service": "Combo 02 buổi chăm sóc 299K",
+      "rating": 5,
+      "text": "Mua combo 299K cho 2 buổi, hoàn toàn xứng đáng. Cơ sở sạch sẽ, nhân viên chuyên nghiệp. Không gian như spa cao cấp nhưng giá rất phải chăng. Lần sau sẽ chọn gói dài hơn."
+    }
   ]
 }

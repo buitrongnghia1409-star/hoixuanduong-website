@@ -135,6 +135,24 @@
     list.innerHTML = faqs.map(item => `<details><summary>${esc(item.question)} <span>+</span></summary><p>${esc(item.answer)}</p></details>`).join('');
   }
 
+  function renderTestimonials(items = []) {
+    const grid = document.querySelector('.testimonial-grid');
+    if (!grid || !items.length) return;
+    grid.innerHTML = items.map(item => {
+      const n = Math.min(5, Math.max(1, parseInt(item.rating) || 5));
+      const stars = '★'.repeat(n);
+      const initial = (item.name || 'K').trim().charAt(0).toUpperCase();
+      const meta = [esc(item.service), esc(item.location)].filter(Boolean).join(' · ');
+      return `<article class="testimonial-card">`
+        + `<div class="testimonial-stars">${stars}</div>`
+        + `<p class="testimonial-text">${esc(item.text)}</p>`
+        + `<div class="testimonial-author">`
+        + `<div class="testimonial-avatar">${initial}</div>`
+        + `<div class="testimonial-author-info"><strong>${esc(item.name)}</strong><span>${meta}</span></div>`
+        + `</div></article>`;
+    }).join('');
+  }
+
   function applySettings(settings = {}) {
     if (!settings.phone && !settings.zalo && !settings.workingHours) return;
     const phoneHref = settings.phone ? `tel:${settings.phone.replace(/\D/g, '')}` : null;
@@ -384,6 +402,7 @@
       renderProducts(data.products);
       renderLocations(data.locations);
       renderFaqs(data.faqs);
+      renderTestimonials(data.testimonials);
       fillBookingOptions(data);
     }
     applyTapIcons();
@@ -409,6 +428,7 @@
       renderProducts(data.products || []);
       renderLocations(data.locations || []);
       renderFaqs(data.faqs || []);
+      renderTestimonials(data.testimonials || []);
       fillBookingOptions(data);
       applyTapIcons();
       var active = document.querySelector('[data-filter].active') || document.querySelector('[data-filter]');

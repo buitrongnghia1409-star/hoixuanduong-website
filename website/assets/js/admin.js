@@ -108,7 +108,11 @@
     branch: 'Tên cơ sở trong form',
     future: 'Cơ sở sắp cập nhật',
     question: 'Câu hỏi',
-    answer: 'Câu trả lời'
+    answer: 'Câu trả lời',
+    testimonials: 'Đánh giá khách hàng',
+    rating: 'Số sao (1–5)',
+    location: 'Địa điểm',
+    text: 'Nội dung đánh giá'
   };
 
   const descriptions = {
@@ -118,7 +122,8 @@
     offers: 'Khu vực chương trình trải nghiệm, voucher, sự kiện hoặc khuyến mãi.',
     products: 'Danh mục sản phẩm hiển thị trên website. Có thể sửa tên, giá và nhóm.',
     locations: 'Danh sách chi nhánh. Bật “sắp cập nhật” nếu chưa có địa chỉ chính thức.',
-    faqs: 'Những câu hỏi thường gặp dưới trang.'
+    faqs: 'Những câu hỏi thường gặp dưới trang.',
+    testimonials: 'Đánh giá thực từ khách hàng – hiển thị trong phần "Khách hàng nói gì".'
   };
 
   const templates = {
@@ -127,7 +132,8 @@
     offers: { image: '', tag: 'ƯU ĐÃI', title: 'Tên chương trình mới', price: 'Liên hệ', description: 'Mô tả chương trình.', service: 'Tên chương trình mới', cta: 'Đặt lịch tư vấn ↗' },
     products: { category: 'NHÓM SẢN PHẨM', image: '', title: 'Tên sản phẩm mới', price: 'Liên hệ báo giá', service: 'Tên sản phẩm mới', icon: 'tea', description: 'Mô tả ngắn.' },
     locations: { number: 'CƠ SỞ MỚI', name: 'Tên cơ sở', address: 'Địa chỉ sẽ cập nhật', map: '', branch: 'Tên cơ sở', future: true },
-    faqs: { question: 'Câu hỏi mới?', answer: 'Câu trả lời.' }
+    faqs: { question: 'Câu hỏi mới?', answer: 'Câu trả lời.' },
+    testimonials: { name: 'Tên khách hàng', location: 'Hạ Long', service: 'Tên dịch vụ', rating: 5, text: 'Nội dung đánh giá của khách hàng.' }
   };
 
   function setStatus(message) {
@@ -218,6 +224,7 @@
       renderArrayGroup('products'),
       renderArrayGroup('locations'),
       renderArrayGroup('faqs'),
+      renderArrayGroup('testimonials'),
       `<section class="group"><div class="group-head"><div><h2>Xem nhanh file dữ liệu</h2><p>Phần này để kiểm tra tổng thể trước khi tải file.</p></div></div><div class="items"><pre class="json-preview">${escapeHtml(JSON.stringify(siteData, null, 2))}</pre></div></section>`
     ].join('');
     pushPreview();
