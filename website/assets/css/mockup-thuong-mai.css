@@ -362,3 +362,10 @@ main{background:transparent!important}
 /* Touch target minimums (WCAG 44×44px) */
 .product-bottom a{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center}
 .text-link{min-height:44px}
+
+/* BUG-01: floating nav-booking overlaps content on mobile — hide it (mobile-contact bar handles booking) */
+@media(max-width:768px){.nav-booking{display:none!important}}
+
+/* BUG-04: offer card content must be readable on touch devices, not only on hover */
+.offer-card.has-poster .offer-card-content{transform:none!important}
+.offer-card.has-poster .offer-card-content h3,.offer-card.has-poster .offer-card-content p{display:block!important}

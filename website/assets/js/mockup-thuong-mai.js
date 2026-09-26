@@ -169,7 +169,9 @@
       serviceSelect.innerHTML = [...new Set(names)].map(name => `<option>${esc(name)}</option>`).join('');
     }
     if (branchSelect && data?.locations?.length) {
-      branchSelect.innerHTML = data.locations.map(item => `<option>${esc(item.branch || item.name)}</option>`).join('');
+      branchSelect.innerHTML = data.locations
+        .filter(item => !item.future)
+        .map(item => `<option>${esc(item.branch || item.name)}</option>`).join('');
     }
   }
 
