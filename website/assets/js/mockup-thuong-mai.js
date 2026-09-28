@@ -38,7 +38,10 @@
     if (window.HXD && window.HXD.configured) {
       try {
         const cloud = await window.HXD.loadContent(1500);
-        if (cloud && cloud.services) return cloud;
+        if (cloud && cloud.services) {
+          const bundled = await loadBundledData();
+          return Object.assign({}, bundled, cloud);
+        }
       } catch (error) {
         console.warn('Hồi Xuân Đường: Supabase không phản hồi, dùng dữ liệu dự phòng.', error);
       }
