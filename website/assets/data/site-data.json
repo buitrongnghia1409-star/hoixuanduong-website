@@ -477,7 +477,7 @@
       "service": "Chăm sóc vai cổ gáy",
       "rating": 5,
       "text": "Ngày đầu về hơi ê ê một chút, nhưng ngủ ngon và nhẹ người hơn thật sự. Cũng bớt hẳn cái vùng vai.",
-      "image": ""
+      "image": "assets/images/testimonials/huyen-umi.jpg"
     },
     {
       "name": "Phạm Tươi",
@@ -485,7 +485,7 @@
       "service": "Chăm sóc vai cổ gáy",
       "rating": 5,
       "text": "Hôm trước làm xong đỡ hẳn, hôm nay ghé tiếp. Gói vai gáy 90p hiệu quả lắm!",
-      "image": ""
+      "image": "assets/images/testimonials/pham-tuoi.jpg"
     },
     {
       "name": "Nguyễn Lanh",
@@ -493,7 +493,7 @@
       "service": "Chăm sóc vùng đầu",
       "rating": 5,
       "text": "Cô mất ngủ nửa năm nay rồi, thế mà qua làm được mấy hôm cô dễ vào giấc hơn, ngủ ngon hơn. Hôm sau cô qua mua luôn liệu trình dưỡng gan.",
-      "image": ""
+      "image": "assets/images/testimonials/nguyen-lanh.jpg"
     },
     {
       "name": "A Lộc",
@@ -501,15 +501,23 @@
       "service": "Dưỡng can – thanh lọc cơ thể",
       "rating": 5,
       "text": "Lâu lắm rồi mới ngủ được giấc trưa thoải mái thế này. Làm mới được 30 phút bài gan mà đã thấy tinh thần cải thiện hẳn.",
-      "image": ""
+      "image": "assets/images/testimonials/a-loc.jpg"
     },
     {
       "name": "Pl e Thắng",
       "location": "Hạ Long",
       "service": "Chăm sóc vùng đầu",
       "rating": 5,
-      "text": "Dễ ngủ hơn và không đau nhức đầu nhiều như trước nữa. Đã đi thăm khám ở nhiều chỗ, thật may mắn khi được biết đến Hồi Xuân Đường.",
-      "image": ""
+      "text": "Dễ ngủ hơn và không đau nhức đầu nhiều như trước nữa. Đã đi thăm khám ở nhiều chỗ khác nhau, thật may mắn khi được biết đến Hồi Xuân Đường.",
+      "image": "assets/images/testimonials/pl-e-thang.jpg"
+    },
+    {
+      "name": "Nguyễn Hạ Trang",
+      "location": "Hạ Long",
+      "service": "Trị liệu xoang",
+      "rating": 5,
+      "text": "Mới làm được 1/4 liệu trình mà trộm vía đỡ hơn, nhẹ người hơn và tối đến sáng ra được nhiều dịch. Mong hết liệu trình khoẻ!",
+      "image": "assets/images/testimonials/nguyen-ha-trang.jpg"
     }
   ]
 }

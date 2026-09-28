@@ -179,7 +179,7 @@
       const initial = (item.name || 'K').trim().charAt(0).toUpperCase();
       const meta = [esc(item.service), esc(item.location)].filter(Boolean).join(' · ');
       const imgHtml = item.image
-        ? `<div class="testimonial-image-wrap"><img class="testimonial-image" src="${esc(item.image)}" alt="Ảnh xác thực từ ${esc(item.name)}" loading="lazy"></div>`
+        ? `<div class="testimonial-image-wrap"><img class="testimonial-image" src="${esc(item.image)}" alt="Ảnh xác thực từ ${esc(item.name)}" loading="lazy" data-lightbox="${esc(item.image)}"></div>`
         : '';
       return `<article class="testimonial-card${item.image ? ' has-image' : ''}">`
         + `<div class="testimonial-stars">${stars}</div>`
@@ -190,6 +190,20 @@
         + `<div class="testimonial-author-info"><strong>${esc(item.name)}</strong><span>${meta}</span></div>`
         + `</div></article>`;
     }).join('');
+
+    // Lightbox: click ảnh để phóng to
+    grid.addEventListener('click', function(e) {
+      const img = e.target.closest('[data-lightbox]');
+      if (!img) return;
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;display:flex;align-items:center;justify-content:center;cursor:zoom-out;padding:16px';
+      const big = document.createElement('img');
+      big.src = img.dataset.lightbox;
+      big.style.cssText = 'max-width:100%;max-height:90vh;border-radius:10px;box-shadow:0 8px 40px rgba(0,0,0,.6)';
+      overlay.appendChild(big);
+      overlay.addEventListener('click', () => overlay.remove());
+      document.body.appendChild(overlay);
+    });
   }
 
   function applySettings(settings = {}) {
