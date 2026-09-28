@@ -144,14 +144,16 @@
   function renderLocations(locations = []) {
     const grid = document.querySelector('.locations');
     if (!grid || !locations.length) return;
-    grid.innerHTML = locations.map(item => `
-      <article class="${item.future ? 'location-future' : ''}">
+    const active = locations.filter(item => !item.future);
+    if (!active.length) return;
+    grid.innerHTML = active.map(item => `
+      <article>
         <span class="location-number">${esc(item.number)}</span>
         <h3>${esc(item.name)}</h3>
         <p>${lines(item.address)}</p>
         <div>
-          ${item.future ? '<span class="location-status">Sắp cập nhật</span>' : `<a class="text-link" href="${esc(item.map)}" target="_blank" rel="noopener">Chỉ đường ↗</a>`}
-          <a href="#dat-lich" data-branch="${esc(item.branch || item.name)}" class="button outline small">${item.future ? 'Quan tâm cơ sở này' : 'Chọn cơ sở này'}</a>
+          <a class="text-link" href="${esc(item.map)}" target="_blank" rel="noopener">Chỉ đường ↗</a>
+          <a href="#dat-lich" data-branch="${esc(item.branch || item.name)}" class="button outline small">Chọn cơ sở này</a>
         </div>
       </article>`).join('');
   }

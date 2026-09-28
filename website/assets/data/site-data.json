@@ -443,24 +443,10 @@
     },
     {
       "number": "CƠ SỞ 03",
-      "name": "Cẩm Phả",
-      "address": "Chi nhánh đang chuẩn bị cập nhật địa chỉ.\nNhận tư vấn trước khi khai trương.",
-      "branch": "Cẩm Phả",
-      "future": true
-    },
-    {
-      "number": "CƠ SỞ 04",
-      "name": "Uông Bí",
-      "address": "Khu vực mở rộng hệ thống trong thời gian tới.\nThông tin chính thức sẽ bổ sung sau.",
-      "branch": "Uông Bí",
-      "future": true
-    },
-    {
-      "number": "CƠ SỞ 05",
-      "name": "Vân Đồn",
-      "address": "Điểm chờ mở rộng để hệ thống dễ thêm chi nhánh.\nĐịa chỉ sẽ được cập nhật khi sẵn sàng.",
-      "branch": "Vân Đồn",
-      "future": true
+      "name": "Phủ Lý — Hà Nam",
+      "address": "146 Lý Thái Tổ, Phường Châu Sơn,\nTP. Phủ Lý, Tỉnh Hà Nam",
+      "map": "https://www.google.com/maps/search/?api=1&query=146+Ly+Thai+To+Chau+Son+Phu+Ly+Ha+Nam",
+      "branch": "Phủ Lý"
     }
   ],
   "faqs": [
