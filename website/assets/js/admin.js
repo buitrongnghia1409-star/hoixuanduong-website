@@ -118,7 +118,11 @@
     rating: 'Số sao (1–5)',
     location: 'Địa điểm',
     text: 'Nội dung đánh giá',
-    image: 'Ảnh xác thực (screenshot Zalo/Facebook)'
+    image: 'Ảnh xác thực (screenshot Zalo/Facebook)',
+    causes: 'Nguyên nhân dẫn đến tình trạng',
+    commonMethods: 'Các phương pháp thông thường',
+    hxdDifference: 'Sự khác biệt tại Hồi Xuân Đường',
+    packagesText: 'Bảng giá gói (mỗi dòng: Tên gói | Giá | Ghi chú)'
   };
 
   const descriptions = {
@@ -134,7 +138,7 @@
 
   const templates = {
     hero: { image: 'assets/images/dms07238.jpg', alt: '', eyebrow: 'NHÃN HERO', title: 'Tiêu đề slide', slogan: 'Slogan nổi bật.', description: 'Mô tả ngắn cho ảnh hero.', imgPosition: 'center center' },
-    services: { category: 'tri-lieu', image: 'assets/images/phong-tri-lieu-2.jpg', alt: '', label: 'DỊCH VỤ', title: 'Tên dịch vụ mới', description: 'Mô tả ngắn.', detailTitle: 'Thông tin liệu trình', detail: 'Nội dung chi tiết.', priceLabel: '60 phút', price: 'Liên hệ báo giá', hot: false },
+    services: { category: 'tri-lieu', image: 'assets/images/phong-tri-lieu-2.jpg', alt: '', label: 'DỊCH VỤ', title: 'Tên dịch vụ mới', description: 'Mô tả ngắn.', detailTitle: 'Thông tin liệu trình', detail: 'Nội dung chi tiết.', priceLabel: '60 phút', price: 'Liên hệ báo giá', hot: false, causes: '', commonMethods: '', hxdDifference: '', packagesText: '60 phút | Liên hệ báo giá' },
     offers: { image: '', tag: 'ƯU ĐÃI', title: 'Tên chương trình mới', price: 'Liên hệ', description: 'Mô tả chương trình.', service: 'Tên chương trình mới', cta: 'Đặt lịch tư vấn ↗', video: '' },
     products: { category: 'NHÓM SẢN PHẨM', image: '', title: 'Tên sản phẩm mới', price: 'Liên hệ báo giá', service: 'Tên sản phẩm mới', icon: 'tea', description: 'Mô tả ngắn.' },
     locations: { number: 'CƠ SỞ MỚI', name: 'Tên cơ sở', address: 'Địa chỉ sẽ cập nhật', map: '', branch: 'Tên cơ sở', future: true },
@@ -148,7 +152,7 @@
 
   function fieldType(key, value) {
     if (typeof value === 'boolean') return 'checkbox';
-    if (['description', 'detail', 'address', 'answer', 'alt', 'video'].includes(key)) return 'textarea';
+    if (['description', 'detail', 'address', 'answer', 'alt', 'video', 'causes', 'commonMethods', 'hxdDifference', 'packagesText'].includes(key)) return 'textarea';
     if (key === 'category') return 'category';
     if (key === 'icon') return 'icon';
     if (key === 'experienceVideoRatio') return 'videoratio';

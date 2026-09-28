@@ -49,11 +49,15 @@
     return loadBundledData();
   }
 
+  let _services = [];
+  let _locations = [];
+
   function renderServices(services = []) {
+    _services = services;
     const grid = document.querySelector('.service-grid');
     if (!grid || !services.length) return;
-    grid.innerHTML = services.map(item => `
-      <article class="service-card" data-category="${esc(item.category)}" data-hot="${item.hot ? 'true' : 'false'}">
+    grid.innerHTML = services.map((item, i) => `
+      <article class="service-card" data-category="${esc(item.category)}" data-hot="${item.hot ? 'true' : 'false'}" data-svc="${i}" style="cursor:pointer">
         <div class="service-image">
           <img src="${esc(item.image)}" loading="lazy" alt="${esc(item.alt)}">
           <span class="image-label">${esc(item.label)}</span>
@@ -63,10 +67,112 @@
           <p>${esc(item.description)}</p>
           <div class="card-bottom">
             <span class="price"><small>${esc(item.priceLabel || 'GIÁ DỊCH VỤ')}</small>${esc(item.price || 'Liên hệ báo giá')}</span>
-            <a href="#dat-lich" data-service="${esc(item.title)}" class="round-link" aria-label="Tư vấn ${esc(item.title)}">Liên hệ${tapIcon}</a>
+            <button class="round-link" data-svc="${i}" aria-label="Xem chi tiết ${esc(item.title)}">Chi tiết${tapIcon}</button>
           </div>
         </div>
       </article>`).join('');
+
+    grid.addEventListener('click', e => {
+      const card = e.target.closest('[data-svc]');
+      if (card && !e.target.closest('[href]')) openServiceModal(Number(card.dataset.svc));
+    });
+  }
+
+  function openServiceModal(idx) {
+    const item = _services[idx];
+    if (!item) return;
+    const overlay = document.getElementById('svc-overlay');
+    const body = document.getElementById('svc-modal-body');
+    if (!overlay || !body) return;
+
+    const parsePackages = txt => (txt || '').split('\n').map(l => l.trim()).filter(Boolean).map(l => {
+      const [name, price, note = ''] = l.split('|').map(s => s.trim());
+      return { name, price, note };
+    });
+    const pkgs = parsePackages(item.packagesText);
+
+    const section = (cls, icon, title, text) => text
+      ? `<div class="svc-section"><p class="svc-section-label ${cls}">${icon} ${esc(title)}</p><div class="svc-section-body">${esc(text)}</div></div>`
+      : '';
+
+    const pkgHtml = pkgs.length ? `<div class="svc-packages">
+      <p class="svc-packages-title">Chọn gói phù hợp</p>
+      <div class="pkg-list">${pkgs.map((p, i) => `
+        <div class="pkg-card${p.note ? ' popular' : ''}" data-pkg="${i}">
+          <div class="pkg-info">
+            <span class="pkg-name">${esc(p.name)}</span>
+            ${p.note ? `<span class="pkg-note">⭐ ${esc(p.note)}</span>` : ''}
+          </div>
+          <span class="pkg-price">${esc(p.price)}</span>
+          <button class="pkg-book-btn" data-pkg="${i}">Đặt lịch →</button>
+        </div>`).join('')}
+      </div></div>` : '';
+
+    body.innerHTML = `
+      <div class="svc-modal-header">
+        ${item.image ? `<img class="svc-modal-img" src="${esc(item.image)}" alt="${esc(item.alt)}">` : ''}
+        <div class="svc-modal-header-text">
+          <span class="label">${esc(item.label)}</span>
+          <h2 id="svc-modal-title">${esc(item.title)}</h2>
+          <p>${esc(item.description)}</p>
+        </div>
+      </div>
+      ${section('causes', '⚡', 'Nguyên nhân', item.causes)}
+      ${section('common', '⚠️', 'Các phương pháp thông thường', item.commonMethods)}
+      ${section('hxd', '✅', 'Sự khác biệt tại Hồi Xuân Đường', item.hxdDifference)}
+      ${pkgHtml}`;
+
+    // Branch selector
+    const branches = _locations.filter(l => !l.future && l.hotline).map(l => ({
+      name: l.name, number: (l.hotline || '').replace(/\D/g, ''), address: l.address
+    }));
+
+    body.querySelectorAll('.pkg-book-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const pkg = pkgs[Number(btn.dataset.pkg)];
+        showBranchSelector(body, item.title, pkg, branches);
+      });
+    });
+
+    overlay.hidden = false;
+    requestAnimationFrame(() => overlay.classList.add('is-open'));
+    document.body.style.overflow = 'hidden';
+  }
+
+  function showBranchSelector(body, svcTitle, pkg, branches) {
+    const sel = document.createElement('div');
+    sel.className = 'svc-branch-selector';
+    const msg = `Tôi muốn đặt lịch dịch vụ: ${svcTitle}${pkg ? ' — ' + pkg.name + ' (' + pkg.price + ')' : ''}`;
+    sel.innerHTML = `
+      <p class="svc-branch-title">Chọn cơ sở bạn muốn đến</p>
+      <p class="svc-branch-subtitle">Chúng tôi sẽ chuyển bạn sang Zalo để xác nhận lịch hẹn</p>
+      ${branches.length ? branches.map(b => `
+        <button class="svc-branch-btn" data-zalo="${b.number}" data-msg="${esc(msg)}">
+          ${esc(b.name)}<small>${esc(b.address || '')}</small>
+        </button>`).join('') : `<a class="svc-branch-btn" href="https://zalo.me/0931879222" target="_blank" rel="noopener">Zalo Hồi Xuân Đường</a>`}
+      <button class="svc-branch-back">← Quay lại</button>`;
+
+    sel.querySelectorAll('[data-zalo]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const url = `https://zalo.me/${btn.dataset.zalo}`;
+        window.open(url, '_blank', 'noopener');
+        closeServiceModal();
+      });
+    });
+    sel.querySelector('.svc-branch-back').addEventListener('click', () => sel.remove());
+
+    const modal = body.closest('.svc-modal');
+    modal.style.position = 'relative';
+    modal.appendChild(sel);
+  }
+
+  function closeServiceModal() {
+    const overlay = document.getElementById('svc-overlay');
+    if (!overlay) return;
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+    setTimeout(() => { overlay.hidden = true; }, 280);
   }
 
   function renderHero(slides = []) {
@@ -145,6 +251,7 @@
   }
 
   function renderLocations(locations = []) {
+    _locations = locations;
     const grid = document.querySelector('.locations');
     if (!grid || !locations.length) return;
     const active = locations.filter(item => !item.future);
@@ -391,6 +498,15 @@
     });
   }
 
+  function initServiceModal() {
+    const overlay = document.getElementById('svc-overlay');
+    const closeBtn = document.getElementById('svc-close');
+    if (!overlay) return;
+    closeBtn && closeBtn.addEventListener('click', closeServiceModal);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeServiceModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeServiceModal(); });
+  }
+
   function initEffects() {
     document.querySelectorAll('.click-ripple').forEach(item => item.remove());
     const clickableItems = document.querySelectorAll('a, button, summary, .product, .offer-card, .locations article');
@@ -467,6 +583,7 @@
     initFilters();
     initBooking();
     initEffects();
+    initServiceModal();
     initChatWidget();
     initTestimonialLightbox();
     initVideoModal();

@@ -56,7 +56,11 @@
       "detail": "Hiệu quả mong đợi: giảm đau nhanh, thư giãn cơ, tăng lưu thông khí huyết.",
       "priceLabel": "60 phút",
       "price": "450.000đ",
-      "hot": true
+      "hot": true,
+      "causes": "Ngồi làm việc sai tư thế kéo dài, ít vận động, căng thẳng tích tụ trong cơ. Lưu thông khí huyết kém khiến cơ co cứng, ứ đọng gây đau nhức mãn tính.",
+      "commonMethods": "Uống thuốc giảm đau (chỉ giảm triệu chứng tạm thời, không giải quyết gốc rễ). Vật lý trị liệu thông thường tác động bề mặt. Massage thư giãn không có hệ thống.",
+      "hxdDifference": "Tại Hồi Xuân Đường, chúng tôi trị liệu theo nguyên lý Đông Y — khai thông kinh lạc, đả thông khí huyết từ bên trong. Không chỉ giảm đau tức thì mà phục hồi cân bằng toàn thân, ngăn ngừa tái phát.",
+      "packagesText": "60 phút | 450.000đ\n90 phút | 600.000đ | Phổ biến nhất\nLiệu trình 5 buổi | 2.000.000đ | Tiết kiệm 11%"
     },
     {
       "category": "tri-lieu",
@@ -69,7 +73,11 @@
       "detail": "Hiệu quả mong đợi: giải phóng chèn ép, cải thiện vận động, phục hồi thần kinh ngoại biên.",
       "priceLabel": "90 phút",
       "price": "550.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "90 phút | 550.000đ"
     },
     {
       "category": "tri-lieu",
@@ -82,7 +90,11 @@
       "detail": "Tập trung xử lý nguyên nhân gốc rễ, điều chỉnh toàn trục cơ thể và hạn chế tái phát lâu dài.",
       "priceLabel": "120 phút",
       "price": "850.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "120 phút | 850.000đ"
     },
     {
       "category": "duong-sinh",
@@ -95,7 +107,11 @@
       "detail": "Phù hợp: mệt mỏi kéo dài, đau lưng mỏi gối, sinh lực suy giảm, cơ thể thiếu năng lượng.",
       "priceLabel": "60 phút",
       "price": "750.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "60 phút | 750.000đ"
     },
     {
       "category": "duong-sinh",
@@ -108,7 +124,11 @@
       "detail": "Phù hợp: rối loạn tiền đình, hoa mắt chóng mặt, đau đầu, mất ngủ, căng thẳng kéo dài.",
       "priceLabel": "60 phút",
       "price": "750.000đ",
-      "hot": true
+      "hot": true,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "60 phút | 750.000đ"
     },
     {
       "category": "duong-sinh",
@@ -121,7 +141,11 @@
       "detail": "Phù hợp: dễ mệt, hay ốm, hô hấp yếu, thời tiết thay đổi dễ ảnh hưởng.",
       "priceLabel": "60 phút",
       "price": "750.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "60 phút | 750.000đ"
     },
     {
       "category": "duong-sinh",
@@ -134,7 +158,11 @@
       "detail": "Phù hợp: ăn uống kém, tiêu hóa yếu, đầy bụng khó tiêu, chậm hấp thu.",
       "priceLabel": "60 phút",
       "price": "750.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "60 phút | 750.000đ"
     },
     {
       "category": "duong-sinh",
@@ -147,7 +175,11 @@
       "detail": "Gan: nóng trong, da xỉn màu, dễ cáu gắt. Thận: mệt mỏi kéo dài, đau lưng mỏi gối, sinh lực suy giảm. Tỳ vị: ăn uống kém, đầy bụng khó tiêu, chậm hấp thu. Kỹ thuật viên tư vấn để chọn tạng cần ưu tiên.",
       "priceLabel": "60 phút",
       "price": "750.000đ",
-      "hot": true
+      "hot": true,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "60 phút | 750.000đ"
     },
     {
       "category": "duong-sinh",
@@ -160,7 +192,11 @@
       "detail": "Phù hợp: nóng trong người, da xỉn màu, nổi mụn, dễ cáu gắt, bức bối.",
       "priceLabel": "60 phút",
       "price": "750.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "60 phút | 750.000đ"
     },
     {
       "category": "duong-sinh",
@@ -173,7 +209,11 @@
       "detail": "Phù hợp: cơ thể tích độc, mệt mỏi, phù nhẹ, nặng người, da xỉn màu.",
       "priceLabel": "60 phút",
       "price": "750.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "60 phút | 750.000đ"
     },
     {
       "category": "tai-tao",
@@ -186,7 +226,11 @@
       "detail": "Liệu trình đề xuất: 22 buổi x 60 phút. Phù hợp mỡ bụng, tích nước, sau sinh, chuyển hóa chậm.",
       "priceLabel": "22 buổi x 60 phút",
       "price": "16.000.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "22 buổi x 60 phút | 16.000.000đ"
     },
     {
       "category": "tai-tao",
@@ -199,7 +243,11 @@
       "detail": "Liệu trình đề xuất: 22 buổi x 60 phút. Phù hợp gầy lâu năm, hấp thu kém, thiếu năng lượng.",
       "priceLabel": "22 buổi x 60 phút",
       "price": "16.000.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "22 buổi x 60 phút | 16.000.000đ"
     },
     {
       "category": "tai-tao",
@@ -212,7 +260,11 @@
       "detail": "Phù hợp eo, bụng, đùi, bắp tay, thiếu săn chắc hoặc muốn định hình body cân đối.",
       "priceLabel": "90 phút",
       "price": "850.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "90 phút | 850.000đ"
     },
     {
       "category": "tai-tao",
@@ -225,7 +277,11 @@
       "detail": "Phù hợp mỡ cục bộ, vùng thiếu cân đối hoặc cần chăm sóc tập trung.",
       "priceLabel": "60 phút",
       "price": "550.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "60 phút | 550.000đ"
     },
     {
       "category": "bo-sung",
@@ -238,7 +294,11 @@
       "detail": "Phù hợp khi cần chăm sóc nhanh, nhẹ, dễ trải nghiệm.",
       "priceLabel": "45 phút",
       "price": "60.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "45 phút | 60.000đ"
     },
     {
       "category": "bo-sung",
@@ -251,7 +311,11 @@
       "detail": "Kết hợp chăm sóc da đầu, cổ vai gáy nhẹ và thư giãn tinh thần.",
       "priceLabel": "60 phút",
       "price": "250.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "60 phút | 250.000đ"
     },
     {
       "category": "bo-sung",
@@ -264,7 +328,11 @@
       "detail": "Phù hợp người muốn chăm tóc bằng thảo dược, thư giãn sâu hơn gội thường.",
       "priceLabel": "75 phút",
       "price": "450.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "75 phút | 450.000đ"
     },
     {
       "category": "bo-sung",
@@ -277,7 +345,11 @@
       "detail": "Phù hợp người hay lạnh, mỏi, đau nhức do hàn khí hoặc cần làm ấm cơ thể.",
       "priceLabel": "60 phút",
       "price": "550.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "60 phút | 550.000đ"
     },
     {
       "category": "bo-sung",
@@ -290,7 +362,11 @@
       "detail": "Phù hợp: mắt mờ, chảy nước mắt sống, đục thuỷ tinh thể, mỏi mắt do làm việc màn hình nhiều.",
       "priceLabel": "60 phút",
       "price": "550.000đ",
-      "hot": true
+      "hot": true,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "60 phút | 550.000đ"
     },
     {
       "category": "bo-sung",
@@ -303,7 +379,11 @@
       "detail": "Phù hợp: da xỉn màu, lỗ chân lông to, da khô thiếu ẩm.",
       "priceLabel": "60 phút",
       "price": "550.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "60 phút | 550.000đ"
     },
     {
       "category": "bo-sung",
@@ -316,7 +396,11 @@
       "detail": "Một lựa chọn ngắn gọn để làm nóng cơ thể, thư giãn và hỗ trợ tuần hoàn.",
       "priceLabel": "30 phút",
       "price": "150.000đ",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "30 phút | 150.000đ"
     },
     {
       "category": "bo-sung",
@@ -329,7 +413,11 @@
       "detail": "Phù hợp khi cơ thể mệt mỏi toàn thân, căng cơ, cần nghỉ sâu.",
       "priceLabel": "60 phút",
       "price": "350.000đ",
-      "hot": true
+      "hot": true,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "60 phút | 350.000đ"
     },
     {
       "category": "bo-sung",
@@ -342,7 +430,11 @@
       "detail": "Dịch vụ tế nhị, tư vấn riêng trước khi thực hiện để chọn nội dung phù hợp.",
       "priceLabel": "Theo tư vấn",
       "price": "Tư vấn trực tiếp",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "Theo tư vấn | Tư vấn trực tiếp"
     },
     {
       "category": "bo-sung",
@@ -355,7 +447,11 @@
       "detail": "Liệu trình riêng theo thể trạng, cần trao đổi trực tiếp để tư vấn phù hợp.",
       "priceLabel": "Theo tư vấn",
       "price": "Tư vấn trực tiếp",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "Theo tư vấn | Tư vấn trực tiếp"
     },
     {
       "category": "bo-sung",
@@ -368,7 +464,11 @@
       "detail": "Trao đổi tình trạng trước khi tư vấn liệu trình phù hợp. Không thay thế điều trị y khoa.",
       "priceLabel": "Theo tư vấn",
       "price": "Tư vấn trực tiếp",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "Theo tư vấn | Tư vấn trực tiếp"
     },
     {
       "category": "bo-sung",
@@ -381,7 +481,11 @@
       "detail": "Dành cho khách cần phác đồ kết hợp nhiều nhóm chăm sóc và theo dõi kỹ hơn.",
       "priceLabel": "Theo tư vấn",
       "price": "Tư vấn trực tiếp",
-      "hot": false
+      "hot": false,
+      "causes": "",
+      "commonMethods": "",
+      "hxdDifference": "",
+      "packagesText": "Theo tư vấn | Tư vấn trực tiếp"
     }
   ],
   "offers": [
