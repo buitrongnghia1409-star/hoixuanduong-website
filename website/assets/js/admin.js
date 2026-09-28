@@ -86,7 +86,8 @@
     image: 'Ảnh',
     alt: 'Mô tả ảnh',
     eyebrow: 'Nhãn nhỏ',
-    title: 'Tiêu đề',
+    title: 'Tiêu đề slide',
+    imgPosition: 'Vị trí hiển thị ảnh',
     slogan: 'Slogan / dòng vàng',
     description: 'Mô tả',
     category: 'Nhóm',
@@ -132,7 +133,7 @@
   };
 
   const templates = {
-    hero: { image: 'assets/images/dms07238.jpg', alt: '', eyebrow: 'NHÃN HERO', title: 'Tiêu đề hero', slogan: 'Slogan nổi bật.', description: 'Mô tả ngắn cho ảnh hero.' },
+    hero: { image: 'assets/images/dms07238.jpg', alt: '', eyebrow: 'NHÃN HERO', title: 'Tiêu đề slide', slogan: 'Slogan nổi bật.', description: 'Mô tả ngắn cho ảnh hero.', imgPosition: 'center center' },
     services: { category: 'tri-lieu', image: 'assets/images/phong-tri-lieu-2.jpg', alt: '', label: 'DỊCH VỤ', title: 'Tên dịch vụ mới', description: 'Mô tả ngắn.', detailTitle: 'Thông tin liệu trình', detail: 'Nội dung chi tiết.', priceLabel: '60 phút', price: 'Liên hệ báo giá', hot: false },
     offers: { image: '', tag: 'ƯU ĐÃI', title: 'Tên chương trình mới', price: 'Liên hệ', description: 'Mô tả chương trình.', service: 'Tên chương trình mới', cta: 'Đặt lịch tư vấn ↗', video: '' },
     products: { category: 'NHÓM SẢN PHẨM', image: '', title: 'Tên sản phẩm mới', price: 'Liên hệ báo giá', service: 'Tên sản phẩm mới', icon: 'tea', description: 'Mô tả ngắn.' },
@@ -151,6 +152,7 @@
     if (key === 'category') return 'category';
     if (key === 'icon') return 'icon';
     if (key === 'experienceVideoRatio') return 'videoratio';
+    if (key === 'imgPosition') return 'imgposition';
     return 'text';
   }
 
@@ -173,6 +175,20 @@
     }
     if (type === 'videoratio') {
       return `<div class="field"><label for="${id}">${label}</label><select id="${id}" data-path="${path.join('.')}"><option value="16:9"${value === '16:9' ? ' selected' : ''}>Ngang 16:9 (Facebook/YouTube thông thường)</option><option value="9:16"${value === '9:16' ? ' selected' : ''}>Dọc 9:16 (Reels, TikTok, video đứng)</option></select></div>`;
+    }
+    if (type === 'imgposition') {
+      const opts = [
+        ['center center', 'Giữa (mặc định)'],
+        ['center 20%', 'Trên nhiều — hiển thị phần trên của ảnh'],
+        ['center 35%', 'Trên một chút'],
+        ['center 65%', 'Dưới một chút'],
+        ['center 80%', 'Dưới nhiều — hiển thị phần dưới'],
+        ['30% center', 'Lệch trái'],
+        ['70% center', 'Lệch phải'],
+      ];
+      const cur = value || 'center center';
+      const selects = opts.map(([v, t]) => `<option value="${v}"${cur === v ? ' selected' : ''}>${t}</option>`).join('');
+      return `<div class="field"><label for="${id}">${label}</label><select id="${id}" data-path="${path.join('.')}">${selects}</select><small style="display:block;margin-top:4px;color:#888">Nếu ảnh đang hiển thị vào mặt, chọn "Dưới một chút" hoặc "Dưới nhiều"</small></div>`;
     }
     if (key === 'image') {
       const source = String(value || '');

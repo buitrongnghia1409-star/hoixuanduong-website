@@ -71,7 +71,7 @@
     if (!wrapper || !slides.length) return;
     wrapper.innerHTML = slides.map((item, index) => `
       <article class="hero-slide${index === 0 ? ' active' : ''}${item.wide ? ' hero-slide-wide' : ''}" data-slide="${index}">
-        <img src="${esc(item.image)}" alt="${esc(item.alt)}"${index === 0 ? ' fetchpriority="high"' : ''}>
+        <img src="${esc(item.image)}" alt="${esc(item.alt)}"${index === 0 ? ' fetchpriority="high"' : ''}${item.imgPosition ? ` style="object-position:${esc(item.imgPosition)}"` : ''}>
         <div class="hero-shade"></div>
         <div class="wrap hero-slide-content">
           <p class="eyebrow light">${esc(item.eyebrow)}</p>
