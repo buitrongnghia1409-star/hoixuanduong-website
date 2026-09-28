@@ -2,8 +2,8 @@
   "settings": {
     "brandName": "Hồi Xuân Đường",
     "brandTagline": "TINH HOA ĐÔNG Y",
-    "phone": "0912 994 888",
-    "zalo": "https://zalo.me/0912994888",
+    "phone": "0931 879 222",
+    "zalo": "https://zalo.me/0931879222",
     "facebook": "https://www.facebook.com/profile.php?id=61567805348003",
     "youtube": "https://www.youtube.com/@phamhung2596/videos",
     "tiktok": "https://www.tiktok.com/@thayvanhung.hxd",
@@ -14,10 +14,10 @@
     {
       "image": "assets/images/dms07238.jpg",
       "alt": "Không gian đón tiếp màu xanh ngọc và biểu tượng hoa sen của Hồi Xuân Đường",
-      "eyebrow": "KHÔNG GIAN DƯỠNG SINH TẠI HẠ LONG",
+      "eyebrow": "HỆ THỐNG ĐÔNG Y TRỊ LIỆU & DƯỠNG SINH",
       "title": "Hồi Xuân Đường.",
-      "slogan": "Chạm vào khoảng an yên.",
-      "description": "Không gian xanh ngọc, riêng tư và ấm áp để bạn bắt đầu một buổi chăm sóc thân tâm thật nhẹ nhàng."
+      "slogan": "Trị liệu từ căn gốc — Phục hồi sinh lực.",
+      "description": "Tiếp cận cơ thể từ nền tảng y học cổ truyền. Đả thông kinh lạc, bồi bổ khí huyết — không chỉ hỗ trợ giảm đau mà chăm sóc thể trạng lâu dài."
     },
     {
       "image": "assets/images/tri-lieu-nhom.jpg",
@@ -282,7 +282,7 @@
     {
       "category": "bo-sung",
       "image": "assets/images/tu-van-kham-benh.jpg",
-      "alt": "Chuyên gia thăm khám và tư vấn cho khách",
+      "alt": "Chuyên gia đánh giá thể trạng và tư vấn cho khách",
       "label": "DỊCH VỤ BỔ SUNG",
       "title": "Chăm sóc mắt",
       "description": "Giảm mỏi mắt, làm dịu vùng quanh mắt và hỗ trợ thị lực.",
@@ -323,7 +323,7 @@
       "image": "assets/images/tri-lieu-nhom.jpg",
       "alt": "Kỹ thuật viên massage trị liệu toàn thân",
       "label": "DỊCH VỤ BỔ SUNG",
-      "title": "Massage body & massage trị liệu",
+      "title": "Chăm sóc toàn thân & massage trị liệu",
       "description": "Thư giãn sâu, giảm đau nhức và tái tạo năng lượng.",
       "detailTitle": "Phù hợp & hiệu quả",
       "detail": "Phù hợp khi cơ thể mệt mỏi toàn thân, căng cơ, cần nghỉ sâu.",
@@ -391,7 +391,7 @@
       "tag": "ƯU ĐÃI THÁNG NÀY",
       "title": "Combo 02 buổi chăm sóc",
       "price": "299K",
-      "description": "02 buổi chăm sóc · 60 phút mỗi buổi · giá 299K trong tháng này.\nChọn một trong các dịch vụ sau:\n• Mát xa body, gội dưỡng sinh.\n• Chăm sóc cơ xương khớp: cổ vai gáy, lưng eo, tay chân; hoa mắt, chóng mặt, đau đầu, mất ngủ.\nKết hợp một buổi kiểm tra tổng quát từ chuyên gia về tình trạng sức khoẻ hiện tại.",
+      "description": "02 buổi chăm sóc · 60 phút mỗi buổi · giá 299K trong tháng này.\nChọn một trong các dịch vụ sau:\n• Chăm sóc toàn thân, gội dưỡng sinh.\n• Chăm sóc cơ xương khớp: cổ vai gáy, lưng eo, tay chân; hoa mắt, chóng mặt, đau đầu, mất ngủ.\nKết hợp một buổi đánh giá thể trạng từ chuyên gia.",
       "service": "Combo 02 buổi chăm sóc 299K",
       "cta": "Nhận tư vấn combo 299K ↗",
       "video": "https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2F61567805348003%2Fvideos%2F597425782981552%2F&show_text=false&width=560&t=0"
@@ -404,7 +404,7 @@
       "price": "5.200.000đ / 1 hũ",
       "service": "Cao bổn thảo",
       "icon": "box",
-      "description": "Tăng hiệu quả phục hồi lục phủ ngũ tạng.",
+      "description": "Hỗ trợ phục hồi lục phủ ngũ tạng.",
       "image": "assets/images/sp-cao-bon-thao-hu-su.jpg"
     },
     {
@@ -430,23 +430,26 @@
     {
       "number": "CƠ SỞ 01",
       "name": "Bãi Cháy",
-      "address": "955, Tổ 2 Khu 10, Bãi Cháy,\nHạ Long, Quảng Ninh",
-      "map": "https://www.google.com/maps/search/?api=1&query=955+To+2+Khu+10+Bai+Chay+Ha+Long",
-      "branch": "Bãi Cháy"
+      "address": "955 đường Cái Lân, Phường Bãi Cháy,\nTP. Hạ Long, Quảng Ninh",
+      "map": "https://www.google.com/maps/search/?api=1&query=955+duong+Cai+Lan+Phuong+Bai+Chay+Ha+Long",
+      "branch": "Bãi Cháy",
+      "hotline": "0931.879.222"
     },
     {
       "number": "CƠ SỞ 02",
       "name": "Monbay",
-      "address": "A1205, KĐT Monbay, phường Hồng Hà,\nHạ Long, Quảng Ninh",
-      "map": "https://www.google.com/maps/search/?api=1&query=A1205+Monbay+Ha+Long+Quang+Ninh",
-      "branch": "Monbay"
+      "address": "A12/05 KĐT Monbay, Phường Hạ Long,\nTP. Hạ Long, Quảng Ninh",
+      "map": "https://www.google.com/maps/search/?api=1&query=A12+05+KDT+Monbay+Phuong+Ha+Long+Ha+Long",
+      "branch": "Monbay",
+      "hotline": "0931.883.222"
     },
     {
       "number": "CƠ SỞ 03",
       "name": "Phủ Lý — Hà Nam",
       "address": "146 Lý Thái Tổ, Phường Châu Sơn,\nTP. Phủ Lý, Tỉnh Hà Nam",
       "map": "https://www.google.com/maps/search/?api=1&query=146+Ly+Thai+To+Chau+Son+Phu+Ly+Ha+Nam",
-      "branch": "Phủ Lý"
+      "branch": "Phủ Lý",
+      "hotline": "0908.719.333"
     }
   ],
   "faqs": [
@@ -456,7 +459,7 @@
     },
     {
       "question": "Làm thế nào để biết giá dịch vụ?",
-      "answer": "Bảng giá chính thức đang được cập nhật. Chọn dịch vụ bạn quan tâm để hỏi mức giá, thời lượng và nội dung gói hiện tại qua hotline hoặc Zalo."
+      "answer": "Chọn dịch vụ bạn quan tâm để hỏi mức giá, thời lượng và nội dung gói hiện tại qua hotline hoặc Zalo."
     },
     {
       "question": "Có cần đặt lịch trước khi đến không?",

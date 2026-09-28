@@ -151,6 +151,7 @@
         <span class="location-number">${esc(item.number)}</span>
         <h3>${esc(item.name)}</h3>
         <p>${lines(item.address)}</p>
+        ${item.hotline ? `<p class="location-hotline"><a href="tel:${esc(item.hotline.replace(/\D/g, ''))}">${esc(item.hotline)}</a></p>` : ''}
         <div>
           <a class="text-link" href="${esc(item.map)}" target="_blank" rel="noopener">Chỉ đường ↗</a>
           <a href="#dat-lich" data-branch="${esc(item.branch || item.name)}" class="button outline small">Chọn cơ sở này</a>
