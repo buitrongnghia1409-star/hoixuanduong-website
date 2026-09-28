@@ -354,8 +354,10 @@
     form.addEventListener('change', () => { result.hidden = true; });
     form.addEventListener('submit', event => {
       event.preventDefault();
+      const checked = [...form.querySelectorAll('input[name="issue"]:checked')].map(el => el.value);
+      const topic = checked.length ? checked.join(', ') : service.value;
       const day = date.value ? `, dự kiến ngày ${date.value.split('-').reverse().join('/')}` : '';
-      message.textContent = `Chào Hồi Xuân Đường, tôi muốn được tư vấn về ${service.value} tại cơ sở ${branch.value}${day}. Vui lòng cho tôi biết giá, thời lượng và lịch trống phù hợp. Cảm ơn!`;
+      message.textContent = `Chào Hồi Xuân Đường, tôi muốn được tư vấn về: ${topic} tại cơ sở ${branch.value}${day}. Vui lòng cho tôi biết giá, thời lượng và lịch trống phù hợp. Cảm ơn!`;
       status.textContent = 'Nội dung đã sẵn sàng. Sao chép và gửi qua Zalo để được tư vấn.';
       result.hidden = false;
     });
