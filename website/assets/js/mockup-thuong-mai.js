@@ -171,6 +171,8 @@
   function renderTestimonials(items = []) {
     const grid = document.querySelector('.testimonial-grid');
     if (!grid || !items.length) return;
+    const placeholder = document.querySelector('.testimonial-placeholder');
+    if (placeholder) placeholder.style.display = 'none';
     grid.innerHTML = items.map(item => {
       const n = Math.min(5, Math.max(1, parseInt(item.rating) || 5));
       const stars = '★'.repeat(n);
