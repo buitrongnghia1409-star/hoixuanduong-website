@@ -471,6 +471,7 @@ main{background:transparent!important}
 .sym-label{display:flex;align-items:center;gap:7px;font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#8a7055;margin-bottom:9px}
 .sym-label-hq{color:#b94040}
 .sym-section p{font-size:.92rem;line-height:1.75;color:#333;margin:0}
+.sym-section-dongY{background:#f0f5f0;border-left:3px solid #4a8c5c;border-radius:0 8px 8px 0;padding:14px 16px;margin-left:-4px}
 .sym-cta{margin-top:28px;display:flex;flex-direction:column;gap:10px}
 .sym-cta-main{display:block;text-align:center;background:#173e32;color:#fff;padding:14px;border-radius:10px;text-decoration:none;font-weight:600;font-size:.95rem;border:none;cursor:pointer;font-family:inherit;transition:background .2s}
 .sym-cta-main:hover{background:#0f2920}

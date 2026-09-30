@@ -676,44 +676,52 @@
   // ===== SYMPTOM EDUCATION MODAL =====
   const SYMPTOMS = {
     'co-vai-gay': {
-      icon: '⚡', title: 'Đau mỏi Cổ Vai Gáy', sub: 'Tê bì, cứng cơ, nhức đầu vùng gáy',
-      nguyen_nhan: 'Theo Đông y, cổ vai gáy là vùng kinh Thái Dương Bàng Quang và Đốc Mạch đi qua. Tư thế cúi đầu kéo dài, phong hàn xâm nhập hoặc Can khí uất kết khiến khí huyết ứ trệ tại các huyệt Thiên Trụ, Phong Trì, Đại Trùy — gây cứng cơ, tê lan đầu và mỏi vai mãn tính. Đây là tình trạng kinh lạc bị tắc, không phải đơn thuần mỏi cơ.',
-      hau_qua: 'Không can thiệp đúng căn nguyên: thoái hóa đốt sống cổ C4–C6 tiến triển, hẹp ống sống, chèn ép rễ thần kinh → tê bì lan xuống tay, đau đầu mãn tính khó kiểm soát, nguy cơ rối loạn tuần hoàn não.'
+      title: 'Đau mỏi Cổ Vai Gáy', sub: 'Tê bì, cứng cơ, nhức đầu vùng gáy',
+      cam_nhan: 'Sáng ngủ dậy cổ cứng không quay được. Ngồi máy tính hay cầm điện thoại lâu là vai mỏi rã rời. Lúc đầu xoa dầu nóng hoặc đấm lưng thì tạm đỡ, nhưng vài hôm lại tái. Nhiều lúc tê nhức lan lên đầu, mắt mờ, căng cứng hai bên thái dương mà không rõ lý do.',
+      dong_y: 'Đây là dấu hiệu kinh lạc vùng cổ gáy bị tắc nghẽn do ngồi sai tư thế lâu ngày hoặc phong hàn xâm nhập. Đông y gọi là "khí huyết ứ trệ tại kinh Thái Dương" — không phải chỉ mỏi cơ thông thường mà là toàn bộ đường dẫn khí huyết từ vai lên đầu đang bị cản trở.',
+      hau_qua: 'Để lâu không can thiệp: thoái hóa đốt sống cổ C4–C6, hẹp ống sống, chèn ép rễ thần kinh → tê liệt tay, đau đầu mãn tính, nguy cơ rối loạn tuần hoàn não.'
     },
     'that-lung': {
-      icon: '🦴', title: 'Đau thắt lưng', sub: 'Thoái hóa cột sống, đau khi cúi ngửa',
-      nguyen_nhan: 'Thắt lưng là "phủ của Thận" — Thận chủ cốt tủy, Thận hư khiến cột sống thiếu nơi nương tựa, đĩa đệm suy yếu sớm. Kết hợp phong hàn thấp tà xâm nhập vào kinh Bàng Quang, Đốc Mạch khiến khí huyết tắc nghẽn tại Thận Du, Mệnh Môn, Đại Trường Du — đau âm ỉ hoặc đau cấp khi cúi ngửa.',
-      hau_qua: 'Thoát vị đĩa đệm L4–L5, L5–S1 chèn ép dây thần kinh tọa, đau lan xuống mông và chân. Thận hư kéo dài còn kéo theo suy giảm sinh lý, tiểu đêm nhiều, loãng xương sớm hơn 10–15 năm so với người dưỡng thận đúng cách.'
+      title: 'Đau thắt lưng', sub: 'Thoái hóa cột sống, đau khi cúi ngửa',
+      cam_nhan: 'Ngồi lâu rồi đứng dậy thấy đau nhói ở lưng dưới. Cúi xuống nhặt đồ hoặc mặc quần cũng khó khăn. Nhiều người phải kê gối dưới lưng lúc nằm mới dễ chịu. Nghỉ ngơi vài ngày thì tạm ổn, nhưng làm việc lại hoặc trời lạnh là đau ngay trở lại.',
+      dong_y: 'Thắt lưng là "phủ của Thận" — khi Thận suy, cột sống thiếu nơi nương tựa, đĩa đệm suy yếu sớm. Hàn thấp xâm nhập vào các huyệt Thận Du, Mệnh Môn làm khí huyết tắc nghẽn. Đây là lý do nhiều người đau lưng tái đi tái lại dù uống thuốc giảm đau — vì gốc ở Thận chưa được bổ.',
+      hau_qua: 'Thoát vị đĩa đệm L4–L5, L5–S1 chèn ép thần kinh tọa, đau lan xuống mông và chân. Thận hư kéo dài còn kéo theo suy giảm sinh lý, tiểu đêm nhiều, loãng xương sớm.'
     },
     'mat-ngu': {
-      icon: '🌙', title: 'Mất ngủ', sub: 'Khó đi vào giấc, hay thức giữa đêm',
-      nguyen_nhan: 'Tâm Thần bất an là căn nguyên cốt lõi. Can uất hóa hỏa nhiễu lên Tâm; hoặc Tâm Thận bất giao — thủy hỏa không điều hòa khiến người nóng bừng, không ngủ được sau 23h (giờ Tý là giờ Đởm hành). Huyết hư không nuôi Tâm thần gây thức giữa đêm giờ Dần–Mão (3–5h sáng — giờ Phế–Đại Tràng).',
-      hau_qua: 'Mất ngủ kéo dài làm khí huyết suy kiệt, Can Thận đều hư, hệ miễn dịch giảm mạnh. Nguy cơ trầm cảm, lo âu mãn tính, lão hóa nhanh, rối loạn nội tiết tố — đặc biệt nguy hiểm với phụ nữ tuổi tiền mãn kinh.'
+      title: 'Mất ngủ', sub: 'Khó đi vào giấc, hay thức giữa đêm',
+      cam_nhan: 'Nằm xuống là đầu óc quay tít, suy nghĩ lung tung không tắt được. Có người ngủ được nhưng 2–3 giờ sáng tỉnh dậy rồi không ngủ lại được. Uống thuốc ngủ thì có giấc nhưng sáng dậy vẫn mệt, bải hoải cả ngày. Lâu dần hay quên, khó tập trung, hay cáu gắt vô cớ.',
+      dong_y: 'Đông y xác định mất ngủ xuất phát từ Tâm Thần bất an — do căng thẳng lâu ngày làm Can uất hóa hỏa nhiễu lên Tâm, hoặc do cơ thể suy yếu khiến huyết không đủ nuôi Tâm thần. Điều này giải thích vì sao thuốc ngủ chỉ "che" triệu chứng mà không giải quyết được gốc rễ.',
+      hau_qua: 'Mất ngủ mãn tính làm khí huyết suy kiệt toàn thân, hệ miễn dịch giảm mạnh, lão hóa nhanh. Nguy cơ trầm cảm, rối loạn nội tiết tố — đặc biệt nguy hiểm với phụ nữ tuổi tiền mãn kinh.'
     },
     'dau-dau': {
-      icon: '💫', title: 'Đau đầu, hoa mắt', sub: 'Chóng mặt, đau nửa đầu, ù tai',
-      nguyen_nhan: 'Can Dương vượng thăng lên trên (do âm hư không kiềm dương) → đau đầu bên, ù tai, hoa mắt chóng mặt — ảnh hưởng các huyệt Bách Hội, Thái Dương, Phong Trì. Hoặc khí huyết hư không đủ nuôi não → đau âm ỉ cả đầu, mệt mỏi, khó tập trung sau bữa ăn.',
-      hau_qua: 'Can Dương vượng không kiểm soát dẫn đến tăng huyết áp mãn tính, nguy cơ đột quỵ. Thiếu máu não kéo dài gây suy giảm trí nhớ, mất khả năng tập trung.'
+      title: 'Đau đầu, hoa mắt', sub: 'Chóng mặt, đau nửa đầu, ù tai',
+      cam_nhan: 'Hay bị đau nửa đầu bên phải hoặc sau gáy, nhức như búa gõ. Căng thẳng hay thiếu ngủ là hôm sau đau ngay. Đứng dậy nhanh thấy hoa mắt, choáng váng. Có lúc ù tai đột ngột, mắt mờ rồi tự hết. Uống panadol thì đỡ vài tiếng rồi lại đau — cứ lặp đi lặp lại.',
+      dong_y: 'Đau đầu tái phát thường do Can Dương vượng hoặc khí huyết không đủ lên nuôi não — hai nguyên nhân hoàn toàn khác nhau, cần chẩn đoán riêng. Đây là lý do thuốc giảm đau chỉ giải quyết cơn đau tức thời mà không ngăn được tái phát.',
+      hau_qua: 'Can Dương vượng kéo dài dẫn đến tăng huyết áp mãn tính, nguy cơ đột quỵ. Thiếu máu não lâu ngày gây suy giảm trí nhớ, mất khả năng tập trung.'
     },
     'han-am': {
-      icon: '❄️', title: 'Nhiễm hàn ẩm', sub: 'Lạnh tay chân, cơ thể hay mỏi mệt',
-      nguyen_nhan: 'Tỳ Vị hư hàn không vận hóa được thủy thấp → thấp khí đọng lại trong kinh lạc, cơ khớp. Dương khí suy không đủ đẩy hàn tà ra ngoài — hàn tích sâu trong cơ, thẩm vào khớp, nặng hơn vào mùa lạnh. Phụ nữ sau sinh uống lạnh, nằm điều hòa nhiều dễ nhiễm hàn ẩm tầng sâu.',
-      hau_qua: 'Thấp hàn lâu ngày hóa thành đàm trọc, gây viêm khớp mãn tính, phù nề, tiêu hóa suy yếu. Phụ nữ dễ rối loạn kinh nguyệt, lạnh bụng kinh, vô sinh. Dương khí suy toàn thân — sức đề kháng kém, hay ốm vặt.'
+      title: 'Nhiễm hàn ẩm', sub: 'Lạnh tay chân, cơ thể hay mỏi mệt',
+      cam_nhan: 'Tay chân lạnh quanh năm dù trời không lạnh. Sáng ngủ dậy cứ thấy người nặng nề, mỏi mệt như chưa ngủ. Hay bị đau bụng khi ăn lạnh, bụng thường ùng ục. Phụ nữ hay bị đau bụng kinh, kinh nguyệt không đều. Trời trở lạnh hoặc ngồi phòng điều hòa lâu là người khó chịu hẳn.',
+      dong_y: 'Đây là biểu hiện cơ thể tích tụ hàn khí và thủy thấp lâu ngày — thường do ăn uống đồ lạnh, ngồi điều hòa nhiều, hay sau sinh không giữ ấm đúng cách. Dương khí suy yếu không đủ đẩy hàn ra ngoài, hàn ứ lại trong kinh lạc và tạng phủ.',
+      hau_qua: 'Hàn thấp lâu ngày gây viêm khớp mãn tính, phù nề, tiêu hóa yếu. Phụ nữ dễ rối loạn kinh nguyệt, vô sinh. Dương khí suy toàn thân — hay ốm vặt, sức đề kháng kém.'
     },
     'ngu-tang': {
-      icon: '🫀', title: 'Dưỡng sinh ngũ tạng', sub: 'Điều hòa khí huyết, bồi bổ tạng phủ',
-      nguyen_nhan: 'Ngũ tạng (Can–Tâm–Tỳ–Phế–Thận) suy yếu khi khí huyết không đủ nuôi dưỡng hoặc âm dương mất cân bằng kéo dài. Mệt mỏi kinh niên, ăn kém, hồi hộp, dễ xúc động là tín hiệu tạng phủ đang cần được điều hòa từ căn bản — trước khi bệnh thực sự hình thành rõ ràng.',
-      hau_qua: 'Ngũ tạng suy yếu không điều trị — sức đề kháng sụp đổ toàn diện, bệnh mãn tính (tiểu đường, huyết áp, tim mạch) hình thành sớm hơn 10–15 năm so với người dưỡng sinh đúng cách theo mùa.'
+      title: 'Dưỡng sinh ngũ tạng', sub: 'Điều hòa khí huyết, bồi bổ tạng phủ',
+      cam_nhan: 'Không có bệnh rõ ràng nhưng cứ thấy người mệt mỏi, không có sức. Ăn uống bình thường nhưng tiêu hóa hay trục trặc. Hồi hộp, khó thở nhẹ khi leo cầu thang. Hay lo lắng vô cớ, cảm xúc thất thường, ngủ chập chờn. Cảm giác cơ thể đang "xuống dốc" dù chưa đến 50 tuổi.',
+      dong_y: 'Đây là dấu hiệu ngũ tạng (Can–Tâm–Tỳ–Phế–Thận) đang suy yếu đồng loạt — giai đoạn trước khi bệnh hình thành rõ ràng. Đông y gọi là "chính khí hư" — cơ thể thiếu nội lực. Đây là thời điểm tốt nhất để can thiệp, trước khi thành bệnh mãn tính.',
+      hau_qua: 'Không bổ dưỡng ngũ tạng đúng lúc — sức đề kháng sụp đổ toàn diện, bệnh mãn tính như tiểu đường, huyết áp, tim mạch hình thành sớm hơn 10–15 năm so với người dưỡng sinh đúng cách.'
     },
     'voc-dang': {
-      icon: '✨', title: 'Chăm sóc vóc dáng', sub: 'Tái tạo hình thể, làn da tươi sáng',
-      nguyen_nhan: 'Theo Đông y, "Tỳ chủ vận hóa thủy cốc" — Tỳ Vị hư khiến cơ thể không chuyển hóa được thủy thấp và dinh dưỡng. Thủy thấp tích tụ dưới da, tế bào thiếu dưỡng chất, da sạm và mỡ tích trữ bất thường. Đây không chỉ do ăn nhiều mà do cơ thể không vận hóa được.',
-      hau_qua: 'Tỳ hư thấp trệ kéo dài → tăng cân khó kiểm soát dù ăn ít. Da lão hóa sớm — sạm, nám, thiếu đàn hồi. Khí huyết ứ trệ kéo theo tâm lý ảnh hưởng: lo âu về ngoại hình, rối loạn ăn uống.'
+      title: 'Chăm sóc vóc dáng', sub: 'Tái tạo hình thể, làn da tươi sáng',
+      cam_nhan: 'Ăn không nhiều nhưng vẫn tăng cân, đặc biệt ở bụng và đùi. Da dạo này sạm hơn, hay nổi mụn dù đã chăm rửa mặt. Cảm giác người hay phù nề, sáng ngủ dậy mặt sưng húp. Đã thử nhiều loại kem, thực phẩm chức năng nhưng không giữ được kết quả lâu dài.',
+      dong_y: 'Theo Đông y, vóc dáng và làn da phản chiếu tình trạng khí huyết và tạng phủ bên trong. Da sạm, phù nề, tăng cân khó kiểm soát thường do Tỳ Vị hư — cơ thể không vận hóa được dinh dưỡng và thủy thấp. Điều trị từ bên trong mới giữ được kết quả bền.',
+      hau_qua: 'Tỳ hư thấp trệ kéo dài — tăng cân khó kiểm soát dù ăn ít, da lão hóa sớm, thiếu đàn hồi. Khí huyết ứ trệ còn ảnh hưởng tâm lý: lo âu, tự ti về ngoại hình.'
     },
     'te-bi': {
-      icon: '🤲', title: 'Tê bì tay chân', sub: 'Tê buốt ngón tay, khó giơ tay cao',
-      nguyen_nhan: 'Khí huyết không lưu thông đến tứ chi do hàn trệ kinh lạc hoặc Can Thận hư không nuôi được gân cốt. Các đường kinh Thủ Thái Âm Phế, Thủ Dương Minh Đại Tràng bị tắc tại đầu chi — tê buốt lan từ ngón lên cổ tay, cẳng tay. Thường đi kèm đau cổ vai gáy hoặc thoái hóa cột sống cổ C5–C7.',
-      hau_qua: 'Tiến triển thành hội chứng ống cổ tay, viêm dây thần kinh ngoại biên, liệt dây thần kinh khó hồi phục. Tê bì mãn tính làm giảm lực tay, ảnh hưởng nghiêm trọng đến sinh hoạt và lao động hằng ngày.'
+      title: 'Tê bì tay chân', sub: 'Tê buốt ngón tay, khó giơ tay cao',
+      cam_nhan: 'Ngủ dậy hay thấy tay tê, phải vẩy vẩy mạnh mới hết. Ngồi lâu một tư thế là chân tê cứng. Đôi khi tê đột ngột cả bàn tay khi đang cầm đồ, hay tê buốt ngón út và áp út. Giơ tay cao lâu (chải đầu, lấy đồ trên cao) thấy mỏi và tê rất nhanh.',
+      dong_y: 'Tê bì tay chân là dấu hiệu khí huyết không lưu thông đến tứ chi — do kinh lạc bị tắc hoặc gân cốt thiếu dưỡng. Thường liên quan đến tình trạng cổ vai gáy hoặc cột sống cổ, không phải chỉ vấn đề tuần hoàn máu đơn thuần. Cần xác định chính xác đường kinh nào bị ảnh hưởng.',
+      hau_qua: 'Tiến triển thành hội chứng ống cổ tay, viêm dây thần kinh ngoại biên, liệt dây thần kinh khó hồi phục. Tê bì mãn tính làm giảm lực cầm nắm, ảnh hưởng nặng đến sinh hoạt và lao động hằng ngày.'
     }
   };
 
@@ -724,16 +732,19 @@
     const body = document.getElementById('sym-modal-body');
     if (!overlay || !body) return;
     body.innerHTML = `
-      <div class="sym-modal-icon">${data.icon}</div>
       <h2 id="sym-modal-title">${esc(data.title)}</h2>
       <p class="sym-modal-sub">${esc(data.sub)}</p>
       <hr class="sym-divider">
       <div class="sym-section">
-        <p class="sym-label">🌿 Theo Đông y — Tại sao xuất hiện triệu chứng này?</p>
-        <p>${esc(data.nguyen_nhan)}</p>
+        <p class="sym-label">💬 Bạn có đang gặp tình trạng này không?</p>
+        <p>${esc(data.cam_nhan)}</p>
+      </div>
+      <div class="sym-section sym-section-dongY">
+        <p class="sym-label">🌿 Đông y lý giải điều gì đang xảy ra</p>
+        <p>${esc(data.dong_y)}</p>
       </div>
       <div class="sym-section">
-        <p class="sym-label sym-label-hq">⚠️ Nếu để lâu không can thiệp</p>
+        <p class="sym-label sym-label-hq">⚠️ Để lâu có thể dẫn đến</p>
         <p>${esc(data.hau_qua)}</p>
       </div>
       <div class="sym-cta">
