@@ -14,3 +14,14 @@
 .phone-frame iframe{display:block;width:100%;height:min(78vh,780px);border:0;border-radius:20px;background:#eef6e6}
 .image-preview{height:auto!important;max-height:440px;min-height:200px;object-fit:contain!important;padding:6px}
 @media(max-width:1200px){.admin-shell{grid-template-columns:1fr;width:calc(100% - 28px)}.admin-preview{position:static;order:-1}.phone-frame iframe{height:70vh}}
+
+/* Accordion */
+.group .items{display:none}
+.group.is-open .items{display:grid}
+.group-head{cursor:pointer;border-bottom:none!important;transition:background .15s}
+.group-head:hover{background:#fffbe8}
+.group.is-open .group-head{border-bottom:1px solid #e5d2a0!important}
+.group-label{display:flex;align-items:center;gap:14px;flex:1;min-width:0}
+.group-label>div{min-width:0}
+.group-chevron{width:30px;height:30px;background:#f4edce;border:1px solid #e0c878;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:18px;color:var(--green);font-weight:900;transition:transform .22s;flex-shrink:0;line-height:1;pointer-events:none}
+.group.is-open .group-chevron{transform:rotate(90deg)}

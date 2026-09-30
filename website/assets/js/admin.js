@@ -240,13 +240,13 @@
 
   function renderSettings() {
     const entries = Object.entries(siteData.settings || {});
-    return `<section class="group"><div class="group-head"><div><h2>${labels.settings}</h2><p>${descriptions.settings}</p></div></div><div class="items"><article class="item"><div class="fields">${entries.map(([key, value]) => inputFor(['settings', key], key, value)).join('')}</div></article></div></section>`;
+    return `<section class="group" data-group="settings"><div class="group-head"><div class="group-label"><span class="group-chevron">›</span><div><h2>${labels.settings}</h2><p>${descriptions.settings}</p></div></div></div><div class="items"><article class="item"><div class="fields">${entries.map(([key, value]) => inputFor(['settings', key], key, value)).join('')}</div></article></div></section>`;
   }
 
   function renderArrayGroup(key) {
     const items = siteData[key] || [];
     return `<section class="group" data-group="${key}">
-      <div class="group-head"><div><h2>${labels[key] || key}</h2><p>${descriptions[key] || ''}</p></div><button class="add-btn" type="button" data-add="${key}">Thêm mục</button></div>
+      <div class="group-head"><div class="group-label"><span class="group-chevron">›</span><div><h2>${labels[key] || key}</h2><p>${descriptions[key] || ''}</p></div></div><button class="add-btn" type="button" data-add="${key}">Thêm mục</button></div>
       <div class="items">${items.map((item, index) => `
         <article class="item">
           <div class="item-title"><strong>${escapeHtml(item.title || item.name || item.question || `${labels[key]} ${index + 1}`)}</strong><button class="remove-btn" type="button" data-remove="${key}" data-index="${index}">Xóa</button></div>
@@ -271,10 +271,11 @@
         </select>
       </div>`;
     }).join('');
-    return `<section class="group"><div class="group-head"><div><h2>Ẩn / Hiện các phần</h2><p>Tạm ẩn một phần trên website mà không xóa nội dung. Bấm "Lưu lên website" sau khi thay đổi.</p></div></div><div class="items"><article class="item"><div class="fields">${rows}</div></article></div></section>`;
+    return `<section class="group" data-group="section_visibility"><div class="group-head"><div class="group-label"><span class="group-chevron">›</span><div><h2>Ẩn / Hiện các phần</h2><p>Tạm ẩn một phần trên website mà không xóa nội dung. Bấm "Lưu lên website" sau khi thay đổi.</p></div></div></div><div class="items"><article class="item"><div class="fields">${rows}</div></article></div></section>`;
   }
 
   function render() {
+    const openGroups = new Set([...root.querySelectorAll('.group.is-open')].map(g => g.dataset.group).filter(Boolean));
     root.innerHTML = [
       renderSettings(),
       renderSectionVisibility(),
@@ -287,8 +288,11 @@
       renderArrayGroup('testimonials'),
       renderArrayGroup('gallery'),
       renderArrayGroup('symptoms'),
-      `<section class="group"><div class="group-head"><div><h2>Xem nhanh file dữ liệu</h2><p>Phần này để kiểm tra tổng thể trước khi tải file.</p></div></div><div class="items"><pre class="json-preview">${escapeHtml(JSON.stringify(siteData, null, 2))}</pre></div></section>`
+      `<section class="group" data-group="json-preview"><div class="group-head"><div class="group-label"><span class="group-chevron">›</span><div><h2>Xem nhanh file dữ liệu</h2><p>Phần này để kiểm tra tổng thể trước khi tải file.</p></div></div></div><div class="items"><pre class="json-preview">${escapeHtml(JSON.stringify(siteData, null, 2))}</pre></div></section>`
     ].join('');
+    root.querySelectorAll('.group[data-group]').forEach(g => {
+      if (openGroups.has(g.dataset.group)) g.classList.add('is-open');
+    });
     pushPreview();
   }
 
@@ -361,6 +365,10 @@
       siteData[key].splice(Number(remove.dataset.index), 1);
       render();
       setStatus(`Đã xóa một mục khỏi ${labels[key]}.`);
+    }
+    const head = event.target.closest('.group-head');
+    if (head && !event.target.closest('button, input, select, label, a')) {
+      head.closest('.group').classList.toggle('is-open');
     }
   });
 
