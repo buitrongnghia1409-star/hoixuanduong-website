@@ -585,6 +585,8 @@
       renderTestimonials(data.testimonials);
       renderSocialChannels(data.settings || {});
       fillBookingOptions(data);
+      if (data.gallery && data.gallery.length) renderGallery(data.gallery);
+      if (data.symptoms && data.symptoms.length) renderSymptomCards(data.symptoms);
     }
     applyTapIcons();
     initMenu();
@@ -600,6 +602,23 @@
     initBookCards();
     initGalleryAutoScroll();
   });
+
+  function renderGallery(items) {
+    const scroll = document.querySelector('.gallery-scroll');
+    if (!scroll || !Array.isArray(items)) return;
+    scroll.innerHTML = items.map(item =>
+      `<div class="gallery-item"><img src="${esc(item.image)}" alt="${esc(item.alt || '')}" loading="lazy"></div>`
+    ).join('');
+  }
+
+  function renderSymptomCards(items) {
+    const grid = document.querySelector('.health-problems-grid');
+    if (!grid || !Array.isArray(items)) return;
+    grid.innerHTML = items.map(item =>
+      `<div class="hpc-wrap" data-symptom="${esc(item.id)}"><div class="hpc-inner"><div class="hpc-front"><img class="hpc-img" src="${esc(item.image)}" alt="${esc(item.title)}" loading="lazy"><div class="hpc-front-content"><div class="hpc-front-desc"><strong>${esc(item.title)}</strong><span>${esc(item.sub || '')}</span></div></div></div><div class="hpc-back"><div class="hpc-back-content"></div></div></div></div>`
+    ).join('');
+    items.forEach(item => { if (item.id) SYMPTOMS[item.id] = item; });
+  }
 
   function initGalleryAutoScroll() {
     const scroll = document.querySelector('.gallery-scroll');
@@ -732,7 +751,7 @@
   }
 
   // ===== SYMPTOM EDUCATION MODAL =====
-  const SYMPTOMS = {
+  let SYMPTOMS = {
     'co-vai-gay': {
       title: 'Đau mỏi Cổ Vai Gáy', sub: 'Tê bì, cứng cơ, nhức đầu vùng gáy',
       cam_nhan: 'Sáng ngủ dậy cổ cứng không quay được. Ngồi máy tính hay cầm điện thoại lâu là vai mỏi rã rời. Lúc đầu xoa dầu nóng hoặc đấm lưng thì tạm đỡ, nhưng vài hôm lại tái. Nhiều lúc tê nhức lan lên đầu, mắt mờ, căng cứng hai bên thái dương mà không rõ lý do.',

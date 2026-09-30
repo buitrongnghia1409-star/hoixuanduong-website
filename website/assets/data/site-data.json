@@ -624,6 +624,94 @@
       "image": "assets/images/testimonials/nguyen-ha-trang.jpg"
     }
   ],
+  "gallery": [
+    {"image": "assets/images/phong-tri-lieu-2.jpg", "alt": "Phòng trị liệu Hồi Xuân Đường"},
+    {"image": "assets/images/dms07619.jpg", "alt": "Không gian Hồi Xuân Đường"},
+    {"image": "assets/images/dms07621.jpg", "alt": "Thiết bị y tế HXĐ"},
+    {"image": "assets/images/dms07623.jpg", "alt": "Chăm sóc tại HXĐ"},
+    {"image": "assets/images/dms07625.jpg", "alt": "Đội ngũ HXĐ"},
+    {"image": "assets/images/dms07627.jpg", "alt": "Liệu trình HXĐ"},
+    {"image": "assets/images/dms08028-opt.webp", "alt": "Phòng điều trị HXĐ"},
+    {"image": "assets/images/dms08038.jpg", "alt": "Dưỡng sinh HXĐ"},
+    {"image": "assets/images/dms08050.jpg", "alt": "Đặc trị HXĐ"},
+    {"image": "assets/images/tri-lieu-nhom.jpg", "alt": "Điều trị nhóm HXĐ"},
+    {"image": "assets/images/tu-van-kham-benh.jpg", "alt": "Tư vấn khám bệnh HXĐ"},
+    {"image": "assets/images/nhan-vien-cham-soc.jpg", "alt": "Nhân viên Hồi Xuân Đường"}
+  ],
+  "symptoms": [
+    {
+      "id": "co-vai-gay",
+      "title": "Đau mỏi Cổ Vai Gáy",
+      "sub": "Tê bì, cứng cơ, nhức đầu vùng gáy",
+      "image": "assets/images/symptom-co-vai-gay.webp",
+      "cam_nhan": "Sáng ngủ dậy cổ cứng không quay được. Ngồi máy tính hay cầm điện thoại lâu là vai mỏi rã rời. Lúc đầu xoa dầu nóng hoặc đấm lưng thì tạm đỡ, nhưng vài hôm lại tái. Nhiều lúc tê nhức lan lên đầu, mắt mờ, căng cứng hai bên thái dương mà không rõ lý do.",
+      "dong_y": "Đây là dấu hiệu kinh lạc vùng cổ gáy bị tắc nghẽn do ngồi sai tư thế lâu ngày hoặc phong hàn xâm nhập. Đông y gọi là \"khí huyết ứ trệ tại kinh Thái Dương\" — không phải chỉ mỏi cơ thông thường mà là toàn bộ đường dẫn khí huyết từ vai lên đầu đang bị cản trở.",
+      "hau_qua": "Để lâu không can thiệp: thoái hóa đốt sống cổ C4–C6, hẹp ống sống, chèn ép rễ thần kinh → tê liệt tay, đau đầu mãn tính, nguy cơ rối loạn tuần hoàn não."
+    },
+    {
+      "id": "that-lung",
+      "title": "Đau thắt lưng",
+      "sub": "Thoái hóa cột sống, đau khi cúi ngửa",
+      "image": "assets/images/symptom-that-lung.webp",
+      "cam_nhan": "Ngồi lâu rồi đứng dậy thấy đau nhói ở lưng dưới. Cúi xuống nhặt đồ hoặc mặc quần cũng khó khăn. Nhiều người phải kê gối dưới lưng lúc nằm mới dễ chịu. Nghỉ ngơi vài ngày thì tạm ổn, nhưng làm việc lại hoặc trời lạnh là đau ngay trở lại.",
+      "dong_y": "Thắt lưng là \"phủ của Thận\" — khi Thận suy, cột sống thiếu nơi nương tựa, đĩa đệm suy yếu sớm. Hàn thấp xâm nhập vào các huyệt Thận Du, Mệnh Môn làm khí huyết tắc nghẽn. Đây là lý do nhiều người đau lưng tái đi tái lại dù uống thuốc giảm đau — vì gốc ở Thận chưa được bổ.",
+      "hau_qua": "Thoát vị đĩa đệm L4–L5, L5–S1 chèn ép thần kinh tọa, đau lan xuống mông và chân. Thận hư kéo dài còn kéo theo suy giảm sinh lý, tiểu đêm nhiều, loãng xương sớm."
+    },
+    {
+      "id": "mat-ngu",
+      "title": "Mất ngủ",
+      "sub": "Khó đi vào giấc, hay thức giữa đêm",
+      "image": "assets/images/symptom-mat-ngu.webp",
+      "cam_nhan": "Nằm xuống là đầu óc quay tít, suy nghĩ lung tung không tắt được. Có người ngủ được nhưng 2–3 giờ sáng tỉnh dậy rồi không ngủ lại được. Uống thuốc ngủ thì có giấc nhưng sáng dậy vẫn mệt, bải hoải cả ngày. Lâu dần hay quên, khó tập trung, hay cáu gắt vô cớ.",
+      "dong_y": "Đông y xác định mất ngủ xuất phát từ Tâm Thần bất an — do căng thẳng lâu ngày làm Can uất hóa hỏa nhiễu lên Tâm, hoặc do cơ thể suy yếu khiến huyết không đủ nuôi Tâm thần. Điều này giải thích vì sao thuốc ngủ chỉ \"che\" triệu chứng mà không giải quyết được gốc rễ.",
+      "hau_qua": "Mất ngủ mãn tính làm khí huyết suy kiệt toàn thân, hệ miễn dịch giảm mạnh, lão hóa nhanh. Nguy cơ trầm cảm, rối loạn nội tiết tố — đặc biệt nguy hiểm với phụ nữ tuổi tiền mãn kinh."
+    },
+    {
+      "id": "dau-dau",
+      "title": "Đau đầu, hoa mắt",
+      "sub": "Chóng mặt, đau nửa đầu, ù tai",
+      "image": "assets/images/symptom-dau-dau.webp",
+      "cam_nhan": "Hay bị đau nửa đầu bên phải hoặc sau gáy, nhức như búa gõ. Căng thẳng hay thiếu ngủ là hôm sau đau ngay. Đứng dậy nhanh thấy hoa mắt, choáng váng. Có lúc ù tai đột ngột, mắt mờ rồi tự hết. Uống panadol thì đỡ vài tiếng rồi lại đau — cứ lặp đi lặp lại.",
+      "dong_y": "Đau đầu tái phát thường do Can Dương vượng hoặc khí huyết không đủ lên nuôi não — hai nguyên nhân hoàn toàn khác nhau, cần chẩn đoán riêng. Đây là lý do thuốc giảm đau chỉ giải quyết cơn đau tức thời mà không ngăn được tái phát.",
+      "hau_qua": "Can Dương vượng kéo dài dẫn đến tăng huyết áp mãn tính, nguy cơ đột quỵ. Thiếu máu não lâu ngày gây suy giảm trí nhớ, mất khả năng tập trung."
+    },
+    {
+      "id": "han-am",
+      "title": "Nhiễm hàn ẩm",
+      "sub": "Lạnh tay chân, cơ thể hay mỏi mệt",
+      "image": "assets/images/symptom-han-am.webp",
+      "cam_nhan": "Tay chân lạnh quanh năm dù trời không lạnh. Sáng ngủ dậy cứ thấy người nặng nề, mỏi mệt như chưa ngủ. Hay bị đau bụng khi ăn lạnh, bụng thường ùng ục. Phụ nữ hay bị đau bụng kinh, kinh nguyệt không đều. Trời trở lạnh hoặc ngồi phòng điều hòa lâu là người khó chịu hẳn.",
+      "dong_y": "Đây là biểu hiện cơ thể tích tụ hàn khí và thủy thấp lâu ngày — thường do ăn uống đồ lạnh, ngồi điều hòa nhiều, hay sau sinh không giữ ấm đúng cách. Dương khí suy yếu không đủ đẩy hàn ra ngoài, hàn ứ lại trong kinh lạc và tạng phủ.",
+      "hau_qua": "Hàn thấp lâu ngày gây viêm khớp mãn tính, phù nề, tiêu hóa yếu. Phụ nữ dễ rối loạn kinh nguyệt, vô sinh. Dương khí suy toàn thân — hay ốm vặt, sức đề kháng kém."
+    },
+    {
+      "id": "ngu-tang",
+      "title": "Dưỡng sinh ngũ tạng",
+      "sub": "Điều hòa khí huyết, bồi bổ tạng phủ",
+      "image": "assets/images/symptom-ngu-tang.webp",
+      "cam_nhan": "Không có bệnh rõ ràng nhưng cứ thấy người mệt mỏi, không có sức. Ăn uống bình thường nhưng tiêu hóa hay trục trặc. Hồi hộp, khó thở nhẹ khi leo cầu thang. Hay lo lắng vô cớ, cảm xúc thất thường, ngủ chập chờn. Cảm giác cơ thể đang \"xuống dốc\" dù chưa đến 50 tuổi.",
+      "dong_y": "Đây là dấu hiệu ngũ tạng (Can–Tâm–Tỳ–Phế–Thận) đang suy yếu đồng loạt — giai đoạn trước khi bệnh hình thành rõ ràng. Đông y gọi là \"chính khí hư\" — cơ thể thiếu nội lực. Đây là thời điểm tốt nhất để can thiệp, trước khi thành bệnh mãn tính.",
+      "hau_qua": "Không bổ dưỡng ngũ tạng đúng lúc — sức đề kháng sụp đổ toàn diện, bệnh mãn tính như tiểu đường, huyết áp, tim mạch hình thành sớm hơn 10–15 năm so với người dưỡng sinh đúng cách."
+    },
+    {
+      "id": "voc-dang",
+      "title": "Chăm sóc vóc dáng",
+      "sub": "Tái tạo hình thể, làn da tươi sáng",
+      "image": "assets/images/symptom-voc-dang.webp",
+      "cam_nhan": "Ăn không nhiều nhưng vẫn tăng cân, đặc biệt ở bụng và đùi. Da dạo này sạm hơn, hay nổi mụn dù đã chăm rửa mặt. Cảm giác người hay phù nề, sáng ngủ dậy mặt sưng húp. Đã thử nhiều loại kem, thực phẩm chức năng nhưng không giữ được kết quả lâu dài.",
+      "dong_y": "Theo Đông y, vóc dáng và làn da phản chiếu tình trạng khí huyết và tạng phủ bên trong. Da sạm, phù nề, tăng cân khó kiểm soát thường do Tỳ Vị hư — cơ thể không vận hóa được dinh dưỡng và thủy thấp. Điều trị từ bên trong mới giữ được kết quả bền.",
+      "hau_qua": "Tỳ hư thấp trệ kéo dài — tăng cân khó kiểm soát dù ăn ít, da lão hóa sớm, thiếu đàn hồi. Khí huyết ứ trệ còn ảnh hưởng tâm lý: lo âu, tự ti về ngoại hình."
+    },
+    {
+      "id": "te-bi",
+      "title": "Tê bì tay chân",
+      "sub": "Tê buốt ngón tay, khó giơ tay cao",
+      "image": "assets/images/symptom-te-bi.webp",
+      "cam_nhan": "Ngủ dậy hay thấy tay tê, phải vẩy vẩy mạnh mới hết. Ngồi lâu một tư thế là chân tê cứng. Đôi khi tê đột ngột cả bàn tay khi đang cầm đồ, hay tê buốt ngón út và áp út. Giơ tay cao lâu (chải đầu, lấy đồ trên cao) thấy mỏi và tê rất nhanh.",
+      "dong_y": "Tê bì tay chân là dấu hiệu khí huyết không lưu thông đến tứ chi — do kinh lạc bị tắc hoặc gân cốt thiếu dưỡng. Thường liên quan đến tình trạng cổ vai gáy hoặc cột sống cổ, không phải chỉ vấn đề tuần hoàn máu đơn thuần. Cần xác định chính xác đường kinh nào bị ảnh hưởng.",
+      "hau_qua": "Tiến triển thành hội chứng ống cổ tay, viêm dây thần kinh ngoại biên, liệt dây thần kinh khó hồi phục. Tê bì mãn tính làm giảm lực cầm nắm, ảnh hưởng nặng đến sinh hoạt và lao động hằng ngày."
+    }
+  ],
   "section_visibility": {
     "dinh-vi": false
   }

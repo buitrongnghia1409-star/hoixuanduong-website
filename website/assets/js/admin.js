@@ -122,7 +122,14 @@
     causes: 'Nguyên nhân dẫn đến tình trạng',
     commonMethods: 'Các phương pháp thông thường',
     hxdDifference: 'Sự khác biệt tại Hồi Xuân Đường',
-    packagesText: 'Bảng giá gói (mỗi dòng: Tên gói | Giá | Ghi chú)'
+    packagesText: 'Bảng giá gói (mỗi dòng: Tên gói | Giá | Ghi chú)',
+    gallery: 'Thư viện ảnh',
+    symptoms: 'Card vấn đề sức khỏe',
+    id: 'ID (không đổi — dùng để liên kết)',
+    sub: 'Dòng mô tả ngắn dưới tiêu đề',
+    cam_nhan: 'Cảm nhận thực tế (bạn có đang gặp tình trạng này?)',
+    dong_y: 'Đông y lý giải điều gì đang xảy ra',
+    hau_qua: 'Để lâu có thể dẫn đến'
   };
 
   const descriptions = {
@@ -133,7 +140,9 @@
     products: 'Danh mục sản phẩm hiển thị trên website. Có thể sửa tên, giá và nhóm.',
     locations: 'Danh sách chi nhánh. Bật “sắp cập nhật” nếu chưa có địa chỉ chính thức.',
     faqs: 'Những câu hỏi thường gặp dưới trang.',
-    testimonials: 'Đánh giá thực từ khách hàng – hiển thị trong phần "Khách hàng nói gì".'
+    testimonials: 'Đánh giá thực từ khách hàng – hiển thị trong phần "Khách hàng nói gì".',
+    gallery: 'Ảnh không gian, đội ngũ, liệu trình – cuộn ngang trong phần Thư viện ảnh. Có thể thêm/bỏ/đổi thứ tự ảnh.',
+    symptoms: '8 card vấn đề sức khỏe. Có thể thay ảnh nền, tiêu đề, mô tả và nội dung popup giải thích theo Đông y.'
   };
 
   const templates = {
@@ -143,7 +152,9 @@
     products: { category: 'NHÓM SẢN PHẨM', image: '', title: 'Tên sản phẩm mới', price: 'Liên hệ báo giá', service: 'Tên sản phẩm mới', icon: 'tea', description: 'Mô tả ngắn.' },
     locations: { number: 'CƠ SỞ MỚI', name: 'Tên cơ sở', address: 'Địa chỉ sẽ cập nhật', map: '', branch: 'Tên cơ sở', future: true },
     faqs: { question: 'Câu hỏi mới?', answer: 'Câu trả lời.' },
-    testimonials: { name: 'Tên khách hàng', location: 'Hạ Long', service: 'Tên dịch vụ', rating: 5, text: 'Nội dung đánh giá của khách hàng.', image: '' }
+    testimonials: { name: 'Tên khách hàng', location: 'Hạ Long', service: 'Tên dịch vụ', rating: 5, text: 'Nội dung đánh giá của khách hàng.', image: '' },
+    gallery: { image: 'assets/images/phong-tri-lieu-2.jpg', alt: 'Mô tả ảnh' },
+    symptoms: { id: 'ten-slug', title: 'Tên vấn đề', sub: 'Mô tả ngắn', image: 'assets/images/symptom-ten.webp', cam_nhan: 'Cảm nhận thực tế...', dong_y: 'Lý giải Đông y...', hau_qua: 'Hậu quả nếu để lâu...' }
   };
 
   function setStatus(message) {
@@ -152,7 +163,7 @@
 
   function fieldType(key, value) {
     if (typeof value === 'boolean') return 'checkbox';
-    if (['description', 'detail', 'address', 'answer', 'alt', 'video', 'causes', 'commonMethods', 'hxdDifference', 'packagesText'].includes(key)) return 'textarea';
+    if (['description', 'detail', 'address', 'answer', 'alt', 'video', 'causes', 'commonMethods', 'hxdDifference', 'packagesText', 'cam_nhan', 'dong_y', 'hau_qua', 'sub'].includes(key)) return 'textarea';
     if (key === 'category') return 'category';
     if (key === 'icon') return 'icon';
     if (key === 'experienceVideoRatio') return 'videoratio';
@@ -274,6 +285,8 @@
       renderArrayGroup('locations'),
       renderArrayGroup('faqs'),
       renderArrayGroup('testimonials'),
+      renderArrayGroup('gallery'),
+      renderArrayGroup('symptoms'),
       `<section class="group"><div class="group-head"><div><h2>Xem nhanh file dữ liệu</h2><p>Phần này để kiểm tra tổng thể trước khi tải file.</p></div></div><div class="items"><pre class="json-preview">${escapeHtml(JSON.stringify(siteData, null, 2))}</pre></div></section>`
     ].join('');
     pushPreview();
