@@ -504,16 +504,15 @@ main{background:transparent!important}
 
 /* ===== THƯ VIỆN ẢNH ===== */
 .thu-vien-section{background:var(--sage)}
-.gallery-outer{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:8px}
-.gallery-outer::-webkit-scrollbar{display:none}
-.gallery-grid{display:flex;gap:16px;padding:4px 0 16px;width:max-content;padding-inline:calc((100vw - min(1280px,calc(100% - 96px)))/2);box-sizing:border-box}
-.gallery-item{flex:0 0 clamp(200px,24vw,270px);height:300px;position:relative;border:1px solid var(--gold-line);border-radius:14px;overflow:hidden;box-shadow:inset 0 0 0 1px #fff6dc,0 8px 22px rgba(23,62,50,.08);transition:transform .25s cubic-bezier(.4,0,.2,1),box-shadow .25s;cursor:pointer;scroll-snap-align:start;background:#e8ede6}
+.gallery-scroll{display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:4px 0 20px}
+.gallery-scroll::-webkit-scrollbar{display:none}
+.gallery-item{flex:0 0 260px;height:300px;position:relative;border:1px solid var(--gold-line);border-radius:14px;overflow:hidden;box-shadow:inset 0 0 0 1px #fff6dc,0 8px 22px rgba(23,62,50,.08);transition:transform .25s cubic-bezier(.4,0,.2,1),box-shadow .25s;cursor:pointer;scroll-snap-align:start;background:#e8ede6;flex-shrink:0}
 .gallery-item:hover{transform:translateY(-5px);box-shadow:inset 0 0 0 1.5px var(--gold),0 18px 36px rgba(23,62,50,.18)}
-.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.gallery-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .gallery-item:hover img{transform:scale(1.05)}
 .gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(12,30,20,.45) 0%,transparent 55%);pointer-events:none}
 .gallery-tag{position:absolute;bottom:11px;left:11px;z-index:1;font-size:9px;font-weight:700;letter-spacing:.8px;background:rgba(255,250,240,.92);border:1px solid var(--gold-line);border-radius:4px;padding:5px 9px;color:var(--green)}
-@media(max-width:768px){.gallery-grid{padding-inline:16px}.gallery-item{flex:0 0 clamp(170px,72vw,240px);height:240px}}
+@media(max-width:768px){.gallery-item{flex:0 0 72vw;height:240px}}
 
 /* ===== SYMPTOM EDUCATION MODAL ===== */
 .sym-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:900;display:flex;align-items:center;justify-content:center;padding:20px}
