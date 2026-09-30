@@ -588,6 +588,7 @@
     initTestimonialLightbox();
     initVideoModal();
     initInlineVideos();
+    initSymptomModal();
   });
 
   function initTestimonialLightbox() {
@@ -669,6 +670,92 @@
       if (!trigger) return;
       e.preventDefault();
       openVideoModal(trigger.dataset.video);
+    });
+  }
+
+  // ===== SYMPTOM EDUCATION MODAL =====
+  const SYMPTOMS = {
+    'co-vai-gay': {
+      icon: '⚡', title: 'Đau mỏi Cổ Vai Gáy', sub: 'Tê bì, cứng cơ, nhức đầu vùng gáy',
+      nguyen_nhan: 'Theo Đông y, cổ vai gáy là vùng kinh Thái Dương Bàng Quang và Đốc Mạch đi qua. Tư thế cúi đầu kéo dài, phong hàn xâm nhập hoặc Can khí uất kết khiến khí huyết ứ trệ tại các huyệt Thiên Trụ, Phong Trì, Đại Trùy — gây cứng cơ, tê lan đầu và mỏi vai mãn tính. Đây là tình trạng kinh lạc bị tắc, không phải đơn thuần mỏi cơ.',
+      hau_qua: 'Không can thiệp đúng căn nguyên: thoái hóa đốt sống cổ C4–C6 tiến triển, hẹp ống sống, chèn ép rễ thần kinh → tê bì lan xuống tay, đau đầu mãn tính khó kiểm soát, nguy cơ rối loạn tuần hoàn não.'
+    },
+    'that-lung': {
+      icon: '🦴', title: 'Đau thắt lưng', sub: 'Thoái hóa cột sống, đau khi cúi ngửa',
+      nguyen_nhan: 'Thắt lưng là "phủ của Thận" — Thận chủ cốt tủy, Thận hư khiến cột sống thiếu nơi nương tựa, đĩa đệm suy yếu sớm. Kết hợp phong hàn thấp tà xâm nhập vào kinh Bàng Quang, Đốc Mạch khiến khí huyết tắc nghẽn tại Thận Du, Mệnh Môn, Đại Trường Du — đau âm ỉ hoặc đau cấp khi cúi ngửa.',
+      hau_qua: 'Thoát vị đĩa đệm L4–L5, L5–S1 chèn ép dây thần kinh tọa, đau lan xuống mông và chân. Thận hư kéo dài còn kéo theo suy giảm sinh lý, tiểu đêm nhiều, loãng xương sớm hơn 10–15 năm so với người dưỡng thận đúng cách.'
+    },
+    'mat-ngu': {
+      icon: '🌙', title: 'Mất ngủ', sub: 'Khó đi vào giấc, hay thức giữa đêm',
+      nguyen_nhan: 'Tâm Thần bất an là căn nguyên cốt lõi. Can uất hóa hỏa nhiễu lên Tâm; hoặc Tâm Thận bất giao — thủy hỏa không điều hòa khiến người nóng bừng, không ngủ được sau 23h (giờ Tý là giờ Đởm hành). Huyết hư không nuôi Tâm thần gây thức giữa đêm giờ Dần–Mão (3–5h sáng — giờ Phế–Đại Tràng).',
+      hau_qua: 'Mất ngủ kéo dài làm khí huyết suy kiệt, Can Thận đều hư, hệ miễn dịch giảm mạnh. Nguy cơ trầm cảm, lo âu mãn tính, lão hóa nhanh, rối loạn nội tiết tố — đặc biệt nguy hiểm với phụ nữ tuổi tiền mãn kinh.'
+    },
+    'dau-dau': {
+      icon: '💫', title: 'Đau đầu, hoa mắt', sub: 'Chóng mặt, đau nửa đầu, ù tai',
+      nguyen_nhan: 'Can Dương vượng thăng lên trên (do âm hư không kiềm dương) → đau đầu bên, ù tai, hoa mắt chóng mặt — ảnh hưởng các huyệt Bách Hội, Thái Dương, Phong Trì. Hoặc khí huyết hư không đủ nuôi não → đau âm ỉ cả đầu, mệt mỏi, khó tập trung sau bữa ăn.',
+      hau_qua: 'Can Dương vượng không kiểm soát dẫn đến tăng huyết áp mãn tính, nguy cơ đột quỵ. Thiếu máu não kéo dài gây suy giảm trí nhớ, mất khả năng tập trung.'
+    },
+    'han-am': {
+      icon: '❄️', title: 'Nhiễm hàn ẩm', sub: 'Lạnh tay chân, cơ thể hay mỏi mệt',
+      nguyen_nhan: 'Tỳ Vị hư hàn không vận hóa được thủy thấp → thấp khí đọng lại trong kinh lạc, cơ khớp. Dương khí suy không đủ đẩy hàn tà ra ngoài — hàn tích sâu trong cơ, thẩm vào khớp, nặng hơn vào mùa lạnh. Phụ nữ sau sinh uống lạnh, nằm điều hòa nhiều dễ nhiễm hàn ẩm tầng sâu.',
+      hau_qua: 'Thấp hàn lâu ngày hóa thành đàm trọc, gây viêm khớp mãn tính, phù nề, tiêu hóa suy yếu. Phụ nữ dễ rối loạn kinh nguyệt, lạnh bụng kinh, vô sinh. Dương khí suy toàn thân — sức đề kháng kém, hay ốm vặt.'
+    },
+    'ngu-tang': {
+      icon: '🫀', title: 'Dưỡng sinh ngũ tạng', sub: 'Điều hòa khí huyết, bồi bổ tạng phủ',
+      nguyen_nhan: 'Ngũ tạng (Can–Tâm–Tỳ–Phế–Thận) suy yếu khi khí huyết không đủ nuôi dưỡng hoặc âm dương mất cân bằng kéo dài. Mệt mỏi kinh niên, ăn kém, hồi hộp, dễ xúc động là tín hiệu tạng phủ đang cần được điều hòa từ căn bản — trước khi bệnh thực sự hình thành rõ ràng.',
+      hau_qua: 'Ngũ tạng suy yếu không điều trị — sức đề kháng sụp đổ toàn diện, bệnh mãn tính (tiểu đường, huyết áp, tim mạch) hình thành sớm hơn 10–15 năm so với người dưỡng sinh đúng cách theo mùa.'
+    },
+    'voc-dang': {
+      icon: '✨', title: 'Chăm sóc vóc dáng', sub: 'Tái tạo hình thể, làn da tươi sáng',
+      nguyen_nhan: 'Theo Đông y, "Tỳ chủ vận hóa thủy cốc" — Tỳ Vị hư khiến cơ thể không chuyển hóa được thủy thấp và dinh dưỡng. Thủy thấp tích tụ dưới da, tế bào thiếu dưỡng chất, da sạm và mỡ tích trữ bất thường. Đây không chỉ do ăn nhiều mà do cơ thể không vận hóa được.',
+      hau_qua: 'Tỳ hư thấp trệ kéo dài → tăng cân khó kiểm soát dù ăn ít. Da lão hóa sớm — sạm, nám, thiếu đàn hồi. Khí huyết ứ trệ kéo theo tâm lý ảnh hưởng: lo âu về ngoại hình, rối loạn ăn uống.'
+    },
+    'te-bi': {
+      icon: '🤲', title: 'Tê bì tay chân', sub: 'Tê buốt ngón tay, khó giơ tay cao',
+      nguyen_nhan: 'Khí huyết không lưu thông đến tứ chi do hàn trệ kinh lạc hoặc Can Thận hư không nuôi được gân cốt. Các đường kinh Thủ Thái Âm Phế, Thủ Dương Minh Đại Tràng bị tắc tại đầu chi — tê buốt lan từ ngón lên cổ tay, cẳng tay. Thường đi kèm đau cổ vai gáy hoặc thoái hóa cột sống cổ C5–C7.',
+      hau_qua: 'Tiến triển thành hội chứng ống cổ tay, viêm dây thần kinh ngoại biên, liệt dây thần kinh khó hồi phục. Tê bì mãn tính làm giảm lực tay, ảnh hưởng nghiêm trọng đến sinh hoạt và lao động hằng ngày.'
+    }
+  };
+
+  function openSymptomModal(key) {
+    const data = SYMPTOMS[key];
+    if (!data) return;
+    const overlay = document.getElementById('sym-overlay');
+    const body = document.getElementById('sym-modal-body');
+    if (!overlay || !body) return;
+    body.innerHTML = `
+      <div class="sym-modal-icon">${data.icon}</div>
+      <h2 id="sym-modal-title">${esc(data.title)}</h2>
+      <p class="sym-modal-sub">${esc(data.sub)}</p>
+      <hr class="sym-divider">
+      <div class="sym-section">
+        <p class="sym-label">🌿 Theo Đông y — Tại sao xuất hiện triệu chứng này?</p>
+        <p>${esc(data.nguyen_nhan)}</p>
+      </div>
+      <div class="sym-section">
+        <p class="sym-label sym-label-hq">⚠️ Nếu để lâu không can thiệp</p>
+        <p>${esc(data.hau_qua)}</p>
+      </div>
+      <div class="sym-cta">
+        <a href="#dat-lich" class="sym-cta-main" data-service="${esc(data.title)}">Tư vấn trực tiếp tại Hồi Xuân Đường →</a>
+        <button type="button" class="sym-cta-dismiss" id="sym-dismiss">Tôi muốn tìm hiểu thêm trước</button>
+      </div>`;
+    overlay.hidden = false;
+    document.body.style.overflow = 'hidden';
+    const closeBtn = document.getElementById('sym-close');
+    const dismissBtn = document.getElementById('sym-dismiss');
+    const ctaLink = body.querySelector('.sym-cta-main');
+    const close = () => { overlay.hidden = true; document.body.style.overflow = ''; };
+    closeBtn && closeBtn.addEventListener('click', close, { once: true });
+    dismissBtn && dismissBtn.addEventListener('click', close, { once: true });
+    overlay.addEventListener('click', e => { if (e.target === overlay) close(); }, { once: true });
+    ctaLink && ctaLink.addEventListener('click', close);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); }, { once: true });
+  }
+
+  function initSymptomModal() {
+    document.querySelectorAll('.hp-card[data-symptom]').forEach(btn => {
+      btn.addEventListener('click', () => openSymptomModal(btn.dataset.symptom));
     });
   }
 
