@@ -598,7 +598,56 @@
     initVideoModal();
     initInlineVideos();
     initBookCards();
+    initGalleryAutoScroll();
   });
+
+  function initGalleryAutoScroll() {
+    const scroll = document.querySelector('.gallery-scroll');
+    if (!scroll) return;
+    let paused = false;
+    let touchPauseTimer;
+
+    scroll.addEventListener('mouseenter', () => { paused = true; });
+    scroll.addEventListener('mouseleave', () => { paused = false; });
+    scroll.addEventListener('touchstart', () => {
+      paused = true;
+      clearTimeout(touchPauseTimer);
+    }, { passive: true });
+    scroll.addEventListener('touchend', () => {
+      touchPauseTimer = setTimeout(() => { paused = false; }, 2500);
+    }, { passive: true });
+
+    let isDragging = false, startX = 0, startScrollLeft = 0;
+    scroll.addEventListener('mousedown', e => {
+      isDragging = true; paused = true;
+      startX = e.pageX; startScrollLeft = scroll.scrollLeft;
+      scroll.classList.add('is-dragging');
+    });
+    document.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      scroll.scrollLeft = startScrollLeft - (e.pageX - startX);
+    });
+    document.addEventListener('mouseup', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      scroll.classList.remove('is-dragging');
+      touchPauseTimer = setTimeout(() => { paused = false; }, 1500);
+    });
+
+    const GAP = 20;
+    setInterval(() => {
+      if (paused || isDragging) return;
+      const item = scroll.querySelector('.gallery-item');
+      if (!item) return;
+      const step = item.offsetWidth + GAP;
+      const maxLeft = scroll.scrollWidth - scroll.clientWidth;
+      if (scroll.scrollLeft >= maxLeft - 2) {
+        scroll.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        scroll.scrollBy({ left: step, behavior: 'smooth' });
+      }
+    }, 3200);
+  }
 
   function initTestimonialLightbox() {
     document.addEventListener('click', e => {
