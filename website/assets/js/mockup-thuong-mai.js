@@ -833,17 +833,9 @@
       }
 
       card.addEventListener('click', () => {
-        if (window.innerWidth < 768) {
-          // Mobile → bottom-sheet overlay
-          if (activeCard === card && !ovl?.hidden) { closeOverlay(); return; }
-          activeCard = card;
-          openOverlay(data, card.querySelector('.hpc-img')?.src || '');
-        } else {
-          // Desktop → flip in-place
-          const isOpen = card.classList.contains('open');
-          document.querySelectorAll('.hpc-wrap.open').forEach(o => o.classList.remove('open'));
-          if (!isOpen) card.classList.add('open');
-        }
+        if (activeCard === card && !ovl?.hidden) { closeOverlay(); return; }
+        activeCard = card;
+        openOverlay(data, card.querySelector('.hpc-img')?.src || '');
       });
     });
   }
