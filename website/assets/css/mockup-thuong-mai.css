@@ -462,7 +462,7 @@ main{background:transparent!important}
 .hpc-front::after{content:'';position:absolute;inset:0;background:rgba(230,240,230,.35);pointer-events:none}
 .hpc-front-content{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:12px;z-index:1}
 .hpc-front-desc{background:none;padding:0;text-align:center}
-.hpc-front-desc strong{display:block;font-size:17px;font-weight:800;color:#173e32;line-height:1.3;letter-spacing:-.01em;text-shadow:0 1px 6px rgba(255,255,255,.9),0 2px 12px rgba(255,255,255,.6)}
+.hpc-front-desc strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:22px;font-weight:900;color:#173e32;line-height:1.25;letter-spacing:-.02em;text-shadow:0 1px 8px rgba(255,255,255,.95),0 2px 16px rgba(255,255,255,.7),0 0 24px rgba(255,255,255,.5)}
 .hpc-front-desc span{display:none}
 /* ── BACK ── */
 .hpc-back{transform:rotateY(180deg);background:#0d1e13;display:flex;align-items:center;justify-content:center}
@@ -495,10 +495,10 @@ main{background:transparent!important}
 .hpc-ovl-head-sub{font-size:12px;color:rgba(255,255,255,.82);margin-top:3px}
 .hpc-ovl-close{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.28);backdrop-filter:blur(6px);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:14px;color:#fff;display:flex;align-items:center;justify-content:center;line-height:1}
 .hpc-ovl-close:hover{background:rgba(0,0,0,.45)}
-.hpc-ovl-body{padding:16px 16px 20px;overflow-y:auto;flex:1;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.hpc-ovl-body{padding:16px 16px 20px;overflow-y:auto;flex:1;min-height:0;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 /* Responsive */
 @media(max-width:768px){.health-problems-grid{grid-template-columns:repeat(2,1fr);gap:12px}.hpc-wrap{height:200px}}
-@media(max-width:420px){.health-problems-grid{gap:10px}.hpc-wrap{height:185px}.hpc-front-desc strong{font-size:14px}}
+@media(max-width:420px){.health-problems-grid{gap:10px}.hpc-wrap{height:185px}.hpc-front-desc strong{font-size:18px}}
 /* Desktop: bigger cards */
 @media(min-width:769px){.hpc-wrap{height:280px}}
 
