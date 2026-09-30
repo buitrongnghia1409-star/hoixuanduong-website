@@ -774,31 +774,76 @@
   }
 
   function initBookCards() {
-    document.querySelectorAll('.hpc-wrap[data-symptom]').forEach(card => {
-      const key = card.dataset.symptom;
-      const data = SYMPTOMS[key];
-      const inner = card.querySelector('.hpc-back-content');
-      if (!data || !inner) return;
+    const ovl     = document.getElementById('hpc-overlay');
+    const ovlImg  = document.getElementById('hpc-ovl-img');
+    const ovlTitle= document.getElementById('hpc-ovl-title');
+    const ovlSub  = document.getElementById('hpc-ovl-sub');
+    const ovlBody = document.getElementById('hpc-ovl-body');
+    const ovlClose= document.getElementById('hpc-ovl-close');
 
-      inner.innerHTML =
-        `<button type="button" class="hpb-close" aria-label="Đóng">✕</button>` +
-        `<p class="hpb-label">💬 Bạn đang gặp tình trạng này không?</p>` +
+    function buildContent(data) {
+      return `<p class="hpb-label">💬 Bạn đang gặp tình trạng này không?</p>` +
         `<p class="hpb-text">${esc(data.cam_nhan)}</p>` +
         `<div class="hpb-section-dy"><p class="hpb-label">🌿 Đông y lý giải</p><p class="hpb-text">${esc(data.dong_y)}</p></div>` +
         `<p class="hpb-label hpb-label-hq">⚠️ Để lâu có thể dẫn đến</p>` +
         `<p class="hpb-text">${esc(data.hau_qua)}</p>` +
         `<a href="#dat-lich" class="hpb-cta" data-service="${esc(data.title)}">Tư vấn tại Hồi Xuân Đường →</a>`;
+    }
 
-      inner.querySelector('.hpb-close').addEventListener('click', e => {
-        e.stopPropagation();
-        card.classList.remove('open');
-      });
-      inner.querySelector('.hpb-cta').addEventListener('click', e => e.stopPropagation());
+    let activeCard = null;
+
+    function openOverlay(data, imgSrc) {
+      if (ovlImg)  { ovlImg.src = imgSrc; ovlImg.alt = data.title; }
+      if (ovlTitle) ovlTitle.textContent = data.title;
+      if (ovlSub)   ovlSub.textContent = data.sub || '';
+      if (ovlBody) {
+        ovlBody.innerHTML = buildContent(data);
+        ovlBody.querySelector('.hpb-cta')?.addEventListener('click', closeOverlay);
+      }
+      if (ovl) ovl.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeOverlay() {
+      if (ovl) ovl.hidden = true;
+      document.body.style.overflow = '';
+      activeCard = null;
+    }
+
+    if (ovl) {
+      ovl.addEventListener('click', e => { if (e.target === ovl) closeOverlay(); });
+    }
+    if (ovlClose) ovlClose.addEventListener('click', closeOverlay);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
+
+    document.querySelectorAll('.hpc-wrap[data-symptom]').forEach(card => {
+      const key = card.dataset.symptom;
+      const data = SYMPTOMS[key];
+      if (!data) return;
+
+      // Desktop: fill back face content
+      const back = card.querySelector('.hpc-back-content');
+      if (back) {
+        back.innerHTML = `<button type="button" class="hpb-close" aria-label="Đóng">✕</button>` + buildContent(data);
+        back.querySelector('.hpb-close').addEventListener('click', e => {
+          e.stopPropagation();
+          card.classList.remove('open');
+        });
+        back.querySelector('.hpb-cta').addEventListener('click', e => e.stopPropagation());
+      }
 
       card.addEventListener('click', () => {
-        const isOpen = card.classList.contains('open');
-        document.querySelectorAll('.hpc-wrap.open').forEach(other => other.classList.remove('open'));
-        if (!isOpen) card.classList.add('open');
+        if (window.innerWidth < 768) {
+          // Mobile → bottom-sheet overlay
+          if (activeCard === card && !ovl?.hidden) { closeOverlay(); return; }
+          activeCard = card;
+          openOverlay(data, card.querySelector('.hpc-img')?.src || '');
+        } else {
+          // Desktop → flip in-place
+          const isOpen = card.classList.contains('open');
+          document.querySelectorAll('.hpc-wrap.open').forEach(o => o.classList.remove('open'));
+          if (!isOpen) card.classList.add('open');
+        }
       });
     });
   }

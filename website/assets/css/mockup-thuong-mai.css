@@ -455,14 +455,15 @@ main{background:transparent!important}
 /* Shared face styles */
 .hpc-front,.hpc-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:14px;overflow:hidden}
 /* ── FRONT ── */
-.hpc-front{background:#0d1e13}
-.hpc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.3;transition:opacity .3s}
-.hpc-wrap:hover .hpc-img{opacity:.38}
-.hpc-front-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:14px}
-.hpc-badge{background:rgba(0,0,0,.45);backdrop-filter:blur(4px);color:#c9a84c;font-size:9.5px;font-weight:700;letter-spacing:.09em;padding:3px 10px;border-radius:20px;align-self:flex-start;text-transform:uppercase}
-.hpc-front-desc{background:rgba(0,0,0,.6);backdrop-filter:blur(6px);border-radius:10px;padding:12px 14px;text-align:center}
-.hpc-front-desc strong{display:block;font-size:16px;font-weight:800;color:#fff;line-height:1.2;letter-spacing:-.01em;text-shadow:0 1px 6px rgba(0,0,0,.6)}
-.hpc-front-desc span{display:block;font-size:11px;color:rgba(255,255,255,.75);margin-top:5px;line-height:1.4}
+.hpc-front{background:#deeade}
+.hpc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.38;filter:brightness(1.1) saturate(.8);transition:opacity .3s}
+.hpc-wrap:hover .hpc-img{opacity:.48}
+/* White scrim để ảnh trông sáng nhẹ */
+.hpc-front::after{content:'';position:absolute;inset:0;background:rgba(230,240,230,.35);pointer-events:none}
+.hpc-front-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;z-index:1}
+.hpc-front-desc{background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border-radius:10px;padding:12px 14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.hpc-front-desc strong{display:block;font-size:15px;font-weight:800;color:#173e32;line-height:1.25;letter-spacing:-.01em}
+.hpc-front-desc span{display:block;font-size:11px;color:#555;margin-top:4px;line-height:1.4}
 /* ── BACK ── */
 .hpc-back{transform:rotateY(180deg);background:#0d1e13;display:flex;align-items:center;justify-content:center}
 /* Rotating glow border */
@@ -481,8 +482,24 @@ main{background:transparent!important}
 .hpb-cta{display:block;margin-top:10px;padding:8px 10px;background:#173e32;color:#fff;border-radius:8px;text-align:center;font-size:11.5px;font-weight:600;text-decoration:none;transition:background .2s;line-height:1.3}
 .hpb-cta:hover{background:#0f2a1f;color:#fff}
 .hp-footnote{text-align:center;margin-top:20px;font-size:13px;color:#888;font-style:italic}
-@media(max-width:768px){.health-problems-grid{grid-template-columns:repeat(2,1fr);gap:12px}.hpc-wrap{height:240px}}
-@media(max-width:420px){.health-problems-grid{gap:10px}.hpc-wrap{height:220px}.hpc-front-desc strong{font-size:14px}}
+/* Mobile overlay bottom-sheet */
+#hpc-overlay{position:fixed;inset:0;z-index:700;background:rgba(0,0,0,.52);display:flex;align-items:flex-end}
+#hpc-overlay[hidden]{display:none}
+.hpc-ovl-panel{width:100%;max-height:92vh;background:#faf8f4;border-radius:20px 20px 0 0;overflow:hidden;display:flex;flex-direction:column;animation:hpcSlideUp .32s cubic-bezier(.4,0,.2,1)}
+@keyframes hpcSlideUp{from{transform:translateY(56px);opacity:.5}to{transform:translateY(0);opacity:1}}
+.hpc-ovl-head{position:relative;height:170px;flex-shrink:0;overflow:hidden;background:#173e32}
+.hpc-ovl-head-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;filter:brightness(1.1)}
+.hpc-ovl-head-fade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(230,242,230,.1),rgba(20,50,28,.75));display:flex;flex-direction:column;justify-content:flex-end;padding:14px 16px}
+.hpc-ovl-head-title{font-size:22px;font-weight:800;color:#fff;line-height:1.2;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+.hpc-ovl-head-sub{font-size:13px;color:rgba(255,255,255,.8);margin-top:4px}
+.hpc-ovl-close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.2);backdrop-filter:blur(6px);border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:15px;color:#fff;display:flex;align-items:center;justify-content:center;line-height:1}
+.hpc-ovl-close:hover{background:rgba(255,255,255,.35)}
+.hpc-ovl-body{padding:18px 16px 28px;overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
+/* Responsive */
+@media(max-width:768px){.health-problems-grid{grid-template-columns:repeat(2,1fr);gap:12px}.hpc-wrap{height:200px}}
+@media(max-width:420px){.health-problems-grid{gap:10px}.hpc-wrap{height:185px}.hpc-front-desc strong{font-size:14px}}
+/* Desktop: bigger cards */
+@media(min-width:769px){.hpc-wrap{height:280px}}
 
 /* ===== SYMPTOM EDUCATION MODAL ===== */
 .sym-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:900;display:flex;align-items:center;justify-content:center;padding:20px}
