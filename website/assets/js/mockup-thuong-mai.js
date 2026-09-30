@@ -597,7 +597,7 @@
     initTestimonialLightbox();
     initVideoModal();
     initInlineVideos();
-    initSymptomModal();
+    initBookCards();
   });
 
   function initTestimonialLightbox() {
@@ -773,9 +773,33 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); }, { once: true });
   }
 
-  function initSymptomModal() {
-    document.querySelectorAll('.hp-card[data-symptom]').forEach(btn => {
-      btn.addEventListener('click', () => openSymptomModal(btn.dataset.symptom));
+  function initBookCards() {
+    document.querySelectorAll('.hp-book[data-symptom]').forEach(card => {
+      const key = card.dataset.symptom;
+      const data = SYMPTOMS[key];
+      const inner = card.querySelector('.hp-book-inner');
+      if (!data || !inner) return;
+
+      inner.innerHTML =
+        `<button type="button" class="hpb-close" aria-label="Đóng">✕</button>` +
+        `<p class="hpb-label">💬 Bạn đang gặp tình trạng này không?</p>` +
+        `<p class="hpb-text">${esc(data.cam_nhan)}</p>` +
+        `<div class="hpb-section-dy"><p class="hpb-label">🌿 Đông y lý giải</p><p class="hpb-text">${esc(data.dong_y)}</p></div>` +
+        `<p class="hpb-label hpb-label-hq">⚠️ Để lâu có thể dẫn đến</p>` +
+        `<p class="hpb-text">${esc(data.hau_qua)}</p>` +
+        `<a href="#dat-lich" class="hpb-cta" data-service="${esc(data.title)}">Tư vấn tại Hồi Xuân Đường →</a>`;
+
+      inner.querySelector('.hpb-close').addEventListener('click', e => {
+        e.stopPropagation();
+        card.classList.remove('open');
+      });
+      inner.querySelector('.hpb-cta').addEventListener('click', e => e.stopPropagation());
+
+      card.addEventListener('click', () => {
+        const isOpen = card.classList.contains('open');
+        document.querySelectorAll('.hp-book.open').forEach(other => other.classList.remove('open'));
+        if (!isOpen) card.classList.add('open');
+      });
     });
   }
 
