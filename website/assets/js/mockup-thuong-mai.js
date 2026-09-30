@@ -774,10 +774,10 @@
   }
 
   function initBookCards() {
-    document.querySelectorAll('.hp-book[data-symptom]').forEach(card => {
+    document.querySelectorAll('.hpc-wrap[data-symptom]').forEach(card => {
       const key = card.dataset.symptom;
       const data = SYMPTOMS[key];
-      const inner = card.querySelector('.hp-book-inner');
+      const inner = card.querySelector('.hpc-back-content');
       if (!data || !inner) return;
 
       inner.innerHTML =
@@ -797,7 +797,7 @@
 
       card.addEventListener('click', () => {
         const isOpen = card.classList.contains('open');
-        document.querySelectorAll('.hp-book.open').forEach(other => other.classList.remove('open'));
+        document.querySelectorAll('.hpc-wrap.open').forEach(other => other.classList.remove('open'));
         if (!isOpen) card.classList.add('open');
       });
     });
