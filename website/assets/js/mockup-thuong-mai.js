@@ -563,10 +563,19 @@
     });
   }
 
+  function applySectionVisibility(vis) {
+    if (!vis || typeof vis !== 'object') return;
+    Object.entries(vis).forEach(([id, visible]) => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = visible === false ? 'none' : '';
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', async () => {
     const data = await loadSiteData();
     if (data) {
       applySettings(data.settings);
+      applySectionVisibility(data.section_visibility);
       renderHero(data.hero);
       renderServices(data.services);
       renderOffers(data.offers);
@@ -787,6 +796,7 @@
       renderTestimonials(data.testimonials || []);
       renderSocialChannels(data.settings || {});
       fillBookingOptions(data);
+      applySectionVisibility(data.section_visibility);
       applyTapIcons();
       var active = document.querySelector('[data-filter].active') || document.querySelector('[data-filter]');
       if (active) active.click();

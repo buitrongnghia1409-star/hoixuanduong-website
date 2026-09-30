@@ -244,9 +244,29 @@
     </section>`;
   }
 
+  const SECTION_LABELS = {
+    'dinh-vi': 'Phần "Điều gì tạo nên phương pháp HXĐ?" (3 trụ cột Đông y)',
+  };
+
+  function renderSectionVisibility() {
+    if (!siteData.section_visibility) siteData.section_visibility = { 'dinh-vi': true };
+    const rows = Object.entries(SECTION_LABELS).map(([id, label]) => {
+      const visible = siteData.section_visibility[id] !== false;
+      return `<div class="field">
+        <label for="secvis__${id}">${label}</label>
+        <select id="secvis__${id}" data-path="section_visibility.${id}">
+          <option value="true"${visible ? ' selected' : ''}>Hiện</option>
+          <option value="false"${!visible ? ' selected' : ''}>Ẩn</option>
+        </select>
+      </div>`;
+    }).join('');
+    return `<section class="group"><div class="group-head"><div><h2>Ẩn / Hiện các phần</h2><p>Tạm ẩn một phần trên website mà không xóa nội dung. Bấm "Lưu lên website" sau khi thay đổi.</p></div></div><div class="items"><article class="item"><div class="fields">${rows}</div></article></div></section>`;
+  }
+
   function render() {
     root.innerHTML = [
       renderSettings(),
+      renderSectionVisibility(),
       renderArrayGroup('hero'),
       renderArrayGroup('services'),
       renderArrayGroup('offers'),

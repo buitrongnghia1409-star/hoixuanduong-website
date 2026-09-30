@@ -623,5 +623,8 @@
       "text": "Mới làm được 1/4 liệu trình mà trộm vía đỡ hơn, nhẹ người hơn và tối đến sáng ra được nhiều dịch. Mong hết liệu trình khoẻ!",
       "image": "assets/images/testimonials/nguyen-ha-trang.jpg"
     }
-  ]
+  ],
+  "section_visibility": {
+    "dinh-vi": false
+  }
 }
