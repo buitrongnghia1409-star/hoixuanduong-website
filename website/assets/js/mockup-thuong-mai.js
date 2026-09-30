@@ -805,9 +805,19 @@
     }
 
     function closeOverlay() {
-      if (ovl) ovl.hidden = true;
-      document.body.style.overflow = '';
+      if (!ovl || ovl.hidden) return;
+      const panel = ovl.querySelector('.hpc-ovl-panel');
       activeCard = null;
+      document.body.style.overflow = '';
+      if (panel) {
+        panel.classList.add('is-closing');
+        panel.addEventListener('animationend', () => {
+          ovl.hidden = true;
+          panel.classList.remove('is-closing');
+        }, { once: true });
+      } else {
+        ovl.hidden = true;
+      }
     }
 
     if (ovl) {

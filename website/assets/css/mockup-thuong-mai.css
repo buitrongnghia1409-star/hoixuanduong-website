@@ -484,8 +484,10 @@ main{background:transparent!important}
 /* Mobile card modal — centered với khung rõ */
 #hpc-overlay{position:fixed;inset:0;z-index:700;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:16px}
 #hpc-overlay[hidden]{display:none}
-.hpc-ovl-panel{width:100%;max-width:460px;max-height:calc(100dvh - 32px);background:#faf8f4;border-radius:18px;border:1.5px solid rgba(23,62,50,.15);box-shadow:0 12px 40px rgba(0,0,0,.35);overflow:hidden;display:flex;flex-direction:column;animation:hpcCardIn .28s cubic-bezier(.4,0,.2,1)}
-@keyframes hpcCardIn{from{transform:scale(.94) translateY(12px);opacity:.4}to{transform:scale(1) translateY(0);opacity:1}}
+.hpc-ovl-panel{width:100%;max-width:460px;max-height:calc(100dvh - 32px);background:#faf8f4;border-radius:18px;border:1.5px solid rgba(23,62,50,.15);box-shadow:0 12px 40px rgba(0,0,0,.35);overflow:hidden;display:flex;flex-direction:column;animation:hpcCardIn .42s cubic-bezier(.22,1,.36,1) both}
+.hpc-ovl-panel.is-closing{animation:hpcCardOut .22s cubic-bezier(.4,0,1,.6) both}
+@keyframes hpcCardIn{from{transform:scale(.82);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes hpcCardOut{from{transform:scale(1);opacity:1}to{transform:scale(.88);opacity:0}}
 .hpc-ovl-head{position:relative;height:150px;flex-shrink:0;overflow:hidden;background:#173e32}
 .hpc-ovl-head-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;filter:brightness(1.05)}
 .hpc-ovl-head-fade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,30,18,.05),rgba(10,30,18,.72));display:flex;flex-direction:column;justify-content:flex-end;padding:14px 16px}
